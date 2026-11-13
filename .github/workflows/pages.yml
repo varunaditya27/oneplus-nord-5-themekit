@@ -70,7 +70,7 @@ jobs:
               echo "Direct link: https://github.com/$GITHUB_REPOSITORY/settings/pages"
               echo ""
               echo "After saving the setting, re-run **Publish ATELIER visual study**."
-              echo "Do not add `enablement: true` with the default `GITHUB_TOKEN`: it cannot initialize Pages."
+              echo 'Do not add enablement: true with the default GITHUB_TOKEN: it cannot initialize Pages.'
             } >> "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
