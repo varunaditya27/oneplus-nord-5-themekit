@@ -145,7 +145,7 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Spacer(Modifier.height(23.dp))
             val favored=apps.filter { it.id in settings.favorites }.take(4).ifEmpty { apps.take(4) }
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,{launch(it)},{}) }
+                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,{launch(it)},{}) }
             }
             Spacer(Modifier.height(22.dp))
             Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.surface)
@@ -175,7 +175,7 @@ private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
             items(filtered,key={it.id}) { app ->
-                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,{launch(app)},{favorite(app.id)})
+                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,{launch(app)},{favorite(app.id)})
             }
         }
     }
@@ -260,8 +260,44 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         MaterialPicker(c,s,update)
         SwitchRow(c,"Reduced motion",s.reduceMotion){v->update{it.copy(reduceMotion=v)}}
         SwitchRow(c,"Show labels",s.showLabels){v->update{it.copy(showLabels=v)}}
-        SwitchRow(c,"ATELIER monograms",s.iconStyle==IconStyle.MONOGRAM){v->
-            update{it.copy(iconStyle=if(v)IconStyle.MONOGRAM else IconStyle.ORIGINAL)}
+        Spacer(Modifier.height(21.dp))
+        Text("APP ICON LANGUAGE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
+        Spacer(Modifier.height(11.dp))
+        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(7.dp)) {
+            listOf(
+                IconStyle.SEMANTIC to "GLYPHS",
+                IconStyle.MONOGRAM to "LETTERS",
+                IconStyle.ORIGINAL to "ORIGINAL"
+            ).forEach { (style,label) ->
+                Button(
+                    onClick={update{it.copy(iconStyle=style)}},
+                    modifier=Modifier.weight(1f),
+                    contentPadding=PaddingValues(horizontal=5.dp,vertical=8.dp),
+                    colors=ButtonDefaults.buttonColors(
+                        containerColor=if(s.iconStyle==style)c.text else c.surface,
+                        contentColor=if(s.iconStyle==style)c.background else c.text
+                    )
+                ) {
+                    Text(label,fontSize=10.sp,fontFamily=AtelierFonts.technical)
+                }
+            }
+        }
+        Spacer(Modifier.height(7.dp))
+        Text("Glyphs use functional symbols. Unknown apps use lettermarks; original artwork remains available.",
+            color=c.muted,fontSize=11.sp,lineHeight=16.sp)
+        Spacer(Modifier.height(18.dp))
+        Text("GLYPH WEIGHT",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
+        Spacer(Modifier.height(9.dp))
+        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(9.dp)) {
+            IconWeight.entries.forEach { weight ->
+                OutlinedButton(
+                    onClick={update{it.copy(iconWeight=weight)}},
+                    modifier=Modifier.weight(1f),
+                    border=BorderStroke(1.dp,if(s.iconWeight==weight)c.accent else c.border)
+                ) {
+                    Text(weight.name,color=c.text,fontSize=10.sp,fontFamily=AtelierFonts.technical)
+                }
+            }
         }
         SwitchRow(c,"Compact clock",s.clockStyle==ClockStyle.COMPACT){v->
             update{it.copy(clockStyle=if(v)ClockStyle.COMPACT else ClockStyle.SIGNATURE)}
@@ -300,19 +336,41 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,onClick:()->Unit,onLongClick:()->Unit) {
+private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,onClick:()->Unit,onLongClick:()->Unit) {
     val haptics = LocalHapticFeedback.current
+    val semanticGlyph = remember(app.component.packageName, app.name, iconStyle) {
+        if (iconStyle == IconStyle.SEMANTIC)
+            AtelierIconResolver.resolve(app.component.packageName, app.name)
+        else null
+    }
     Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.width(70.dp)) {
         Box(Modifier.size(56.dp).clip(RoundedCornerShape(14.dp)).background(c.surface)
-            .border(1.dp,if(favorite)c.accent else c.border,RoundedCornerShape(14.dp))
+            .border(1.dp,c.border,RoundedCornerShape(14.dp))
             .combinedClickable(onClick=onClick,onLongClick={haptics.performHapticFeedback(HapticFeedbackType.LongPress);onLongClick()},onLongClickLabel="Pin or unpin app"),contentAlignment=Alignment.Center) {
             val bmp=remember(app.id,iconStyle){
                 if(iconStyle==IconStyle.ORIGINAL) runCatching{app.icon.toBitmap(width=72,height=72).asImageBitmap()}.getOrNull()
                 else null
             }
-            if(bmp!=null) Image(bitmap=bmp,contentDescription=app.name,modifier=Modifier.size(30.dp))
-            else Text(app.name.trim().firstOrNull()?.uppercaseChar()?.toString() ?: "?",
-                color=c.text,fontSize=23.sp,fontFamily=AtelierFonts.display,fontWeight=FontWeight.Light)
+            if (semanticGlyph != null) {
+                AtelierGlyphIcon(
+                    glyph = semanticGlyph,
+                    tint = c.text,
+                    modifier = Modifier.size(30.dp),
+                    description = app.name,
+                    weight = if (iconWeight == IconWeight.CORE) AtelierIconWeight.CORE else AtelierIconWeight.CONTOUR
+                )
+            } else if(bmp!=null) {
+                Image(bitmap=bmp,contentDescription=app.name,modifier=Modifier.size(30.dp))
+            } else {
+                Text(app.name.trim().firstOrNull()?.uppercaseChar()?.toString() ?: "?",
+                    color=c.text,fontSize=23.sp,fontFamily=AtelierFonts.display,fontWeight=FontWeight.Light)
+            }
+            if (favorite) {
+                Box(
+                    Modifier.align(Alignment.BottomEnd).padding(end=7.dp,bottom=7.dp)
+                        .width(9.dp).height(2.dp).background(c.accent)
+                )
+            }
         }
         if(showLabel) {
             Spacer(Modifier.height(7.dp))
