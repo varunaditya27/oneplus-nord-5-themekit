@@ -6,6 +6,13 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import dev.atelier.data.Material
+import androidx.compose.material3.Typography
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import dev.atelier.black.R
+
 
 /** Material tokens are shared conceptually with the HTML study and generated assets. */
 object Ink {
@@ -16,6 +23,24 @@ object Ink {
     val quiet = Color(0xFF9C9C9C)
     val brass = Color(0xFFCDA664)
 }
+object AtelierFonts {
+    val display = FontFamily(Font(R.font.hubot_sans))
+    val body = FontFamily(Font(R.font.spline_sans))
+    val technical = FontFamily(Font(R.font.departure_mono))
+}
+
+private val AtelierTypography = Typography(
+    displayLarge = TextStyle(fontFamily = AtelierFonts.display, fontWeight = FontWeight.ExtraLight),
+    headlineLarge = TextStyle(fontFamily = AtelierFonts.display, fontWeight = FontWeight.Light),
+    titleLarge = TextStyle(fontFamily = AtelierFonts.display, fontWeight = FontWeight.Medium),
+    titleMedium = TextStyle(fontFamily = AtelierFonts.display),
+    bodyLarge = TextStyle(fontFamily = AtelierFonts.body),
+    bodyMedium = TextStyle(fontFamily = AtelierFonts.body),
+    bodySmall = TextStyle(fontFamily = AtelierFonts.body),
+    labelLarge = TextStyle(fontFamily = AtelierFonts.body),
+    labelMedium = TextStyle(fontFamily = AtelierFonts.technical)
+)
+
 data class AtelierColors(
     val background: Color,
     val surface: Color,
@@ -46,5 +71,5 @@ fun AtelierTheme(material: Material, content: @Composable () -> Unit) {
         surface = c.surface, onSurface = c.text,
         secondary = c.accent
     )
-    MaterialTheme(colorScheme = scheme, content = content)
+    MaterialTheme(colorScheme = scheme, typography = AtelierTypography, content = content)
 }

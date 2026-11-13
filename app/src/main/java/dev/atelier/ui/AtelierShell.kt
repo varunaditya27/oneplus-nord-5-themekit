@@ -16,7 +16,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -64,9 +63,9 @@ fun AtelierShell(
     }
     Column(Modifier.fillMaxSize().background(c.background).statusBarsPadding().navigationBarsPadding().padding(horizontal=24.dp)) {
         Row(Modifier.fillMaxWidth().height(58.dp), horizontalArrangement=Arrangement.SpaceBetween, verticalAlignment=Alignment.CenterVertically) {
-            Text("ATELIER", color=c.text, fontSize=12.sp, letterSpacing=4.sp, fontWeight=FontWeight.Medium)
+            Text("ATELIER", color=c.text, fontSize=12.sp, letterSpacing=4.sp, fontWeight=FontWeight.Medium, fontFamily=AtelierFonts.display)
             Text(if(page==Page.HOME) "INTERFACE / 001" else "CLOSE ×", color=c.muted, fontSize=10.sp,
-                fontFamily=FontFamily.Monospace, modifier=Modifier.clickable { page=Page.HOME })
+                fontFamily=AtelierFonts.technical, modifier=Modifier.clickable { page=Page.HOME })
         }
         Box(Modifier.weight(1f)) {
             Crossfade(page, animationSpec=tween(if(settings.reduceMotion) 0 else 220), label="page") { current ->
@@ -84,7 +83,7 @@ fun AtelierShell(
             listOf("HOME","APPS","CMD","CTRL","SET").forEachIndexed { index,label ->
                 val selected = page.ordinal==index
                 Column(Modifier.clickable { page=Page.entries[index] }.padding(8.dp),horizontalAlignment=Alignment.CenterHorizontally) {
-                    Text("0"+(index+1),color=if(selected)c.accent else c.muted,fontSize=10.sp,fontFamily=FontFamily.Monospace)
+                    Text("0"+(index+1),color=if(selected)c.accent else c.muted,fontSize=10.sp,fontFamily=AtelierFonts.technical)
                     Text(label,color=if(selected)c.text else c.muted,fontSize=9.sp,letterSpacing=1.sp)
                 }
             }
@@ -101,18 +100,18 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             if(settings.clockStyle==ClockStyle.SIGNATURE) {
                 SignatureClock(now.format(DateTimeFormatter.ofPattern("HH")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion)
                 SignatureClock(now.format(DateTimeFormatter.ofPattern("mm")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion)
-            } else Text(now.format(DateTimeFormatter.ofPattern("HH:mm")),color=c.text,fontWeight=FontWeight.ExtraLight,fontSize=72.sp)
+            } else Text(now.format(DateTimeFormatter.ofPattern("HH:mm")),color=c.text,fontWeight=FontWeight.ExtraLight,fontSize=72.sp,fontFamily=AtelierFonts.display)
             Spacer(Modifier.height(24.dp))
             Box(Modifier.width(32.dp).height(2.dp).background(c.accent))
             Spacer(Modifier.height(16.dp))
             Text(now.format(DateTimeFormatter.ofPattern("EEEE, dd MMM")).uppercase(),color=c.text,fontSize=12.sp,letterSpacing=1.6.sp)
-            Text(if(settings.focusMode) "FOCUS / ACTIVE" else "WORKSPACE / READY",color=c.muted,fontSize=10.sp,fontFamily=FontFamily.Monospace)
+            Text(if(settings.focusMode) "FOCUS / ACTIVE" else "WORKSPACE / READY",color=c.muted,fontSize=10.sp,fontFamily=AtelierFonts.technical)
         }
         Column {
             Text("TODAY / WORKSPACE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
             Spacer(Modifier.height(9.dp))
             Text(if(settings.focusMode) "Make room for the work." else "Everything in its place.",
-                color=c.text,fontSize=22.sp,fontWeight=FontWeight.Light)
+                color=c.text,fontSize=22.sp,fontWeight=FontWeight.Light,fontFamily=AtelierFonts.display)
             Spacer(Modifier.height(23.dp))
             Box(Modifier.fillMaxWidth().height(1.dp).background(c.border))
             Spacer(Modifier.height(23.dp))
@@ -167,7 +166,7 @@ private fun CommandPage(c:AtelierColors,apps:List<AppItem>,execute:(Command)->Un
                     Text(action.label,color=c.text,fontSize=14.sp)
                     Text(action.description,color=c.muted,fontSize=10.sp)
                 }
-                Text(action.trigger,color=c.accent,fontSize=10.sp,fontFamily=FontFamily.Monospace)
+                Text(action.trigger,color=c.accent,fontSize=10.sp,fontFamily=AtelierFonts.technical)
             }
             Box(Modifier.fillMaxWidth().height(1.dp).background(c.border))
         }
@@ -286,7 +285,7 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
 @Composable
 private fun Heading(c:AtelierColors,title:String,description:String) {
     Spacer(Modifier.height(24.dp))
-    Text(title,color=c.text,fontSize=36.sp,fontWeight=FontWeight.Light)
+    Text(title,color=c.text,fontSize=36.sp,fontWeight=FontWeight.Light,fontFamily=AtelierFonts.display)
     Text(description,color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
     Spacer(Modifier.height(27.dp))
 }
