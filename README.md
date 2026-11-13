@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/brand/atelier-cover.svg" alt="ATELIER / The Black System, a near-black editorial design language" width="100%" />
+
 # ATELIER
 ### THE BLACK SYSTEM
 
@@ -29,6 +31,12 @@ The design is built on **near-black ink, architectural negative space, original 
 | **Silence is premium** | Idle motion should be almost invisible; backgrounds stop when hidden. |
 | **Reversible by default** | No root requirement, no replacement secure lock screen, no undocumented SystemUI hooks. |
 | **One language, many surfaces** | Shared tokens for the launcher, wallpaper, command system, widgets and asset generation. |
+
+## Surface studies
+
+![Original ATELIER lock, home and control interface compositions](assets/brand/surface-studies.svg)
+
+*Visual design studies only. The actual secure lock screen and full OxygenOS control shade remain outside the launcher’s control.*
 
 ## 01 / The material system
 

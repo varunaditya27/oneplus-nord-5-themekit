@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+<title id="title">ATELIER / The Black System</title><desc id="desc">A minimalist near-black technical identity with engineered typography and a single brass fold.</desc>
+<defs><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".62" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><linearGradient id="fold" x1="0" x2="1"><stop offset="0" stop-color="#080809"/><stop offset=".7" stop-color="#181819"/><stop offset="1" stop-color="#080809"/></linearGradient></defs>
+<rect width="1200" height="430" fill="#080809"/><path d="M 640 430 C 750 250 975 175 1030 -20 L 1200 0 V430Z" fill="url(#fold)"/>
+<g><path d="M 570.0 445 C 680.0 293 1010.0 150 1050.0 -35" fill="none" stroke="#55565B" stroke-opacity="0.25" stroke-width="1.3"/>
+<path d="M 573.6 445 C 683.1 293 1011.5 150 1050.8 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 577.3 445 C 686.2 293 1012.9 150 1051.6 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 580.9 445 C 689.3 293 1014.4 150 1052.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 584.5 445 C 692.4 293 1015.8 150 1053.3 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 588.2 445 C 695.5 293 1017.3 150 1054.1 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 591.8 445 C 698.5 293 1018.7 150 1054.9 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 595.5 445 C 701.6 293 1020.2 150 1055.7 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 599.1 445 C 704.7 293 1021.6 150 1056.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 602.7 445 C 707.8 293 1023.1 150 1057.4 -35" fill="none" stroke="#55565B" stroke-opacity="0.25" stroke-width="1.3"/>
+<path d="M 606.4 445 C 710.9 293 1024.5 150 1058.2 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 610.0 445 C 714.0 293 1026.0 150 1059.0 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 613.6 445 C 717.1 293 1027.5 150 1059.8 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 617.3 445 C 720.2 293 1028.9 150 1060.6 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 620.9 445 C 723.3 293 1030.4 150 1061.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 624.5 445 C 726.4 293 1031.8 150 1062.3 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 628.2 445 C 729.5 293 1033.3 150 1063.1 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 631.8 445 C 732.5 293 1034.7 150 1063.9 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 635.5 445 C 735.6 293 1036.2 150 1064.7 -35" fill="none" stroke="#55565B" stroke-opacity="0.25" stroke-width="1.3"/>
+<path d="M 639.1 445 C 738.7 293 1037.6 150 1065.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 642.7 445 C 741.8 293 1039.1 150 1066.4 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 646.4 445 C 744.9 293 1040.5 150 1067.2 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 650.0 445 C 748.0 293 1042.0 150 1068.0 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 653.6 445 C 751.1 293 1043.5 150 1068.8 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 657.3 445 C 754.2 293 1044.9 150 1069.6 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 660.9 445 C 757.3 293 1046.4 150 1070.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 664.5 445 C 760.4 293 1047.8 150 1071.3 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 668.2 445 C 763.5 293 1049.3 150 1072.1 -35" fill="none" stroke="#55565B" stroke-opacity="0.25" stroke-width="1.3"/>
+<path d="M 671.8 445 C 766.5 293 1050.7 150 1072.9 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 675.5 445 C 769.6 293 1052.2 150 1073.7 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 679.1 445 C 772.7 293 1053.6 150 1074.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 682.7 445 C 775.8 293 1055.1 150 1075.4 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 686.4 445 C 778.9 293 1056.5 150 1076.2 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 690.0 445 C 782.0 293 1058.0 150 1077.0 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 693.6 445 C 785.1 293 1059.5 150 1077.8 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 697.3 445 C 788.2 293 1060.9 150 1078.6 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 700.9 445 C 791.3 293 1062.4 150 1079.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.25" stroke-width="1.3"/>
+<path d="M 704.5 445 C 794.4 293 1063.8 150 1080.3 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 708.2 445 C 797.5 293 1065.3 150 1081.1 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 711.8 445 C 800.5 293 1066.7 150 1081.9 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 715.5 445 C 803.6 293 1068.2 150 1082.7 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 719.1 445 C 806.7 293 1069.6 150 1083.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 722.7 445 C 809.8 293 1071.1 150 1084.4 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 726.4 445 C 812.9 293 1072.5 150 1085.2 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 730.0 445 C 816.0 293 1074.0 150 1086.0 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 733.6 445 C 819.1 293 1075.5 150 1086.8 -35" fill="none" stroke="#55565B" stroke-opacity="0.25" stroke-width="1.3"/>
+<path d="M 737.3 445 C 822.2 293 1076.9 150 1087.6 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 740.9 445 C 825.3 293 1078.4 150 1088.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 744.5 445 C 828.4 293 1079.8 150 1089.3 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 748.2 445 C 831.5 293 1081.3 150 1090.1 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 751.8 445 C 834.5 293 1082.7 150 1090.9 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 755.5 445 C 837.6 293 1084.2 150 1091.7 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 759.1 445 C 840.7 293 1085.6 150 1092.5 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 762.7 445 C 843.8 293 1087.1 150 1093.4 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/>
+<path d="M 766.4 445 C 846.9 293 1088.5 150 1094.2 -35" fill="none" stroke="#55565B" stroke-opacity="0.25" stroke-width="1.3"/>
+<path d="M 770.0 445 C 850.0 293 1090.0 150 1095.0 -35" fill="none" stroke="#55565B" stroke-opacity="0.09" stroke-width="0.65"/></g><path d="M 590 445 C 770 242 982 170 1065 -30" fill="none" stroke="#CDA664" stroke-opacity=".65" stroke-width="1.4"/>
+<rect width="1200" height="430" filter="url(#grain)" opacity=".035"/>
+<g font-family="'Arial',sans-serif" fill="#F2F2EE">
+  <text x="75" y="84" font-size="16" font-weight="400" letter-spacing="7">ATELIER</text>
+  <text x="75" y="107" font-family="monospace" font-size="11" letter-spacing="1.9" fill="#9C9C9C">INTERFACE DESIGN / 001</text>
+  <text x="72" y="222" font-size="71" font-weight="200" letter-spacing="-3">THE BLACK</text>
+  <text x="72" y="300" font-size="71" font-weight="200" letter-spacing="-3">SYSTEM.</text>
+  <text x="75" y="351" font-size="15" font-weight="300" fill="#B8B8B6">An operating surface reduced to its essentials.</text>
+</g>
+<rect x="75" y="133" width="40" height="2" fill="#CDA664"/>
+<line x1="75" y1="384" x2="1124" y2="384" stroke="#303034" stroke-width="1"/>
+<text x="75" y="407" font-family="monospace" font-size="10" letter-spacing="1.5" fill="#9C9C9C">ONEPLUS NORD 5 / ORIGINAL INTERFACE EXPERIMENT</text>
+<text x="1060" y="407" font-family="monospace" font-size="10" letter-spacing="1" fill="#CDA664">PRE-ALPHA</text>
+</svg>
