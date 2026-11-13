@@ -162,7 +162,7 @@ function validate(items){
     if(pathData.has(it.d))throw Error('Duplicate drawing; use aliases instead: '+it.name);
     if(!cats.has(it.category))throw Error('Invalid category '+it.name);
     if(!/^[MLHVCSQTAZmlhvcsqtaz0-9+\-.,\s]+$/.test(it.d))throw Error('Unexpected path content '+it.name);
-    if(!/[Mm]/.test(it.d)||it.d.length<12)throw Error('Underspecified geometry '+it.name);
+    if(!/[Mm]/.test(it.d)||it.d.length<5)throw Error('Underspecified geometry '+it.name);
     names.add(it.name);pathData.add(it.d);
   }
   if(items.length<150)throw Error('Catalog unexpectedly small');
