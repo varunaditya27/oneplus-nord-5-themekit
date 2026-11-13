@@ -1,8 +1,12 @@
 name: Publish ATELIER visual study
 
-# Intentionally manual until Pages has been initialized once.
-# Enable Settings > Pages > Build and deployment > Source: GitHub Actions.
+# Manual releases remain available; automatic publish runs on web changes.
 on:
+  push:
+    branches: [main]
+    paths:
+      - "web/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -28,7 +32,9 @@ jobs:
           test -s web/index.html
           node --check web/app.js
           node web/test-smoke.mjs
-          echo "ATELIER's static website and bundled fonts passed validation."
+          node --check web/icons/gallery.js
+          node iconography/check.mjs
+          echo "ATELIER's site, font assets, and complete icon library passed validation."
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4

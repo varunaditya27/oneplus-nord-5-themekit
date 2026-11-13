@@ -2,7 +2,7 @@ name: Web / checks
 on:
   push:
     branches: [main]
-    paths: ["web/**", "assets/icons/**", "assets/tokens.json", ".github/workflows/web.yml"]
+    paths: ["web/**", "assets/icons/**", "assets/tokens.json", "iconography/**", ".github/workflows/web.yml"]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -11,12 +11,15 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
       - name: Parse client JavaScript
-        run: node --check web/app.js
+        run: |
+          node --check web/app.js
+          node --check web/icons/gallery.js
+          node iconography/check.mjs
       - name: Static markup and asset tests
         run: node web/test-smoke.mjs
       - name: Validate SVG geometry

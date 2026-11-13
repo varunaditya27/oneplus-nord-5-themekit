@@ -10,7 +10,7 @@ A typography-led Android launcher and visual theme kit for the OnePlus Nord 5.
 
 <sub>PRE-ALPHA · NATIVE ANDROID BUILD VERIFIED · DEVICE TESTING PENDING</sub>
 
-[Visual study](web/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
+[Visual study](web/index.html) · [Explore 155 icons](web/icons/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
 
 </div>
 
@@ -29,6 +29,16 @@ It is not an OEM replacement. Android retains the secure lock screen, biometric 
 - **Keep developer behavior real.** Search and allowlisted commands replace decorative terminal jargon.
 - **Preserve escape routes.** No root, no undocumented system hooks and no forced default-launcher takeover.
 
+## The iconography system
+
+![ATELIER's four coherent icon treatments: Contour, Core, Etch and Inlay](iconography/preview/overview.svg)
+
+**155 original functional drawings, 775 export-ready SVGs, and 465 Android VectorDrawables.** Four deliberate presentations are generated from the same reviewed source geometry: Contour for normal UI, Core for dense small controls, Etch for large editorial surfaces, and Inlay for launcher tiles. Active Inlay variants reserve a single gold mark for selection.
+
+[Explore the searchable icon archive](web/icons/index.html) · [Browse the complete source catalog](iconography/catalog.json) · [Read the critical design audit](docs/ICON_AUDIT.md) · [See export instructions](docs/ICON_SYSTEM.md)
+
+No recreated third-party logos: a generic repository icon is not a counterfeit GitHub logo. Brand-identifiable app icons remain available through Android's original-app-artwork option.
+
 ## Architecture
 
 <p align="center"><img src="docs/diagrams/architecture.svg" alt="ATELIER input and launcher layers connect to Android public services, while the secure lock screen and system controls remain Android-owned" width="100%"></p>
@@ -46,6 +56,7 @@ For the build prerequisites and current limitations, see [Testing](docs/TESTING.
 ## Documentation
 
 - [Nord 5 setup](docs/NORD5_SETUP.md): install, customize, use gestures and restore OxygenOS.
+- [Iconography system](docs/ICON_SYSTEM.md): symbol taxonomy, optical sizes, and exports.
 - [Design system](docs/DESIGN_SYSTEM.md): color, typography, spacing, icons and visual restraint.
 - [Architecture](docs/ARCHITECTURE.md): module responsibilities, permissions and Android boundaries.
 - [Roadmap](docs/ROADMAP.md): completed source work and unverified device milestones.
