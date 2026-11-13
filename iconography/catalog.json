@@ -18,26 +18,6 @@
   },
   "icons": [
     {
-      "name": "home",
-      "category": "navigation",
-      "label": "Home",
-      "d": "M4 10 12 3.5 20 10V20H4Z M9 20v-7h6v7",
-      "aliases": [
-        "launcher",
-        "dashboard"
-      ]
-    },
-    {
-      "name": "search",
-      "category": "navigation",
-      "label": "Search",
-      "d": "M10.8 4.2a6.6 6.6 0 1 0 0 13.2a6.6 6.6 0 1 0 0-13.2 M16 16l4.4 4.4",
-      "aliases": [
-        "find",
-        "query"
-      ]
-    },
-    {
       "name": "apps-grid",
       "category": "navigation",
       "label": "Apps Grid",
@@ -49,10 +29,10 @@
       ]
     },
     {
-      "name": "list",
+      "name": "arrow-down",
       "category": "navigation",
-      "label": "List",
-      "d": "M5 6h1 M9 6h11 M5 12h1 M9 12h11 M5 18h1 M9 18h11",
+      "label": "Arrow Down",
+      "d": "M12 4.5v15 M5.5 13 12 19.5l6.5-6.5",
       "aliases": []
     },
     {
@@ -77,10 +57,17 @@
       "aliases": []
     },
     {
-      "name": "arrow-down",
+      "name": "check",
       "category": "navigation",
-      "label": "Arrow Down",
-      "d": "M12 4.5v15 M5.5 13 12 19.5l6.5-6.5",
+      "label": "Check",
+      "d": "M4.5 12.5 9.5 17.5 19.5 6.5",
+      "aliases": []
+    },
+    {
+      "name": "chevron-down",
+      "category": "navigation",
+      "label": "Chevron Down",
+      "d": "M5.5 8.5 12 15l6.5-6.5",
       "aliases": []
     },
     {
@@ -105,13 +92,6 @@
       "aliases": []
     },
     {
-      "name": "chevron-down",
-      "category": "navigation",
-      "label": "Chevron Down",
-      "d": "M5.5 8.5 12 15l6.5-6.5",
-      "aliases": []
-    },
-    {
       "name": "close",
       "category": "navigation",
       "label": "Close",
@@ -121,10 +101,62 @@
       ]
     },
     {
+      "name": "collapse",
+      "category": "navigation",
+      "label": "Collapse",
+      "d": "M4 10h6V4 M4 10l7-7 M20 10h-6V4 M20 10l-7-7 M4 14h6v6 M4 14l7 7 M20 14h-6v6 M20 14l-7 7",
+      "aliases": []
+    },
+    {
+      "name": "expand",
+      "category": "navigation",
+      "label": "Expand",
+      "d": "M9 4H4v5 M4 4l6 6 M15 4h5v5 M20 4l-6 6 M4 15v5h5 M4 20l6-6 M20 15v5h-5 M20 20l-6-6",
+      "aliases": []
+    },
+    {
+      "name": "external-link",
+      "category": "navigation",
+      "label": "External Link",
+      "d": "M13 4h7v7 M20 4l-9.5 9.5 M19 14v5H5V5h5",
+      "aliases": []
+    },
+    {
+      "name": "filter",
+      "category": "navigation",
+      "label": "Filter",
+      "d": "M3.5 5h17l-6.7 7.2V19l-3.6 1v-7.8Z",
+      "aliases": []
+    },
+    {
+      "name": "home",
+      "category": "navigation",
+      "label": "Home",
+      "d": "M4 10 12 3.5 20 10V20H4Z M9 20v-7h6v7",
+      "aliases": [
+        "launcher",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "list",
+      "category": "navigation",
+      "label": "List",
+      "d": "M5 6h1 M9 6h11 M5 12h1 M9 12h11 M5 18h1 M9 18h11",
+      "aliases": []
+    },
+    {
       "name": "menu",
       "category": "navigation",
       "label": "Menu",
       "d": "M4 6h16 M4 12h16 M4 18h16",
+      "aliases": []
+    },
+    {
+      "name": "minus",
+      "category": "navigation",
+      "label": "Minus",
+      "d": "M4 12h16",
       "aliases": []
     },
     {
@@ -151,20 +183,6 @@
       ]
     },
     {
-      "name": "minus",
-      "category": "navigation",
-      "label": "Minus",
-      "d": "M4 12h16",
-      "aliases": []
-    },
-    {
-      "name": "check",
-      "category": "navigation",
-      "label": "Check",
-      "d": "M4.5 12.5 9.5 17.5 19.5 6.5",
-      "aliases": []
-    },
-    {
       "name": "refresh",
       "category": "navigation",
       "label": "Refresh",
@@ -174,39 +192,14 @@
       ]
     },
     {
-      "name": "external-link",
+      "name": "search",
       "category": "navigation",
-      "label": "External Link",
-      "d": "M13 4h7v7 M20 4l-9.5 9.5 M19 14v5H5V5h5",
-      "aliases": []
-    },
-    {
-      "name": "filter",
-      "category": "navigation",
-      "label": "Filter",
-      "d": "M3.5 5h17l-6.7 7.2V19l-3.6 1v-7.8Z",
-      "aliases": []
-    },
-    {
-      "name": "sort",
-      "category": "navigation",
-      "label": "Sort",
-      "d": "M6 5v14 M3.5 8 6 5l2.5 3 M18 19V5 M15.5 16.5 18 19l2.5-2.5 M11 9h4 M11 15h4",
-      "aliases": []
-    },
-    {
-      "name": "expand",
-      "category": "navigation",
-      "label": "Expand",
-      "d": "M9 4H4v5 M4 4l6 6 M15 4h5v5 M20 4l-6 6 M4 15v5h5 M4 20l6-6 M20 15v5h-5 M20 20l-6-6",
-      "aliases": []
-    },
-    {
-      "name": "collapse",
-      "category": "navigation",
-      "label": "Collapse",
-      "d": "M4 10h6V4 M4 10l7-7 M20 10h-6V4 M20 10l-7-7 M4 14h6v6 M4 14l7 7 M20 14h-6v6 M20 14l-7 7",
-      "aliases": []
+      "label": "Search",
+      "d": "M10.8 4.2a6.6 6.6 0 1 0 0 13.2a6.6 6.6 0 1 0 0-13.2 M16 16l4.4 4.4",
+      "aliases": [
+        "find",
+        "query"
+      ]
     },
     {
       "name": "sliders",
@@ -219,23 +212,32 @@
       ]
     },
     {
-      "name": "phone",
-      "category": "communication",
-      "label": "Phone",
-      "d": "M7 3.5 10.8 7l-2.3 2.5a15 15 0 0 0 6 6l2.5-2.3 3.5 3.8-2.1 3.3c-7.2.3-14.7-7.2-14.4-14.4Z",
-      "aliases": [
-        "call"
-      ]
+      "name": "sort",
+      "category": "navigation",
+      "label": "Sort",
+      "d": "M6 5v14 M3.5 8 6 5l2.5 3 M18 19V5 M15.5 16.5 18 19l2.5-2.5 M11 9h4 M11 15h4",
+      "aliases": []
     },
     {
-      "name": "message",
+      "name": "at-sign",
       "category": "communication",
-      "label": "Message",
-      "d": "M4 5h16v12H9.5L4 20z M8 9h8 M8 12.5h5",
-      "aliases": [
-        "messages",
-        "sms"
-      ]
+      "label": "At Sign",
+      "d": "M15.5 12a3.5 3.5 0 1 1-7 0a3.5 3.5 0 1 1 7 0 M15.5 8.5v6q0 3 2.8 2 3-1.5 2.4-5.5A8.5 8.5 0 1 0 17 19",
+      "aliases": []
+    },
+    {
+      "name": "bell",
+      "category": "communication",
+      "label": "Bell",
+      "d": "M6 17h12l-1.8-2.5V10a4.2 4.2 0 0 0-8.4 0v4.5Z M10 20h4",
+      "aliases": []
+    },
+    {
+      "name": "bell-off",
+      "category": "communication",
+      "label": "Bell Off",
+      "d": "M4 4l16 16 M7.5 7.5A4 4 0 0 1 16.2 10v4.4L19 18H9 M10 20h4",
+      "aliases": []
     },
     {
       "name": "chat",
@@ -245,6 +247,20 @@
       "aliases": [
         "conversation"
       ]
+    },
+    {
+      "name": "contact",
+      "category": "communication",
+      "label": "Contact",
+      "d": "M5 4h14v16H5z M9.4 10a2.6 2.6 0 1 0 5.2 0a2.6 2.6 0 1 0-5.2 0 M8 17c1-2.6 7-2.6 8 0",
+      "aliases": []
+    },
+    {
+      "name": "link",
+      "category": "communication",
+      "label": "Link",
+      "d": "M9.5 7.5l2-2a4.2 4.2 0 0 1 6 6l-3 3a4.2 4.2 0 0 1-6 0 M14.5 16.5l-2 2a4.2 4.2 0 0 1-6-6l3-3a4.2 4.2 0 0 1 6 0",
+      "aliases": []
     },
     {
       "name": "mail",
@@ -263,10 +279,36 @@
       "aliases": []
     },
     {
-      "name": "contact",
+      "name": "message",
       "category": "communication",
-      "label": "Contact",
-      "d": "M5 4h14v16H5z M9.4 10a2.6 2.6 0 1 0 5.2 0a2.6 2.6 0 1 0-5.2 0 M8 17c1-2.6 7-2.6 8 0",
+      "label": "Message",
+      "d": "M4 5h16v12H9.5L4 20z M8 9h8 M8 12.5h5",
+      "aliases": [
+        "messages",
+        "sms"
+      ]
+    },
+    {
+      "name": "phone",
+      "category": "communication",
+      "label": "Phone",
+      "d": "M7 3.5 10.8 7l-2.3 2.5a15 15 0 0 0 6 6l2.5-2.3 3.5 3.8-2.1 3.3c-7.2.3-14.7-7.2-14.4-14.4Z",
+      "aliases": [
+        "call"
+      ]
+    },
+    {
+      "name": "send",
+      "category": "communication",
+      "label": "Send",
+      "d": "M3 11.5 21 4l-6.1 17-3.4-7-8.5-2.5Z M21 4 11.5 14",
+      "aliases": []
+    },
+    {
+      "name": "share",
+      "category": "communication",
+      "label": "Share",
+      "d": "M8 12l8-5 M8 12l8 5 M5.7 10a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M18.3 4.5a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M18.3 15.5a2 2 0 1 0 0 4a2 2 0 1 0 0-4",
       "aliases": []
     },
     {
@@ -284,41 +326,6 @@
       "aliases": []
     },
     {
-      "name": "bell",
-      "category": "communication",
-      "label": "Bell",
-      "d": "M6 17h12l-1.8-2.5V10a4.2 4.2 0 0 0-8.4 0v4.5Z M10 20h4",
-      "aliases": []
-    },
-    {
-      "name": "bell-off",
-      "category": "communication",
-      "label": "Bell Off",
-      "d": "M4 4l16 16 M7.5 7.5A4 4 0 0 1 16.2 10v4.4L19 18H9 M10 20h4",
-      "aliases": []
-    },
-    {
-      "name": "send",
-      "category": "communication",
-      "label": "Send",
-      "d": "M3 11.5 21 4l-6.1 17-3.4-7-8.5-2.5Z M21 4 11.5 14",
-      "aliases": []
-    },
-    {
-      "name": "share",
-      "category": "communication",
-      "label": "Share",
-      "d": "M8 12l8-5 M8 12l8 5 M5.7 10a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M18.3 4.5a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M18.3 15.5a2 2 0 1 0 0 4a2 2 0 1 0 0-4",
-      "aliases": []
-    },
-    {
-      "name": "link",
-      "category": "communication",
-      "label": "Link",
-      "d": "M9.5 7.5l2-2a4.2 4.2 0 0 1 6 6l-3 3a4.2 4.2 0 0 1-6 0 M14.5 16.5l-2 2a4.2 4.2 0 0 1-6-6l3-3a4.2 4.2 0 0 1 6 0",
-      "aliases": []
-    },
-    {
       "name": "video-call",
       "category": "communication",
       "label": "Video Call",
@@ -328,75 +335,11 @@
       ]
     },
     {
-      "name": "at-sign",
-      "category": "communication",
-      "label": "At Sign",
-      "d": "M15.5 12a3.5 3.5 0 1 1-7 0a3.5 3.5 0 1 1 7 0 M15.5 8.5v6q0 3 2.8 2 3-1.5 2.4-5.5A8.5 8.5 0 1 0 17 19",
+      "name": "archive",
+      "category": "workspace",
+      "label": "Archive",
+      "d": "M4 5h16v4H4z M6 9v11h12V9 M10 13h4",
       "aliases": []
-    },
-    {
-      "name": "folder",
-      "category": "workspace",
-      "label": "Folder",
-      "d": "M3.5 6h6.8l2 2H20.5v11.5h-17z",
-      "aliases": [
-        "directory"
-      ]
-    },
-    {
-      "name": "folder-open",
-      "category": "workspace",
-      "label": "Folder Open",
-      "d": "M3.5 6h6.8l2 2H20v3 M4 11h17l-2.6 8.5H2.5z",
-      "aliases": []
-    },
-    {
-      "name": "file",
-      "category": "workspace",
-      "label": "File",
-      "d": "M6 3.5h8l4 4V20.5H6z M14 3.5v4h4",
-      "aliases": []
-    },
-    {
-      "name": "file-text",
-      "category": "workspace",
-      "label": "File Text",
-      "d": "M6 3.5h8l4 4V20.5H6z M14 3.5v4h4 M9 12h6 M9 15h6 M9 18h4",
-      "aliases": [
-        "document"
-      ]
-    },
-    {
-      "name": "file-code",
-      "category": "workspace",
-      "label": "File Code",
-      "d": "M6 3.5h8l4 4V20.5H6z M14 3.5v4h4 M11 12l-2 2 2 2 M14 12l2 2-2 2",
-      "aliases": []
-    },
-    {
-      "name": "calendar",
-      "category": "workspace",
-      "label": "Calendar",
-      "d": "M4 6h16v14H4z M7 4v4 M17 4v4 M4 10h16 M8 14h2 M13 14h2 M8 17h2",
-      "aliases": [
-        "date"
-      ]
-    },
-    {
-      "name": "calendar-check",
-      "category": "workspace",
-      "label": "Calendar Check",
-      "d": "M4 6h16v14H4z M7 4v4 M17 4v4 M4 10h16 M8 15l2.5 2.5 5-5",
-      "aliases": []
-    },
-    {
-      "name": "notes",
-      "category": "workspace",
-      "label": "Notes",
-      "d": "M5 4h14v16H5z M8.5 8h7 M8.5 12h7 M8.5 16h4",
-      "aliases": [
-        "note"
-      ]
     },
     {
       "name": "book",
@@ -422,6 +365,47 @@
       ]
     },
     {
+      "name": "briefcase",
+      "category": "workspace",
+      "label": "Briefcase",
+      "d": "M3.5 8h17v12h-17z M8 8V5h8v3 M3.5 12l8.5 3 8.5-3 M12 13v4",
+      "aliases": [
+        "work"
+      ]
+    },
+    {
+      "name": "calculator",
+      "category": "workspace",
+      "label": "Calculator",
+      "d": "M5 3.5h14v17H5z M8 7h8 M8 12h1 M13 12h3 M8 16h1 M13 16h3",
+      "aliases": []
+    },
+    {
+      "name": "calendar",
+      "category": "workspace",
+      "label": "Calendar",
+      "d": "M4 6h16v14H4z M7 4v4 M17 4v4 M4 10h16 M8 14h2 M13 14h2 M8 17h2",
+      "aliases": [
+        "date"
+      ]
+    },
+    {
+      "name": "calendar-check",
+      "category": "workspace",
+      "label": "Calendar Check",
+      "d": "M4 6h16v14H4z M7 4v4 M17 4v4 M4 10h16 M8 15l2.5 2.5 5-5",
+      "aliases": []
+    },
+    {
+      "name": "check-list",
+      "category": "workspace",
+      "label": "Check List",
+      "d": "M4 6l2 2 3-3 M12 7h8 M4 13l2 2 3-3 M12 14h8 M4 20l2 1 3-3 M12 20h8",
+      "aliases": [
+        "tasks"
+      ]
+    },
+    {
       "name": "clipboard",
       "category": "workspace",
       "label": "Clipboard",
@@ -436,29 +420,6 @@
       "aliases": []
     },
     {
-      "name": "edit",
-      "category": "workspace",
-      "label": "Edit",
-      "d": "M4 20l4.5-.9 11-11-3.6-3.6-11 11z M14.8 5.7l3.6 3.6",
-      "aliases": []
-    },
-    {
-      "name": "trash",
-      "category": "workspace",
-      "label": "Trash",
-      "d": "M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13 M10 10v7 M14 10v7",
-      "aliases": [
-        "delete"
-      ]
-    },
-    {
-      "name": "archive",
-      "category": "workspace",
-      "label": "Archive",
-      "d": "M4 5h16v4H4z M6 9v11h12V9 M10 13h4",
-      "aliases": []
-    },
-    {
       "name": "download",
       "category": "workspace",
       "label": "Download",
@@ -468,59 +429,50 @@
       ]
     },
     {
-      "name": "upload",
+      "name": "edit",
       "category": "workspace",
-      "label": "Upload",
-      "d": "M12 16V4 M7 9l5-5 5 5 M4 18v2h16v-2",
+      "label": "Edit",
+      "d": "M4 20l4.5-.9 11-11-3.6-3.6-11 11z M14.8 5.7l3.6 3.6",
+      "aliases": []
+    },
+    {
+      "name": "file",
+      "category": "workspace",
+      "label": "File",
+      "d": "M6 3.5h8l4 4V20.5H6z M14 3.5v4h4",
+      "aliases": []
+    },
+    {
+      "name": "file-code",
+      "category": "workspace",
+      "label": "File Code",
+      "d": "M6 3.5h8l4 4V20.5H6z M14 3.5v4h4 M11 12l-2 2 2 2 M14 12l2 2-2 2",
+      "aliases": []
+    },
+    {
+      "name": "file-text",
+      "category": "workspace",
+      "label": "File Text",
+      "d": "M6 3.5h8l4 4V20.5H6z M14 3.5v4h4 M9 12h6 M9 15h6 M9 18h4",
       "aliases": [
-        "share-file"
+        "document"
       ]
     },
     {
-      "name": "printer",
+      "name": "folder",
       "category": "workspace",
-      "label": "Printer",
-      "d": "M6 8V4h12v4 M6 17H4V9h16v8h-2 M6 14h12v6H6z M17 11h1",
-      "aliases": []
-    },
-    {
-      "name": "calculator",
-      "category": "workspace",
-      "label": "Calculator",
-      "d": "M5 3.5h14v17H5z M8 7h8 M8 12h1 M13 12h3 M8 16h1 M13 16h3",
-      "aliases": []
-    },
-    {
-      "name": "check-list",
-      "category": "workspace",
-      "label": "Check List",
-      "d": "M4 6l2 2 3-3 M12 7h8 M4 13l2 2 3-3 M12 14h8 M4 20l2 1 3-3 M12 20h8",
+      "label": "Folder",
+      "d": "M3.5 6h6.8l2 2H20.5v11.5h-17z",
       "aliases": [
-        "tasks"
+        "directory"
       ]
     },
     {
-      "name": "pin",
+      "name": "folder-open",
       "category": "workspace",
-      "label": "Pin",
-      "d": "M8 4h8l-2 5 3 4v2H7v-2l3-4z M12 15v6",
+      "label": "Folder Open",
+      "d": "M3.5 6h6.8l2 2H20v3 M4 11h17l-2.6 8.5H2.5z",
       "aliases": []
-    },
-    {
-      "name": "tag",
-      "category": "workspace",
-      "label": "Tag",
-      "d": "M3.5 5h9l8 8-7.5 7.5-9.5-9.5z M8 9h.1",
-      "aliases": []
-    },
-    {
-      "name": "star",
-      "category": "workspace",
-      "label": "Star",
-      "d": "M12 3.3l2.8 5.8 6.4.9-4.6 4.5 1.1 6.3-5.7-3-5.7 3 1.1-6.3L2.8 10l6.4-.9z",
-      "aliases": [
-        "favorite"
-      ]
     },
     {
       "name": "heart",
@@ -537,12 +489,67 @@
       "aliases": []
     },
     {
-      "name": "briefcase",
+      "name": "notes",
       "category": "workspace",
-      "label": "Briefcase",
-      "d": "M3.5 8h17v12h-17z M8 8V5h8v3 M3.5 12l8.5 3 8.5-3 M12 13v4",
+      "label": "Notes",
+      "d": "M5 4h14v16H5z M8.5 8h7 M8.5 12h7 M8.5 16h4",
       "aliases": [
-        "work"
+        "note"
+      ]
+    },
+    {
+      "name": "pin",
+      "category": "workspace",
+      "label": "Pin",
+      "d": "M8 4h8l-2 5 3 4v2H7v-2l3-4z M12 15v6",
+      "aliases": []
+    },
+    {
+      "name": "printer",
+      "category": "workspace",
+      "label": "Printer",
+      "d": "M6 8V4h12v4 M6 17H4V9h16v8h-2 M6 14h12v6H6z M17 11h1",
+      "aliases": []
+    },
+    {
+      "name": "receipt",
+      "category": "workspace",
+      "label": "Receipt",
+      "d": "M6 3.5h12v17l-3-2-3 2-3-2-3 2z M9 9h6 M9 13h6",
+      "aliases": []
+    },
+    {
+      "name": "star",
+      "category": "workspace",
+      "label": "Star",
+      "d": "M12 3.3l2.8 5.8 6.4.9-4.6 4.5 1.1 6.3-5.7-3-5.7 3 1.1-6.3L2.8 10l6.4-.9z",
+      "aliases": [
+        "favorite"
+      ]
+    },
+    {
+      "name": "tag",
+      "category": "workspace",
+      "label": "Tag",
+      "d": "M3.5 5h9l8 8-7.5 7.5-9.5-9.5z M8 9h.1",
+      "aliases": []
+    },
+    {
+      "name": "trash",
+      "category": "workspace",
+      "label": "Trash",
+      "d": "M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13 M10 10v7 M14 10v7",
+      "aliases": [
+        "delete"
+      ]
+    },
+    {
+      "name": "upload",
+      "category": "workspace",
+      "label": "Upload",
+      "d": "M12 16V4 M7 9l5-5 5 5 M4 18v2h16v-2",
+      "aliases": [
+        "share-file"
       ]
     },
     {
@@ -555,28 +562,34 @@
       ]
     },
     {
-      "name": "receipt",
-      "category": "workspace",
-      "label": "Receipt",
-      "d": "M6 3.5h12v17l-3-2-3 2-3-2-3 2z M9 9h6 M9 13h6",
+      "name": "airplane",
+      "category": "system",
+      "label": "Airplane",
+      "d": "M3 12l18-8-5 17-3.5-7z M12.5 14 21 4",
       "aliases": []
     },
     {
-      "name": "settings",
+      "name": "alarm",
       "category": "system",
-      "label": "Settings",
-      "d": "M12 3.5v3 M12 17.5v3 M3.5 12h3 M17.5 12h3 M6 6l2.2 2.2 M15.8 15.8 18 18 M18 6l-2.2 2.2 M8.2 15.8 6 18 M12 8.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0-7",
+      "label": "Alarm",
+      "d": "M7 4 4 7 M17 4l3 3 M12 6a7 7 0 1 0 0 14a7 7 0 1 0 0-14 M12 9v4l3 2",
+      "aliases": []
+    },
+    {
+      "name": "battery",
+      "category": "system",
+      "label": "Battery",
+      "d": "M4 7h15v10H4z M19 10h2v4 M7 10h7v4H7z",
+      "aliases": []
+    },
+    {
+      "name": "battery-charge",
+      "category": "system",
+      "label": "Battery Charge",
+      "d": "M4 7h15v10H4z M19 10h2v4 M13 8.5 9 13h3l-1 3.5 4-4.5h-3z",
       "aliases": [
-        "preferences",
-        "system-settings"
+        "charging"
       ]
-    },
-    {
-      "name": "wifi",
-      "category": "system",
-      "label": "Wifi",
-      "d": "M3 8q9-8 18 0 M6 11.8q6-5.2 12 0 M9 15.5q3-2.7 6 0 M12 19h.1",
-      "aliases": []
     },
     {
       "name": "bluetooth",
@@ -586,10 +599,50 @@
       "aliases": []
     },
     {
-      "name": "airplane",
+      "name": "brightness",
       "category": "system",
-      "label": "Airplane",
-      "d": "M3 12l18-8-5 17-3.5-7z M12.5 14 21 4",
+      "label": "Brightness",
+      "d": "M4 16h16 M4 20h16 M12 3v2 M6.5 5.5 8 7 M17.5 5.5 16 7 M3 11h2 M19 11h2 M8 11a4 4 0 0 1 8 0",
+      "aliases": [
+        "screen-brightness"
+      ]
+    },
+    {
+      "name": "clock",
+      "category": "system",
+      "label": "Clock",
+      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M12 7v5l3.5 2.5",
+      "aliases": [
+        "time",
+        "timepiece"
+      ]
+    },
+    {
+      "name": "display",
+      "category": "system",
+      "label": "Display",
+      "d": "M3 5h18v13H3z M9 21h6 M12 18v3",
+      "aliases": []
+    },
+    {
+      "name": "eye",
+      "category": "system",
+      "label": "Eye",
+      "d": "M3 12q9-11 18 0-9 11-18 0z M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6",
+      "aliases": []
+    },
+    {
+      "name": "eye-off",
+      "category": "system",
+      "label": "Eye Off",
+      "d": "M3.5 4l17 16 M3 12q3-4 6.8-5.2 M14 7q4 1 7 5-2.1 2.7-5 4 M5 15q6 5.2 12 1",
+      "aliases": []
+    },
+    {
+      "name": "fingerprint",
+      "category": "system",
+      "label": "Fingerprint",
+      "d": "M5 10a7 7 0 0 1 14 0 M7 13v-3a5 5 0 0 1 10 0v3 M10 18c-1.2-2.5-1-4.5-1-8a3 3 0 0 1 6 0v3 M12 11v6 M16 17c.4-1.5.5-3 .5-4 M8 20l-1.4-3",
       "aliases": []
     },
     {
@@ -610,13 +663,42 @@
       ]
     },
     {
-      "name": "sun",
+      "name": "globe",
       "category": "system",
-      "label": "Sun",
-      "d": "M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8 M12 2.5v2.2 M12 19.3v2.2 M2.5 12h2.2 M19.3 12h2.2 M5.4 5.4 7 7 M17 17l1.6 1.6 M18.6 5.4 17 7 M7 17l-1.6 1.6",
+      "label": "Globe",
+      "d": "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18 M3 12h18 M12 3q-9 9 0 18 M12 3q9 9 0 18",
+      "aliases": []
+    },
+    {
+      "name": "hotspot",
+      "category": "system",
+      "label": "Hotspot",
+      "d": "M4 17a11 11 0 0 1 16 0 M7 14a7 7 0 0 1 10 0 M12 18h.1 M12 8v.1",
+      "aliases": []
+    },
+    {
+      "name": "location",
+      "category": "system",
+      "label": "Location",
+      "d": "M12 21s-7-7-7-12a7 7 0 1 1 14 0c0 5-7 12-7 12z M12 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5",
       "aliases": [
-        "day"
+        "map-pin",
+        "places"
       ]
+    },
+    {
+      "name": "lock",
+      "category": "system",
+      "label": "Lock",
+      "d": "M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4 M12 15v3",
+      "aliases": []
+    },
+    {
+      "name": "mobile-data",
+      "category": "system",
+      "label": "Mobile Data",
+      "d": "M5 18V9 M9 18V6 M13 18V12 M17 18V4 M21 18V8",
+      "aliases": []
     },
     {
       "name": "moon",
@@ -628,84 +710,10 @@
       ]
     },
     {
-      "name": "brightness",
-      "category": "system",
-      "label": "Brightness",
-      "d": "M4 16h16 M4 20h16 M12 3v2 M6.5 5.5 8 7 M17.5 5.5 16 7 M3 11h2 M19 11h2 M8 11a4 4 0 0 1 8 0",
-      "aliases": [
-        "screen-brightness"
-      ]
-    },
-    {
-      "name": "battery",
-      "category": "system",
-      "label": "Battery",
-      "d": "M4 7h15v10H4z M19 10h2v4 M7 10h7v4H7z",
-      "aliases": []
-    },
-    {
-      "name": "battery-charge",
-      "category": "system",
-      "label": "Battery Charge",
-      "d": "M4 7h15v10H4z M19 10h2v4 M13 8.5 9 13h3l-1 3.5 4-4.5h-3z",
-      "aliases": [
-        "charging"
-      ]
-    },
-    {
       "name": "power",
       "category": "system",
       "label": "Power",
       "d": "M12 3v9 M7 5.5a8 8 0 1 0 10 0",
-      "aliases": []
-    },
-    {
-      "name": "lock",
-      "category": "system",
-      "label": "Lock",
-      "d": "M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4 M12 15v3",
-      "aliases": []
-    },
-    {
-      "name": "unlock",
-      "category": "system",
-      "label": "Unlock",
-      "d": "M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0 M12 15v3",
-      "aliases": []
-    },
-    {
-      "name": "shield",
-      "category": "system",
-      "label": "Shield",
-      "d": "M12 3l8 3v6c0 4.7-2.8 7.3-8 9-5.2-1.7-8-4.3-8-9V6z",
-      "aliases": []
-    },
-    {
-      "name": "fingerprint",
-      "category": "system",
-      "label": "Fingerprint",
-      "d": "M5 10a7 7 0 0 1 14 0 M7 13v-3a5 5 0 0 1 10 0v3 M10 18c-1.2-2.5-1-4.5-1-8a3 3 0 0 1 6 0v3 M12 11v6 M16 17c.4-1.5.5-3 .5-4 M8 20l-1.4-3",
-      "aliases": []
-    },
-    {
-      "name": "hotspot",
-      "category": "system",
-      "label": "Hotspot",
-      "d": "M4 17a11 11 0 0 1 16 0 M7 14a7 7 0 0 1 10 0 M12 18h.1 M12 8v.1",
-      "aliases": []
-    },
-    {
-      "name": "mobile-data",
-      "category": "system",
-      "label": "Mobile Data",
-      "d": "M5 18V9 M9 18V6 M13 18V12 M17 18V4 M21 18V8",
-      "aliases": []
-    },
-    {
-      "name": "display",
-      "category": "system",
-      "label": "Display",
-      "d": "M3 5h18v13H3z M9 21h6 M12 18v3",
       "aliases": []
     },
     {
@@ -716,17 +724,43 @@
       "aliases": []
     },
     {
-      "name": "eye",
+      "name": "settings",
       "category": "system",
-      "label": "Eye",
-      "d": "M3 12q9-11 18 0-9 11-18 0z M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6",
+      "label": "Settings",
+      "d": "M12 3.5v3 M12 17.5v3 M3.5 12h3 M17.5 12h3 M6 6l2.2 2.2 M15.8 15.8 18 18 M18 6l-2.2 2.2 M8.2 15.8 6 18 M12 8.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0-7",
+      "aliases": [
+        "preferences",
+        "system-settings"
+      ]
+    },
+    {
+      "name": "shield",
+      "category": "system",
+      "label": "Shield",
+      "d": "M12 3l8 3v6c0 4.7-2.8 7.3-8 9-5.2-1.7-8-4.3-8-9V6z",
       "aliases": []
     },
     {
-      "name": "eye-off",
+      "name": "sun",
       "category": "system",
-      "label": "Eye Off",
-      "d": "M3.5 4l17 16 M3 12q3-4 6.8-5.2 M14 7q4 1 7 5-2.1 2.7-5 4 M5 15q6 5.2 12 1",
+      "label": "Sun",
+      "d": "M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8 M12 2.5v2.2 M12 19.3v2.2 M2.5 12h2.2 M19.3 12h2.2 M5.4 5.4 7 7 M17 17l1.6 1.6 M18.6 5.4 17 7 M7 17l-1.6 1.6",
+      "aliases": [
+        "day"
+      ]
+    },
+    {
+      "name": "timer",
+      "category": "system",
+      "label": "Timer",
+      "d": "M9 3h6 M12 3v3 M18 6l2 2 M12 7a7 7 0 1 0 0 14a7 7 0 1 0 0-14 M12 11v4l2 1",
+      "aliases": []
+    },
+    {
+      "name": "unlock",
+      "category": "system",
+      "label": "Unlock",
+      "d": "M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0 M12 15v3",
       "aliases": []
     },
     {
@@ -746,46 +780,102 @@
       ]
     },
     {
-      "name": "location",
+      "name": "wallpaper",
       "category": "system",
-      "label": "Location",
-      "d": "M12 21s-7-7-7-12a7 7 0 1 1 14 0c0 5-7 12-7 12z M12 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5",
+      "label": "Wallpaper",
+      "d": "M4 4.5h16v15H4z M4 16l4.5-4.5 3.5 3.5 4-5 4 5.5 M8 8.5h.1",
       "aliases": [
-        "map-pin",
-        "places"
+        "background",
+        "wallpaper-picker"
       ]
     },
     {
-      "name": "globe",
+      "name": "wifi",
       "category": "system",
-      "label": "Globe",
-      "d": "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18 M3 12h18 M12 3q-9 9 0 18 M12 3q9 9 0 18",
+      "label": "Wifi",
+      "d": "M3 8q9-8 18 0 M6 11.8q6-5.2 12 0 M9 15.5q3-2.7 6 0 M12 19h.1",
       "aliases": []
     },
     {
-      "name": "alarm",
-      "category": "system",
-      "label": "Alarm",
-      "d": "M7 4 4 7 M17 4l3 3 M12 6a7 7 0 1 0 0 14a7 7 0 1 0 0-14 M12 9v4l3 2",
-      "aliases": []
-    },
-    {
-      "name": "timer",
-      "category": "system",
-      "label": "Timer",
-      "d": "M9 3h6 M12 3v3 M18 6l2 2 M12 7a7 7 0 1 0 0 14a7 7 0 1 0 0-14 M12 11v4l2 1",
-      "aliases": []
-    },
-    {
-      "name": "terminal",
+      "name": "activity",
       "category": "developer",
-      "label": "Terminal",
-      "d": "M4 5h16v14H4z M7 9l4 3-4 3 M13 16h4",
+      "label": "Activity",
+      "d": "M3 12h4l3-7 4 14 3-7h4",
       "aliases": [
-        "shell",
-        "cli",
-        "console"
+        "performance"
       ]
+    },
+    {
+      "name": "api",
+      "category": "developer",
+      "label": "Api",
+      "d": "M4 6h16v12H4z M7 10h3 M7 13h3 M13 10h4 M13 13h2",
+      "aliases": []
+    },
+    {
+      "name": "braces",
+      "category": "developer",
+      "label": "Braces",
+      "d": "M9 3q-3 0-3 3v3q0 3-3 3 3 0 3 3v3q0 3 3 3 M15 3q3 0 3 3v3q0 3 3 3-3 0-3 3v3q0 3-3 3",
+      "aliases": []
+    },
+    {
+      "name": "brackets",
+      "category": "developer",
+      "label": "Brackets",
+      "d": "M9 4H6v16h3 M15 4h3v16h-3",
+      "aliases": []
+    },
+    {
+      "name": "bug",
+      "category": "developer",
+      "label": "Bug",
+      "d": "M8 9V6l-2-2 M16 9V6l2-2 M7 11H4 M7 16H4 M17 11h3 M17 16h3 M8 8h8v11H8z M8 12h8",
+      "aliases": []
+    },
+    {
+      "name": "bug-fix",
+      "category": "developer",
+      "label": "Bug Fix",
+      "d": "M8 9V6L6 4 M16 9V6l2-2 M7 11H4 M17 11h3 M8 8h8v11H8z M10 14l2 2 4-5",
+      "aliases": []
+    },
+    {
+      "name": "chart",
+      "category": "developer",
+      "label": "Chart",
+      "d": "M4 4v16h16 M7 16l4-5 3 2 5-7",
+      "aliases": [
+        "analytics"
+      ]
+    },
+    {
+      "name": "circuit",
+      "category": "developer",
+      "label": "Circuit",
+      "d": "M4 4v6h7v4h9 M4 18h7v-4 M4 4a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M20 12a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M4 16a2 2 0 1 0 0 4a2 2 0 1 0 0-4",
+      "aliases": []
+    },
+    {
+      "name": "cloud",
+      "category": "developer",
+      "label": "Cloud",
+      "d": "M6 18h12a4 4 0 0 0 .2-8 6.5 6.5 0 0 0-12-2A5 5 0 0 0 6 18z",
+      "aliases": []
+    },
+    {
+      "name": "cloud-download",
+      "category": "developer",
+      "label": "Cloud Download",
+      "d": "M6 15a5 5 0 0 1 .2-8 6.5 6.5 0 0 1 12 2.2A4.5 4.5 0 0 1 19 17 M12 12v9 M8.5 17.5 12 21l3.5-3.5",
+      "aliases": []
+    },
+    {
+      "name": "cloud-upload",
+      "category": "developer",
+      "label": "Cloud Upload",
+      "d": "M6 16a5 5 0 0 1 .2-8 6.5 6.5 0 0 1 12 2.2A4.5 4.5 0 0 1 19 17 M12 21v-9 M8.5 15.5 12 12l3.5 3.5",
+      "aliases": []
     },
     {
       "name": "code",
@@ -798,28 +888,37 @@
       ]
     },
     {
-      "name": "brackets",
+      "name": "command-key",
       "category": "developer",
-      "label": "Brackets",
-      "d": "M9 4H6v16h3 M15 4h3v16h-3",
-      "aliases": []
-    },
-    {
-      "name": "braces",
-      "category": "developer",
-      "label": "Braces",
-      "d": "M9 3q-3 0-3 3v3q0 3-3 3 3 0 3 3v3q0 3 3 3 M15 3q3 0 3 3v3q0 3 3 3-3 0-3 3v3q0 3-3 3",
-      "aliases": []
-    },
-    {
-      "name": "repository",
-      "category": "developer",
-      "label": "Repository",
-      "d": "M4 5h14v14H4z M7 9h6 M7 13h9 M7 16h7 M18 8h2v8h-2",
+      "label": "Command Key",
+      "d": "M9 7H6a2 2 0 1 1 2-2v14a2 2 0 1 1-2-2h12a2 2 0 1 1-2 2V5a2 2 0 1 1 2 2H9z",
       "aliases": [
-        "repo",
-        "version-control"
+        "cmd",
+        "shortcut"
       ]
+    },
+    {
+      "name": "container",
+      "category": "developer",
+      "label": "Container",
+      "d": "M3 6h18v12H3z M8 6v12 M16 6v12 M3 11h18",
+      "aliases": [
+        "runtime"
+      ]
+    },
+    {
+      "name": "cpu",
+      "category": "developer",
+      "label": "Cpu",
+      "d": "M6 6h12v12H6z M9 9h6v6H9z M9 2v4 M15 2v4 M9 18v4 M15 18v4 M2 9h4 M2 15h4 M18 9h4 M18 15h4",
+      "aliases": []
+    },
+    {
+      "name": "database",
+      "category": "developer",
+      "label": "Database",
+      "d": "M4 6c0-4 16-4 16 0v12c0 4-16 4-16 0z M4 6c0 4 16 4 16 0 M4 12c0 4 16 4 16 0",
+      "aliases": []
     },
     {
       "name": "git-branch",
@@ -845,118 +944,11 @@
       "aliases": []
     },
     {
-      "name": "pull-request",
+      "name": "key",
       "category": "developer",
-      "label": "Pull Request",
-      "d": "M6 4v15 M6 3a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M6 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M17 20v-8 M14 15l3-3 3 3 M17 12V8a4 4 0 0 0-4-4h-2",
-      "aliases": [
-        "pr"
-      ]
-    },
-    {
-      "name": "database",
-      "category": "developer",
-      "label": "Database",
-      "d": "M4 6c0-4 16-4 16 0v12c0 4-16 4-16 0z M4 6c0 4 16 4 16 0 M4 12c0 4 16 4 16 0",
+      "label": "Key",
+      "d": "M15 4a5 5 0 1 0 0 10a5 5 0 1 0 0-10 M11 12 4 19v2h4v-3h3v-3h2",
       "aliases": []
-    },
-    {
-      "name": "server",
-      "category": "developer",
-      "label": "Server",
-      "d": "M4 4h16v7H4z M4 13h16v7H4z M7 7.5h.1 M7 16.5h.1 M11 7.5h6 M11 16.5h6",
-      "aliases": []
-    },
-    {
-      "name": "cpu",
-      "category": "developer",
-      "label": "Cpu",
-      "d": "M6 6h12v12H6z M9 9h6v6H9z M9 2v4 M15 2v4 M9 18v4 M15 18v4 M2 9h4 M2 15h4 M18 9h4 M18 15h4",
-      "aliases": []
-    },
-    {
-      "name": "circuit",
-      "category": "developer",
-      "label": "Circuit",
-      "d": "M4 4v6h7v4h9 M4 18h7v-4 M4 4a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M20 12a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M4 16a2 2 0 1 0 0 4a2 2 0 1 0 0-4",
-      "aliases": []
-    },
-    {
-      "name": "network",
-      "category": "developer",
-      "label": "Network",
-      "d": "M12 4v6 M5 19v-6h14v6 M12 10v3 M12 2a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M5 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M19 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4",
-      "aliases": []
-    },
-    {
-      "name": "cloud",
-      "category": "developer",
-      "label": "Cloud",
-      "d": "M6 18h12a4 4 0 0 0 .2-8 6.5 6.5 0 0 0-12-2A5 5 0 0 0 6 18z",
-      "aliases": []
-    },
-    {
-      "name": "cloud-download",
-      "category": "developer",
-      "label": "Cloud Download",
-      "d": "M6 15a5 5 0 0 1 .2-8 6.5 6.5 0 0 1 12 2.2A4.5 4.5 0 0 1 19 17 M12 12v9 M8.5 17.5 12 21l3.5-3.5",
-      "aliases": []
-    },
-    {
-      "name": "cloud-upload",
-      "category": "developer",
-      "label": "Cloud Upload",
-      "d": "M6 16a5 5 0 0 1 .2-8 6.5 6.5 0 0 1 12 2.2A4.5 4.5 0 0 1 19 17 M12 21v-9 M8.5 15.5 12 12l3.5 3.5",
-      "aliases": []
-    },
-    {
-      "name": "bug",
-      "category": "developer",
-      "label": "Bug",
-      "d": "M8 9V6l-2-2 M16 9V6l2-2 M7 11H4 M7 16H4 M17 11h3 M17 16h3 M8 8h8v11H8z M8 12h8",
-      "aliases": []
-    },
-    {
-      "name": "bug-fix",
-      "category": "developer",
-      "label": "Bug Fix",
-      "d": "M8 9V6L6 4 M16 9V6l2-2 M7 11H4 M17 11h3 M8 8h8v11H8z M10 14l2 2 4-5",
-      "aliases": []
-    },
-    {
-      "name": "api",
-      "category": "developer",
-      "label": "Api",
-      "d": "M4 6h16v12H4z M7 10h3 M7 13h3 M13 10h4 M13 13h2",
-      "aliases": []
-    },
-    {
-      "name": "command-key",
-      "category": "developer",
-      "label": "Command Key",
-      "d": "M9 7H6a2 2 0 1 1 2-2v14a2 2 0 1 1-2-2h12a2 2 0 1 1-2 2V5a2 2 0 1 1 2 2H9z",
-      "aliases": [
-        "cmd",
-        "shortcut"
-      ]
-    },
-    {
-      "name": "chart",
-      "category": "developer",
-      "label": "Chart",
-      "d": "M4 4v16h16 M7 16l4-5 3 2 5-7",
-      "aliases": [
-        "analytics"
-      ]
-    },
-    {
-      "name": "activity",
-      "category": "developer",
-      "label": "Activity",
-      "d": "M3 12h4l3-7 4 14 3-7h4",
-      "aliases": [
-        "performance"
-      ]
     },
     {
       "name": "layers",
@@ -968,6 +960,13 @@
       ]
     },
     {
+      "name": "network",
+      "category": "developer",
+      "label": "Network",
+      "d": "M12 4v6 M5 19v-6h14v6 M12 10v3 M12 2a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M5 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M19 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4",
+      "aliases": []
+    },
+    {
       "name": "package",
       "category": "developer",
       "label": "Package",
@@ -977,20 +976,41 @@
       ]
     },
     {
-      "name": "container",
+      "name": "pull-request",
       "category": "developer",
-      "label": "Container",
-      "d": "M3 6h18v12H3z M8 6v12 M16 6v12 M3 11h18",
+      "label": "Pull Request",
+      "d": "M6 4v15 M6 3a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M6 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M17 20v-8 M14 15l3-3 3 3 M17 12V8a4 4 0 0 0-4-4h-2",
       "aliases": [
-        "runtime"
+        "pr"
       ]
     },
     {
-      "name": "key",
+      "name": "repository",
       "category": "developer",
-      "label": "Key",
-      "d": "M15 4a5 5 0 1 0 0 10a5 5 0 1 0 0-10 M11 12 4 19v2h4v-3h3v-3h2",
+      "label": "Repository",
+      "d": "M4 5h14v14H4z M7 9h6 M7 13h9 M7 16h7 M18 8h2v8h-2",
+      "aliases": [
+        "repo",
+        "version-control"
+      ]
+    },
+    {
+      "name": "server",
+      "category": "developer",
+      "label": "Server",
+      "d": "M4 4h16v7H4z M4 13h16v7H4z M7 7.5h.1 M7 16.5h.1 M11 7.5h6 M11 16.5h6",
       "aliases": []
+    },
+    {
+      "name": "terminal",
+      "category": "developer",
+      "label": "Terminal",
+      "d": "M4 5h16v14H4z M7 9l4 3-4 3 M13 16h4",
+      "aliases": [
+        "shell",
+        "cli",
+        "console"
+      ]
     },
     {
       "name": "camera",
@@ -1002,14 +1022,11 @@
       ]
     },
     {
-      "name": "photo",
+      "name": "cast",
       "category": "media",
-      "label": "Photo",
-      "d": "M4 4h16v16H4z M7.5 15l3-3 2 2 2.5-3.5 3.5 5 M8 8.5h.1",
-      "aliases": [
-        "image",
-        "photos"
-      ]
+      "label": "Cast",
+      "d": "M3 17a4 4 0 0 1 4 4 M3 12a9 9 0 0 1 9 9 M3 7h18v12h-4",
+      "aliases": []
     },
     {
       "name": "gallery",
@@ -1019,69 +1036,6 @@
       "aliases": [
         "images"
       ]
-    },
-    {
-      "name": "video",
-      "category": "media",
-      "label": "Video",
-      "d": "M4 5h16v14H4z M10 8.5l5 3.5-5 3.5z",
-      "aliases": []
-    },
-    {
-      "name": "play",
-      "category": "media",
-      "label": "Play",
-      "d": "M8 5.5 19 12 8 18.5z",
-      "aliases": []
-    },
-    {
-      "name": "pause",
-      "category": "media",
-      "label": "Pause",
-      "d": "M7 5h3v14H7z M14 5h3v14h-3z",
-      "aliases": []
-    },
-    {
-      "name": "stop",
-      "category": "media",
-      "label": "Stop",
-      "d": "M6 6h12v12H6z",
-      "aliases": []
-    },
-    {
-      "name": "skip-next",
-      "category": "media",
-      "label": "Skip Next",
-      "d": "M4 6l10 6-10 6z M17 6v12",
-      "aliases": []
-    },
-    {
-      "name": "skip-previous",
-      "category": "media",
-      "label": "Skip Previous",
-      "d": "M20 6l-10 6 10 6z M7 6v12",
-      "aliases": []
-    },
-    {
-      "name": "shuffle",
-      "category": "media",
-      "label": "Shuffle",
-      "d": "M3 6h3c6 0 6 12 12 12h3 M17 14l4 4-4 4 M3 18h3c2.3 0 3.8-2 5-4 M14 9c1-2 2.3-3 4-3h3 M17 2l4 4-4 4",
-      "aliases": []
-    },
-    {
-      "name": "repeat",
-      "category": "media",
-      "label": "Repeat",
-      "d": "M6 6h12l3 3-3 3 M21 9V6 M18 18H6l-3-3 3-3 M3 15v3",
-      "aliases": []
-    },
-    {
-      "name": "music",
-      "category": "media",
-      "label": "Music",
-      "d": "M10 5v13 M10 5l10-2v13 M10 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0 M20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0",
-      "aliases": []
     },
     {
       "name": "headphones",
@@ -1109,10 +1063,34 @@
       ]
     },
     {
-      "name": "waveform",
+      "name": "music",
       "category": "media",
-      "label": "Waveform",
-      "d": "M3 10v4 M6 7v10 M9 4v16 M12 8v8 M15 5v14 M18 9v6 M21 11v2",
+      "label": "Music",
+      "d": "M10 5v13 M10 5l10-2v13 M10 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0 M20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0",
+      "aliases": []
+    },
+    {
+      "name": "pause",
+      "category": "media",
+      "label": "Pause",
+      "d": "M7 5h3v14H7z M14 5h3v14h-3z",
+      "aliases": []
+    },
+    {
+      "name": "photo",
+      "category": "media",
+      "label": "Photo",
+      "d": "M4 4h16v16H4z M7.5 15l3-3 2 2 2.5-3.5 3.5 5 M8 8.5h.1",
+      "aliases": [
+        "image",
+        "photos"
+      ]
+    },
+    {
+      "name": "play",
+      "category": "media",
+      "label": "Play",
+      "d": "M8 5.5 19 12 8 18.5z",
       "aliases": []
     },
     {
@@ -1123,20 +1101,53 @@
       "aliases": []
     },
     {
-      "name": "cast",
+      "name": "repeat",
       "category": "media",
-      "label": "Cast",
-      "d": "M3 17a4 4 0 0 1 4 4 M3 12a9 9 0 0 1 9 9 M3 7h18v12h-4",
+      "label": "Repeat",
+      "d": "M6 6h12l3 3-3 3 M21 9V6 M18 18H6l-3-3 3-3 M3 15v3",
       "aliases": []
     },
     {
-      "name": "check-circle",
-      "category": "status",
-      "label": "Check Circle",
-      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M8 12.5l2.5 2.5 5-5.5",
-      "aliases": [
-        "success"
-      ]
+      "name": "shuffle",
+      "category": "media",
+      "label": "Shuffle",
+      "d": "M3 6h3c6 0 6 12 12 12h3 M17 14l4 4-4 4 M3 18h3c2.3 0 3.8-2 5-4 M14 9c1-2 2.3-3 4-3h3 M17 2l4 4-4 4",
+      "aliases": []
+    },
+    {
+      "name": "skip-next",
+      "category": "media",
+      "label": "Skip Next",
+      "d": "M4 6l10 6-10 6z M17 6v12",
+      "aliases": []
+    },
+    {
+      "name": "skip-previous",
+      "category": "media",
+      "label": "Skip Previous",
+      "d": "M20 6l-10 6 10 6z M7 6v12",
+      "aliases": []
+    },
+    {
+      "name": "stop",
+      "category": "media",
+      "label": "Stop",
+      "d": "M6 6h12v12H6z",
+      "aliases": []
+    },
+    {
+      "name": "video",
+      "category": "media",
+      "label": "Video",
+      "d": "M4 5h16v14H4z M10 8.5l5 3.5-5 3.5z",
+      "aliases": []
+    },
+    {
+      "name": "waveform",
+      "category": "media",
+      "label": "Waveform",
+      "d": "M3 10v4 M6 7v10 M9 4v16 M12 8v8 M15 5v14 M18 9v6 M21 11v2",
+      "aliases": []
     },
     {
       "name": "alert-circle",
@@ -1148,12 +1159,28 @@
       ]
     },
     {
-      "name": "warning",
+      "name": "check-circle",
       "category": "status",
-      "label": "Warning",
-      "d": "M12 3 22 21H2z M12 9v5.5 M12 18h.1",
+      "label": "Check Circle",
+      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M8 12.5l2.5 2.5 5-5.5",
       "aliases": [
-        "caution"
+        "success"
+      ]
+    },
+    {
+      "name": "check-square",
+      "category": "status",
+      "label": "Check Square",
+      "d": "M4 4h16v16H4z M8 12l3 3 5-6",
+      "aliases": []
+    },
+    {
+      "name": "error",
+      "category": "status",
+      "label": "Error",
+      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M9 9l6 6 M15 9l-6 6",
+      "aliases": [
+        "failure"
       ]
     },
     {
@@ -1171,13 +1198,11 @@
       "aliases": []
     },
     {
-      "name": "error",
+      "name": "minus-circle",
       "category": "status",
-      "label": "Error",
-      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M9 9l6 6 M15 9l-6 6",
-      "aliases": [
-        "failure"
-      ]
+      "label": "Minus Circle",
+      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M8 12h8",
+      "aliases": []
     },
     {
       "name": "plus-circle",
@@ -1187,25 +1212,20 @@
       "aliases": []
     },
     {
-      "name": "minus-circle",
-      "category": "status",
-      "label": "Minus Circle",
-      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M8 12h8",
-      "aliases": []
-    },
-    {
-      "name": "check-square",
-      "category": "status",
-      "label": "Check Square",
-      "d": "M4 4h16v16H4z M8 12l3 3 5-6",
-      "aliases": []
-    },
-    {
       "name": "target",
       "category": "status",
       "label": "Target",
       "d": "M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18 M12 7a5 5 0 1 0 0 10a5 5 0 1 0 0-10 M12 12h.1",
       "aliases": []
+    },
+    {
+      "name": "warning",
+      "category": "status",
+      "label": "Warning",
+      "d": "M12 3 22 21H2z M12 9v5.5 M12 18h.1",
+      "aliases": [
+        "caution"
+      ]
     }
   ]
 }
