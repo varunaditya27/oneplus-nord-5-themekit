@@ -2,10 +2,14 @@ package dev.atelier.ui
 
 import android.content.Intent
 import android.provider.Settings
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -13,11 +17,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.toBitmap
@@ -41,6 +49,7 @@ fun AtelierShell(
 ) {
     val c = colors(settings.material)
     var page by remember { mutableStateOf(Page.HOME) }
+    BackHandler(enabled = page != Page.HOME) { page = Page.HOME }
     var now by remember { mutableStateOf(LocalDateTime.now()) }
     LaunchedEffect(Unit) {
         while (true) { now = LocalDateTime.now(); delay(10000) }
@@ -70,7 +79,7 @@ fun AtelierShell(
         Box(Modifier.weight(1f)) {
             Crossfade(page, animationSpec=tween(if(settings.reduceMotion) 0 else 220), label="page") { current ->
                 when(current) {
-                    Page.HOME -> Home(c,now,settings,apps,onLaunch,{page=Page.COMMAND},{page=Page.LIBRARY})
+                    Page.HOME -> Home(c,now,settings,apps,onLaunch,{page=Page.COMMAND},{page=Page.LIBRARY},{page=Page.CONTROL})
                     Page.LIBRARY -> Library(c,apps,settings,onFavorite,onLaunch)
                     Page.COMMAND -> CommandPage(c,apps,::execute,onLaunch)
                     Page.CONTROL -> Control(c,settings,onUpdate,onOpenWallpaper)
@@ -93,8 +102,26 @@ fun AtelierShell(
 }
 @Composable
 private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps:List<AppItem>,
-    launch:(AppItem)->Boolean,command:()->Unit,library:()->Unit) {
-    Column(Modifier.fillMaxSize(),verticalArrangement=Arrangement.SpaceBetween) {
+    launch:(AppItem)->Boolean,command:()->Unit,library:()->Unit,control:()->Unit) {
+    Column(
+        Modifier.fillMaxSize().pointerInput(library,control) {
+            var distance = 0f
+            detectVerticalDragGestures(
+                onDragStart = { distance = 0f },
+                onVerticalDrag = { change,amount ->
+                    distance += amount
+                    change.consume()
+                },
+                onDragEnd = {
+                    if (distance < -85f) library()
+                    if (distance > 85f) control()
+                    distance = 0f
+                },
+                onDragCancel = { distance = 0f }
+            )
+        },
+        verticalArrangement=Arrangement.SpaceBetween
+    ) {
         Column(Modifier.padding(top=32.dp)) {
             Text("THE BLACK SYSTEM",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
             Spacer(Modifier.height(28.dp))
@@ -158,7 +185,7 @@ private fun CommandPage(c:AtelierColors,apps:List<AppItem>,execute:(Command)->Un
     var query by remember { mutableStateOf("") }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
         Heading(c,"Command","ACTIONS / LAUNCH / SEARCH")
-        SearchBox(query,{query=it},"/focus on or GitHub",c)
+        SearchBox(query,{query=it},"/focus on or GitHub",c,onSubmit={execute(CommandEngine.parse(query))})
         Spacer(Modifier.height(22.dp))
         Text("AVAILABLE ACTIONS",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
         CommandEngine.suggest(query).forEach { action ->
@@ -274,10 +301,11 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,onClick:()->Unit,onLongClick:()->Unit) {
+    val haptics = LocalHapticFeedback.current
     Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.width(70.dp)) {
         Box(Modifier.size(56.dp).clip(RoundedCornerShape(14.dp)).background(c.surface)
             .border(1.dp,if(favorite)c.accent else c.border,RoundedCornerShape(14.dp))
-            .combinedClickable(onClick=onClick,onLongClick=onLongClick,onLongClickLabel="Pin or unpin app"),contentAlignment=Alignment.Center) {
+            .combinedClickable(onClick=onClick,onLongClick={haptics.performHapticFeedback(HapticFeedbackType.LongPress);onLongClick()},onLongClickLabel="Pin or unpin app"),contentAlignment=Alignment.Center) {
             val bmp=remember(app.id,iconStyle){
                 if(iconStyle==IconStyle.ORIGINAL) runCatching{app.icon.toBitmap(width=72,height=72).asImageBitmap()}.getOrNull()
                 else null
@@ -300,8 +328,10 @@ private fun Heading(c:AtelierColors,title:String,description:String) {
     Spacer(Modifier.height(27.dp))
 }
 @Composable
-private fun SearchBox(value:String,onChange:(String)->Unit,hint:String,c:AtelierColors) {
+private fun SearchBox(value:String,onChange:(String)->Unit,hint:String,c:AtelierColors,onSubmit:()->Unit={}) {
     TextField(value=value,onValueChange=onChange,modifier=Modifier.fillMaxWidth(),singleLine=true,
+        keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
+        keyboardActions=KeyboardActions(onSearch=onSubmit),
         placeholder={Text(hint,color=c.muted,fontSize=12.sp)},shape=RoundedCornerShape(13.dp),
         colors=TextFieldDefaults.colors(
             focusedContainerColor=c.surface,unfocusedContainerColor=c.surface,
