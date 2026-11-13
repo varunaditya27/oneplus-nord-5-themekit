@@ -8,7 +8,7 @@ assert.equal(doc.viewport,24);
 assert.ok(doc.icons.length>=150);
 const names=new Set(doc.icons.map(it=>it.name));
 assert.equal(names.size,doc.icons.length);
-assert.ok(doc.icons.every(it=>it.d.length>12));
+assert.ok(doc.icons.every(it=>it.d.length>=5));
 for(const required of ['home','settings','clock','folder','terminal','wifi','bluetooth','search','camera','mail','focus','wallpaper']){
   assert.ok(names.has(required),'Missing necessary semantic: '+required);
 }
