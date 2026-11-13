@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080809">
+  <meta name="description" content="ATELIER / The Black System. An experimental, original Android interface for the OnePlus Nord 5.">
+  <title>ATELIER / The Black System</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="shell">
+    <header class="masthead">
+      <a class="brand" href="#" aria-label="ATELIER home"><span class="brand-emblem">A<span>.</span></span><span><strong>ATELIER</strong><small>THE BLACK SYSTEM / 001</small></span></a>
+      <div class="mast-right"><span class="availability"><i></i> DESIGN STUDY / ONLINE</span><button id="reset" class="small-button">RESET EXPERIENCE ↻</button></div>
+    </header>
+    <main class="layout">
+      <aside class="editorial">
+        <p class="eyebrow">SIGNATURE INTERFACE / 001</p>
+        <h1>MADE<br>OF <span>LESS.</span></h1>
+        <p class="manifesto">A personal interface reduced to what remains essential. No glow. No ornamental noise. Every line has a reason.</p>
+        <div class="hairline"></div>
+        <p class="tiny-heading">01 / MATERIAL</p>
+        <div class="swatches" role="group" aria-label="Material selection">
+          <button class="swatch selected" data-material="ink"><i class="ink"></i><span><b>INK</b><small>#080809</small></span><em>01</em></button>
+          <button class="swatch" data-material="graphite"><i class="graphite"></i><span><b>GRAPHITE</b><small>#151719</small></span><em>02</em></button>
+          <button class="swatch" data-material="paper"><i class="paper"></i><span><b>PAPER</b><small>#F2F2EE</small></span><em>03</em></button>
+        </div>
+        <div class="hairline"></div>
+        <p class="tiny-heading">02 / MOTION</p>
+        <label class="motion-label"><span>AMBIENT SILKFIELD</span><input type="checkbox" id="motion" checked></label>
+        <p class="hint">Click the phone's navigation strip, tap an icon, or press <kbd>/</kbd> to enter the command layer. Press <kbd>Esc</kbd> to return home.</p>
+      </aside>
+      <section class="showcase" aria-label="Interactive phone visual study">
+        <div class="folio"><span>ONEPLUS NORD 5 / STUDY</span><span>NOT AN ANDROID BUILD</span></div>
+        <div class="device">
+          <div class="screen" id="device">
+            <canvas id="silkfield" aria-hidden="true"></canvas>
+            <div class="status"><span id="statusTime">09:41</span><span class="status-icons">▥  ◔  87%</span></div>
+            <div class="camera-hole"></div>
+            <div class="view" id="view" aria-live="polite"></div>
+            <button class="gesture" id="homeGesture" aria-label="Go home"><span></span></button>
+          </div>
+        </div>
+        <div class="folio after"><span><i class="dot"></i> SIGNATURE / NO. 001</span><span id="viewCaption">01 / LOCK SCREEN</span></div>
+        <nav class="tabs" aria-label="Preview surface">
+          <button data-view="lock" class="active">LOCK</button>
+          <button data-view="home">HOME</button>
+          <button data-view="library">LIBRARY</button>
+          <button data-view="command">COMMAND</button>
+          <button data-view="control">CONTROL</button>
+          <button data-view="settings">SETTINGS</button>
+        </nav>
+      </section>
+      <aside class="specification">
+        <p class="eyebrow">ENGINEERING / AESTHETICS</p>
+        <h2>Quiet by design.<br><em>Precise by nature.</em></h2>
+        <div class="hairline"></div>
+        <div class="spec"><small>DISPLAY</small><strong>HUBOT SANS</strong><span>Width-variable geometric typography</span></div>
+        <div class="spec"><small>INTERFACE</small><strong>SPLINE SANS</strong><span>Subtle shapes, exact spacing</span></div>
+        <div class="spec"><small>TECHNICAL</small><strong>DEPARTURE MONO</strong><span>Only where technical language helps</span></div>
+        <div class="spec"><small>TIME</small><strong>ATELIER / NUMERALS 01</strong><span>Original stroke-based clock drawings</span></div>
+        <div class="hairline"></div>
+        <p class="tiny-heading">PALETTE / RATIO</p>
+        <div class="spectrum"><span></span><span></span><span></span></div>
+        <p class="ratios">INK 88% &nbsp; / &nbsp; PAPER 11% &nbsp; / &nbsp; AU 1%</p>
+        <div class="hairline"></div>
+        <div class="telemetry"><span>WORKSPACE</span><b id="focusState">OPEN</b><span>MATERIAL</span><b id="materialState">INK</b><span>ANIMATION</span><b id="motionState">ON</b></div>
+        <p class="footnote">This browser prototype represents the interaction vocabulary. It cannot replace the secure lock screen or OxygenOS system controls.</p>
+      </aside>
+    </main>
+    <footer class="footer"><span>ATELIER / AN INDEPENDENT OPEN INTERFACE PROJECT</span><span>FORM FOLLOWS INTENT</span><span>EDITION 001 / 2026</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
