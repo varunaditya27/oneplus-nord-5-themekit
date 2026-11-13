@@ -6,6 +6,7 @@
   let state = {...defaultState};
   try { state = {...defaultState,...JSON.parse(localStorage.getItem("atelier-study") || "{}")}; }
   catch (_) {}
+  if (state.material === "paper") state.material = "sable";
   const save = () => { try { localStorage.setItem("atelier-study",JSON.stringify(state)); } catch (_) {} };
   const paths = {
     home:"M4 11.5 12 4l8 7.5V21h-6v-6H10v6H4z",command:"M4 7l6 5-6 5M13 18h7",
@@ -49,7 +50,7 @@
   const commands = [
     ["/focus on","Enter Focus","Reduce distractions"],["/focus off","Exit Focus","Restore default workspace"],
     ["/view library","Application library","Search the app catalog"],["/view control","Open controls","Preview home controls"],
-    ["/material ink","Ink material","Restore near-black"],["/material paper","Paper material","Explore inverse contrast"],
+    ["/material ink","Ink material","Restore near-black"],["/material sable","Sable material","Warm mineral black"],
     ["/material graphite","Graphite material","Soft mineral black"],["/motion off","Reduce motion","Stop ambient animation"],
     ["/motion on","Restore motion","Enable ambient silk strands"]
   ];
@@ -107,13 +108,18 @@
   }
   const renderers = {lock:renderLock,home:renderHome,library:renderLibrary,command:renderCommand,control:renderControl,settings:renderSettings};
   function applyMaterial() {
-    const paper=state.material==="paper",graphite=state.material==="graphite";
+    const palettes = {
+      ink: {bg:"#080809",ink:"#F2F2EE",muted:"#9C9C9C",edge:"#313134",card:"#151516"},
+      graphite: {bg:"#111315",ink:"#F2F2EE",muted:"#A4A7AA",edge:"#353A3D",card:"#1B1E21"},
+      sable: {bg:"#100F0E",ink:"#F2F2EE",muted:"#A9A39C",edge:"#35302C",card:"#1B1917"}
+    };
+    const selected = palettes[state.material] || palettes.ink;
     device.dataset.material=state.material;
-    device.style.setProperty("--dev-bg",paper?"#F2F2EE":graphite?"#111315":"#080809");
-    device.style.setProperty("--dev-ink",paper?"#080809":"#F2F2EE");
-    device.style.setProperty("--dev-muted",paper?"#656565":"#9C9C9C");
-    device.style.setProperty("--dev-edge",paper?"#CBC8C2":graphite?"#3C3F41":"#313134");
-    device.style.setProperty("--dev-card",paper?"#E8E5E0":graphite?"#202327":"#151516");
+    device.style.setProperty("--dev-bg",selected.bg);
+    device.style.setProperty("--dev-ink",selected.ink);
+    device.style.setProperty("--dev-muted",selected.muted);
+    device.style.setProperty("--dev-edge",selected.edge);
+    device.style.setProperty("--dev-card",selected.card);
   }
   function fillSearch(q) {
     const query=q.trim().toLowerCase();
@@ -151,7 +157,7 @@
     state.screen=screen;render();
     if(screen==="command"||screen==="library") setTimeout(()=>el("surfaceSearch")?.focus(),0);
   }
-  function material(value) { if(["ink","graphite","paper"].includes(value)) {state.material=value;render();} }
+  function material(value) { if(["ink","graphite","sable"].includes(value)) {state.material=value;render();} }
   function launch(name) {
     if(name==="Settings")return show("settings");
     if(name==="Shell")return show("command");
@@ -184,7 +190,7 @@
       if(key in state){state[key]=!state[key];render();if(key!=="focus")toast(key.toUpperCase()+" / PREVIEW ONLY");}
     }
     if(button.dataset.action==="unlock")return show("home");
-    if(button.dataset.action==="material")return material({ink:"graphite",graphite:"paper",paper:"ink"}[state.material]);
+    if(button.dataset.action==="material")return material({ink:"graphite",graphite:"sable",sable:"ink"}[state.material]);
     if(button.dataset.action==="focus"){state.focus=!state.focus;render();}
     if(button.dataset.action==="motion"){state.motion=!state.motion;render();}
   });

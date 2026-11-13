@@ -13,6 +13,16 @@ The interface should feel engineered even when every control is absent. Resist s
 | `paper/300` | `#9C9C9C` | Muted foreground |
 | `au/500` | `#CDA664` | Active mark / deliberate one-point emphasis |
 
+## Three dark finishes
+
+| Finish | Background | Elevated surface | Intent |
+|--|--|--|--|
+| Ink | `#080809` | `#151516` | Neutral black, the default |
+| Graphite | `#111315` | `#1B1E21` | Cooler mineral shadows |
+| Sable | `#100F0E` | `#1B1917` | Warmer black with understated brass |
+
+The system is **dark-only**. Ivory (`paper/000`) denotes the text color, not a light-mode alternative. Existing browser preferences saved as `paper` migrate to Sable; old Android `PAPER` settings fall back to Ink.
+
 **Color allocation:** 85–95% near-black, 5–12% neutral, ideally under 2% brass. Never use brass for paragraphs.
 
 ## Typeface hierarchy

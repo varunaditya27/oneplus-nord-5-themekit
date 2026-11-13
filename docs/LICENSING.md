@@ -12,7 +12,7 @@ ATELIER's Kotlin source, interface layouts, vector numerals, SVG icon paths and 
 
 ## Bundled typefaces
 
-The native Android application bundles three independently licensed, open-source font files. Their original licence documents are committed without modification.
+The native Android application bundles three independently licensed, open-source font files. The browser design study also includes local copies of these fonts, so its typography works without a remote font service. Their original licence documents are committed without modification.
 
 | Typeface | Native file | Provenance | Licence |
 |---|---|---|---|
