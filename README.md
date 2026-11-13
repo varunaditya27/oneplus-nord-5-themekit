@@ -37,14 +37,15 @@ Kotlin and Jetpack Compose own the launcher screens. Local preferences store app
 
 ## Status
 
-**Pre-alpha, not yet a Nord 5 release.** The Android debug build and unit tests passed on [this GitHub Actions run](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43491344459). Physical-device navigation, battery performance, wallpaper lifecycle and accessibility still require verification.
+**Pre-alpha, not yet a Nord 5 release.** The Android debug build and unit tests have passed on [this GitHub Actions run](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43495262730). Physical-device navigation, battery performance, wallpaper lifecycle and accessibility still require verification.
 
 The repository currently includes the native launcher source, procedural wallpapers, an original SVG icon collection and a six-screen [browser design study](web/index.html). The study demonstrates layout and interaction; it does not launch real Android applications.
 
-For the build prerequisites and current limitations, see [Testing](docs/TESTING.md). GitHub Pages publishing is not yet enabled.
+For the build prerequisites and current limitations, see [Testing](docs/TESTING.md). Generated wallpapers are available through [GitHub Actions](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/wallpapers.yml). GitHub Pages publishing is not yet enabled.
 
 ## Documentation
 
+- [Nord 5 setup](docs/NORD5_SETUP.md): install, customize, use gestures and restore OxygenOS.
 - [Design system](docs/DESIGN_SYSTEM.md): color, typography, spacing, icons and visual restraint.
 - [Architecture](docs/ARCHITECTURE.md): module responsibilities, permissions and Android boundaries.
 - [Roadmap](docs/ROADMAP.md): completed source work and unverified device milestones.

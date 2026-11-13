@@ -1,4 +1,10 @@
+<div align="center">
+
 # Engineering roadmap
+
+Source milestones and outstanding Nord 5 acceptance work.
+
+</div>
 
 ## P0 / Source foundation
 - [x] Define design tokens and visual identity
@@ -6,20 +12,20 @@
 - [x] Implement command parser and test cases in source
 - [x] Create original vector clock logic and procedural assets
 - [x] Create independent interactive web study
-- [ ] Verify Gradle build on Android Studio / CI
+- [x] Verify Gradle build and unit tests on GitHub Actions (emulator/physical-device QA remains)
 - [ ] Test default HOME role flow on Nord 5
 
 ## P1 / Minimum delightful launcher
 - [ ] Polish app catalog loading, work profiles and error states
-- [ ] Native branded app icon layer with fallbacks for unmatched apps
+- [x] Native monogram/icon switch and original glyphs (device QA remains)
 - [ ] Search ranking and command discovery
 - [ ] Favorite apps, folders, drag behavior and quick launch
 - [ ] Day summary populated with real device data with explicit permissions
-- [ ] Home gestures with deterministic navigation
+- [x] Source implementation of Home swipes and Back navigation (device QA remains)
 
 ## P2 / Signature motion
 - [ ] Fine-tune clock vector geometry across numeral samples
-- [ ] Honor reduced motion and battery saver
+- [ ] Honor both reduced motion and battery saver in every animation (reduced-motion setting implemented, battery saver pending)
 - [ ] GPU shader alternative and wallpaper fallback
 - [ ] Animation frame and energy profiling on physical device
 - [ ] Native haptics and sound cues with user toggles
