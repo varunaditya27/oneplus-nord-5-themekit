@@ -139,14 +139,14 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
 private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
     favorite:(String)->Unit,launch:(AppItem)->Boolean) {
     var query by remember { mutableStateOf("") }
-    val items=remember(apps,query) { apps.filter { it.name.contains(query,true) } }
+    val filtered=remember(apps,query) { apps.filter { it.name.contains(query,true) } }
     Column {
         Heading(c,"Library","APPLICATIONS / "+apps.size)
         SearchBox(query,{query=it},"Search installed apps",c)
         Spacer(Modifier.height(18.dp))
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
-            items(items,key={it.id}) { app ->
+            items(filtered,key={it.id}) { app ->
                 AppCell(app,c,true,app.id in s.favorites,{launch(app)},{favorite(app.id)})
             }
         }
