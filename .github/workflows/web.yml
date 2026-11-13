@@ -1,0 +1,23 @@
+name: Web / checks
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", "assets/icons/**", "assets/tokens.json", ".github/workflows/web.yml"]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Parse client JavaScript
+        run: node --check web/app.js
+      - name: Static markup and asset tests
+        run: node web/test-smoke.mjs
+      - name: Validate SVG geometry
+        run: python3 scripts/check_assets.py
