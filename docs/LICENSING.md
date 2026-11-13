@@ -1,15 +1,33 @@
+<div align="center">
+
 # Licensing and provenance
 
-## First-party materials
-ATELIER's layout, original vector-clock design, procedural art generator, self-authored icon paths and Kotlin implementation are authored for this project. **The project's final outward-facing license has not yet been selected**; do not infer MIT or Apache from third-party licenses.
+Current copyright and redistribution status of project code, artwork and fonts.
 
-## Fonts
-**Hubot Sans** (GitHub / SIL Open Font License), **Spline Sans** (SIL Open Font License) and **Departure Mono** (SIL Open Font License) are the intended directions. Fonts are not committed here until official download sources, modification notices and attribution files are checked and included. The default system typeface serves as a build fallback.
+</div>
 
-Fonts from third-party foundries remain under their respective licenses. Neue Machina is not bundled. The project must not copy OnePlus or other companies' proprietary software and artwork.
+## Project code and original artwork
 
-## Logos and trademarks
-GitHub, OnePlus, Nord, OxygenOS and other names are descriptive references only. No affiliation or endorsement is implied. We provide our own generic vector designs and should not copy trademarks as custom icons without license review.
+ATELIER's Kotlin source, interface layouts, vector numerals, SVG icon paths and procedural wallpaper scripts were created for this project. **A licence for the project itself has not yet been selected.** Public access to the repository is not, by itself, permission to redistribute or relicense these files. We will add a root `LICENSE` only after the project owner chooses its terms.
 
-## Generated wallpaper sources
-`scripts/generate_assets.py` is the reproducible source of the original initial wallpapers and SVG icon outlines. Asset generation requires Python, NumPy and Pillow.
+## Bundled typefaces
+
+The native Android application bundles three independently licensed, open-source font files. Their original licence documents are committed without modification.
+
+| Typeface | Native file | Provenance | Licence |
+|---|---|---|---|
+| Hubot Sans variable | `app/src/main/res/font/hubot_sans.ttf` | [GitHub / hubot-sans](https://github.com/github/hubot-sans) | [SIL OFL](../licenses/fonts/HUBOT_SANS_OFL.txt) |
+| Spline Sans variable | `app/src/main/res/font/spline_sans.ttf` | [Google Fonts / Spline Sans](https://github.com/google/fonts/tree/main/ofl/splinesans) | [SIL OFL](../licenses/fonts/SPLINE_SANS_OFL.txt) |
+| Departure Mono 1.500 | `app/src/main/res/font/departure_mono.otf` | [Helena Zhang / Departure Mono](https://github.com/rektdeckard/departure-mono) | [SIL OFL](../licenses/fonts/DEPARTURE_MONO_OFL.txt) |
+
+The SIL Open Font License permits bundling with software when its conditions are followed, including keeping copyright and licence notices with redistributed copies. It does **not** set the licence of ATELIER's code or artwork.
+
+Neue Machina, Panchang and other evaluated proprietary or separately licensed typefaces are not bundled.
+
+## Vector icons, wallpaper and trademarks
+
+The `assets/icons/` SVG files are original ATELIER outline studies. Named app labels and service references describe destinations, not permissions to reuse third-party trademarks or logos.
+
+`scripts/generate_assets.py` generates the original raster wallpaper masters from mathematical geometry and noise. These are reproducible first-party assets.
+
+OnePlus, Nord and OxygenOS are trademarks of their respective owners. ATELIER is an independent project without endorsement or affiliation.
