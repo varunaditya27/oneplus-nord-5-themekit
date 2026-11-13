@@ -2,7 +2,6 @@ package dev.atelier.ui
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import dev.atelier.data.Material
@@ -53,22 +52,20 @@ fun colors(material: Material): AtelierColors = when (material) {
     Material.INK -> AtelierColors(Ink.black, Ink.surface, Ink.paper, Ink.quiet, Ink.hairline, Ink.brass)
     Material.GRAPHITE -> AtelierColors(Color(0xFF111315), Color(0xFF1B1E21),
         Ink.paper, Color(0xFFA4A7AA), Color(0xFF353A3D), Ink.brass)
-    Material.PAPER -> AtelierColors(Color(0xFFEAE8E3), Color(0xFFF7F6F3),
-        Color(0xFF141414), Color(0xFF626260), Color(0xFFCAC7C1), Color(0xFF9C7540))
+    Material.SABLE -> AtelierColors(Color(0xFF100F0E), Color(0xFF1B1917),
+        Ink.paper, Color(0xFFA9A39C), Color(0xFF35302C), Ink.brass)
 }
 
 @Composable
 fun AtelierTheme(material: Material, content: @Composable () -> Unit) {
     val c = colors(material)
-    val scheme = if (material == Material.PAPER) lightColorScheme(
-        primary = c.text, onPrimary = c.background,
-        background = c.background, onBackground = c.text,
-        surface = c.surface, onSurface = c.text,
-        secondary = c.accent
-    ) else darkColorScheme(
-        primary = c.text, onPrimary = c.background,
-        background = c.background, onBackground = c.text,
-        surface = c.surface, onSurface = c.text,
+    val scheme = darkColorScheme(
+        primary = c.text,
+        onPrimary = c.background,
+        background = c.background,
+        onBackground = c.text,
+        surface = c.surface,
+        onSurface = c.text,
         secondary = c.accent
     )
     MaterialTheme(colorScheme = scheme, typography = AtelierTypography, content = content)

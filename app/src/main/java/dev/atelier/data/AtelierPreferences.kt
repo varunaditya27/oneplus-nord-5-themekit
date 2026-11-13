@@ -4,7 +4,7 @@ import android.content.Context
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-enum class Material { INK, GRAPHITE, PAPER }
+enum class Material { INK, GRAPHITE, SABLE }
 enum class ClockStyle { SIGNATURE, COMPACT }
 enum class IconStyle { MONOGRAM, ORIGINAL }
 
