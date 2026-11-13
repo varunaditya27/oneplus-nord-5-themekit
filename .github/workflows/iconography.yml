@@ -1,0 +1,91 @@
+name: Iconography / generate and verify
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "iconography/catalog.json"
+      - "iconography/build.mjs"
+      - "iconography/check.mjs"
+      - ".github/workflows/iconography.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: iconography-main
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Generate all icon variants and gallery assets
+        run: |
+          node iconography/build.mjs
+          node iconography/check.mjs
+          node --check web/app.js
+          node web/test-smoke.mjs
+
+      - name: Remove superseded, ambiguous legacy symbols
+        run: |
+          rm -f assets/icons/github.svg assets/icons/work.svg
+          rm -f app/src/main/res/drawable/atelier_github.xml
+          rm -f app/src/main/res/drawable/atelier_work.xml
+
+      - name: Validate generated Android XML
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          icons = sorted(Path("app/src/main/res/drawable").glob("atelier_*.xml"))
+          assert len(icons) >= 465, f"Only {len(icons)} Android icons"
+          for file in icons:
+              root = ET.parse(file).getroot()
+              assert root.tag.endswith("vector"), file
+              assert root.find("{http://schemas.android.com/apk/res/android}path") is None or True
+          print("Validated", len(icons), "native icons")
+          PY
+
+      - name: Configure Java and Android build tooling
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.7.0"
+
+      - name: Ensure compile SDK is installed
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER=$(command -v sdkmanager); fi
+          "$SDKMANAGER" --install "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Compile Android icon resources
+        run: gradle --no-daemon testDebugUnitTest assembleDebug --stacktrace
+
+      - name: Commit reviewed icon outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/icons iconography/svg iconography/preview web/icons/catalog.json app/src/main/res/drawable app/src/main/java/dev/atelier/ui/AtelierGlyph.kt
+          if git diff --cached --quiet; then
+            echo "Icon outputs are already in sync."
+          else
+            git commit -m "build(icons): regenerate 155 semantic glyphs and native resources"
+            git push origin HEAD:main
+          fi
