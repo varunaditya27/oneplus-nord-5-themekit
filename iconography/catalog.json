@@ -656,10 +656,12 @@
       "name": "focus",
       "category": "system",
       "label": "Focus",
-      "d": "M17.5 4.7A8.4 8.4 0 1 0 19.3 18a8.5 8.5 0 0 1-9.2-9.2 8.5 8.5 0 0 1 7.4-4.1z",
+      "d": "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M8 12h8",
       "aliases": [
+        "dnd",
         "do-not-disturb",
-        "dnd"
+        "quiet",
+        "silence"
       ]
     },
     {
@@ -727,7 +729,7 @@
       "name": "settings",
       "category": "system",
       "label": "Settings",
-      "d": "M12 3.5v3 M12 17.5v3 M3.5 12h3 M17.5 12h3 M6 6l2.2 2.2 M15.8 15.8 18 18 M18 6l-2.2 2.2 M8.2 15.8 6 18 M12 8.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0-7",
+      "d": "M10 3.5h4l.5 2 2 1 1.8-.8 2.1 3.6-1.5 1.5v2.4l1.5 1.5-2.1 3.6-1.8-.8-2 1-.5 2h-4l-.5-2-2-1-1.8.8-2.1-3.6 1.5-1.5v-2.4L3 10l2.1-3.6 1.8.8 2-1z M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6",
       "aliases": [
         "preferences",
         "system-settings"
@@ -988,7 +990,7 @@
       "name": "repository",
       "category": "developer",
       "label": "Repository",
-      "d": "M4 5h14v14H4z M7 9h6 M7 13h9 M7 16h7 M18 8h2v8h-2",
+      "d": "M4.5 4h15v16h-15z M9 8v8 M15 8v8 M9 12h6 M9 7a1 1 0 1 0 0 2a1 1 0 1 0 0-2 M15 7a1 1 0 1 0 0 2a1 1 0 1 0 0-2 M15 15a1 1 0 1 0 0 2a1 1 0 1 0 0-2",
       "aliases": [
         "repo",
         "version-control"
