@@ -331,7 +331,7 @@ private fun Heading(c:AtelierColors,title:String,description:String) {
 private fun SearchBox(value:String,onChange:(String)->Unit,hint:String,c:AtelierColors,onSubmit:()->Unit={}) {
     TextField(value=value,onValueChange=onChange,modifier=Modifier.fillMaxWidth(),singleLine=true,
         keyboardOptions=KeyboardOptions(imeAction=ImeAction.Search),
-        keyboardActions=KeyboardActions(onSearch=onSubmit),
+        keyboardActions=KeyboardActions(onSearch={onSubmit()}),
         placeholder={Text(hint,color=c.muted,fontSize=12.sp)},shape=RoundedCornerShape(13.dp),
         colors=TextFieldDefaults.colors(
             focusedContainerColor=c.surface,unfocusedContainerColor=c.surface,
