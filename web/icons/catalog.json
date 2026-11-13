@@ -104,7 +104,7 @@
       "name": "collapse",
       "category": "navigation",
       "label": "Collapse",
-      "d": "M4 10h6V4 M4 10l7-7 M20 10h-6V4 M20 10l-7-7 M4 14h6v6 M4 14l7 7 M20 14h-6v6 M20 14l-7 7",
+      "d": "M4 4l6 6 M7 10h3V7 M20 4l-6 6 M14 7v3h3 M4 20l6-6 M7 14h3v3 M20 20l-6-6 M14 17v-3h3",
       "aliases": []
     },
     {
@@ -565,7 +565,7 @@
       "name": "airplane",
       "category": "system",
       "label": "Airplane",
-      "d": "M3 12l18-8-5 17-3.5-7z M12.5 14 21 4",
+      "d": "M12 3l2 7 7 4v2l-8-2v4l3 2v1l-4-1-4 1v-1l3-2v-4l-8 2v-2l7-4z",
       "aliases": []
     },
     {
@@ -602,7 +602,7 @@
       "name": "brightness",
       "category": "system",
       "label": "Brightness",
-      "d": "M4 16h16 M4 20h16 M12 3v2 M6.5 5.5 8 7 M17.5 5.5 16 7 M3 11h2 M19 11h2 M8 11a4 4 0 0 1 8 0",
+      "d": "M12 7a5 5 0 1 0 0 10a5 5 0 1 0 0-10 M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.9 4.9 6.5 6.5 M17.5 17.5l1.6 1.6 M19.1 4.9l-1.6 1.6 M6.5 17.5l-1.6 1.6 M12 7v10",
       "aliases": [
         "screen-brightness"
       ]
@@ -990,7 +990,7 @@
       "name": "repository",
       "category": "developer",
       "label": "Repository",
-      "d": "M4.5 4h15v16h-15z M9 8v8 M15 8v8 M9 12h6 M9 7a1 1 0 1 0 0 2a1 1 0 1 0 0-2 M15 7a1 1 0 1 0 0 2a1 1 0 1 0 0-2 M15 15a1 1 0 1 0 0 2a1 1 0 1 0 0-2",
+      "d": "M4 6h7l2 2h7v12H4z M9 12v5 M9 12a1 1 0 1 0 0 2a1 1 0 1 0 0-2 M9 16a1 1 0 1 0 0 2a1 1 0 1 0 0-2 M15 12v5 M15 16a1 1 0 1 0 0 2a1 1 0 1 0 0-2 M10 14h3a2 2 0 0 0 2-2",
       "aliases": [
         "repo",
         "version-control"

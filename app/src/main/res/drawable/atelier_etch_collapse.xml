@@ -7,5 +7,5 @@
         android:strokeWidth="1.25"
         android:strokeLineCap="square"
         android:strokeLineJoin="round"
-        android:pathData="M4 10h6V4 M4 10l7-7 M20 10h-6V4 M20 10l-7-7 M4 14h6v6 M4 14l7 7 M20 14h-6v6 M20 14l-7 7"/>
+        android:pathData="M4 4l6 6 M7 10h3V7 M20 4l-6 6 M14 7v3h3 M4 20l6-6 M7 14h3v3 M20 20l-6-6 M14 17v-3h3"/>
 </vector>

@@ -48,7 +48,7 @@
 <text x="232" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">close</text>
 <text x="232" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
 <rect x="303" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
-<svg x="345" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h6V4 M4 10l7-7 M20 10h-6V4 M20 10l-7-7 M4 14h6v6 M4 14l7 7 M20 14h-6v6 M20 14l-7 7"/></svg>
+<svg x="345" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l6 6 M7 10h3V7 M20 4l-6 6 M14 7v3h3 M4 20l6-6 M7 14h3v3 M20 20l-6-6 M14 17v-3h3"/></svg>
 <text x="366" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">collapse</text>
 <text x="366" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
 <rect x="437" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>

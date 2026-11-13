@@ -2,7 +2,7 @@
   <title>Airplane (active)</title>
   <rect x="6" y="6" width="52" height="52" rx="14" fill="#151516" stroke="#353538" stroke-width="1"/>
   <g transform="translate(17 17) scale(1.25)" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 12l18-8-5 17-3.5-7z M12.5 14 21 4"/>
+    <path d="M12 3l2 7 7 4v2l-8-2v4l3 2v1l-4-1-4 1v-1l3-2v-4l-8 2v-2l7-4z"/>
   </g>
   <path d="M43 53h9" stroke="#CDA664" stroke-width="1.7" stroke-linecap="round"/>
 </svg>
