@@ -178,6 +178,7 @@ function outputs(data){
       add('iconography/svg/'+family+'/'+it.name+'.svg',svgIcon(it,family));
       add('app/src/main/res/drawable/atelier_'+(family==='contour'?'':family+'_')+native+'.xml',xmlIcon(it,family));
     }
+    add('assets/icons/'+it.name+'.svg',svgIcon(it,'contour'));
     add('iconography/svg/inlay/'+it.name+'.svg',inlayIcon(it,false));
     add('iconography/svg/inlay-active/'+it.name+'.svg',inlayIcon(it,true));
   }
