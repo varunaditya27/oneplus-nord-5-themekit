@@ -17,12 +17,19 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - uses: android-actions/setup-android@v3
+      - name: Inspect hosted Android SDK
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          test -d "$ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms" || true
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "9.7"
       - name: Install Android 36
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER=$(command -v sdkmanager); fi
+          "$SDKMANAGER" --install "platforms;android-36" "build-tools;36.0.0"
       - name: Unit tests and debug build
         run: gradle --no-daemon testDebugUnitTest assembleDebug --stacktrace
       - name: Attach unsigned debug APK
