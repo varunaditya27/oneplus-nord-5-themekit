@@ -70,7 +70,7 @@ fun AtelierShell(
             Command.Unknown -> Unit
         }
     }
-    Column(Modifier.fillMaxSize().background(c.background).statusBarsPadding().navigationBarsPadding().padding(horizontal=24.dp)) {
+    Column(Modifier.fillMaxSize().background(if(page==Page.HOME) c.background.copy(alpha=.76f) else c.background).statusBarsPadding().navigationBarsPadding().padding(horizontal=24.dp)) {
         Row(Modifier.fillMaxWidth().height(58.dp), horizontalArrangement=Arrangement.SpaceBetween, verticalAlignment=Alignment.CenterVertically) {
             Text("ATELIER", color=c.text, fontSize=12.sp, letterSpacing=4.sp, fontWeight=FontWeight.Medium, fontFamily=AtelierFonts.display)
             Text(if(page==Page.HOME) "INTERFACE / 001" else "CLOSE ×", color=c.muted, fontSize=10.sp,
