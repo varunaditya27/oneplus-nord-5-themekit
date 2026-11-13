@@ -8,6 +8,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.*
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import dev.atelier.data.AppCatalog
 import dev.atelier.data.AppItem
 import dev.atelier.data.AtelierPreferences
@@ -19,6 +24,7 @@ class LauncherActivity : ComponentActivity() {
     private lateinit var catalog: AppCatalog
     private lateinit var preferences: AtelierPreferences
     private var apps by mutableStateOf<List<AppItem>>(emptyList())
+    private var appLoadJob: Job? = null
 
     private val requestHome = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -48,7 +54,16 @@ class LauncherActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         preferences.refresh()
-        apps = catalog.load()
+        appLoadJob?.cancel()
+        appLoadJob = lifecycleScope.launch {
+            val discovered = withContext(Dispatchers.IO) { catalog.load() }
+            apps = discovered
+        }
+    }
+
+    override fun onPause() {
+        appLoadJob?.cancel()
+        super.onPause()
     }
 
     private fun requestDefaultHome() {
