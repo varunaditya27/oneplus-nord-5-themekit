@@ -6,10 +6,12 @@ import kotlinx.coroutines.flow.StateFlow
 
 enum class Material { INK, GRAPHITE, PAPER }
 enum class ClockStyle { SIGNATURE, COMPACT }
+enum class IconStyle { MONOGRAM, ORIGINAL }
 
 data class AtelierSettings(
     val material: Material = Material.INK,
     val clockStyle: ClockStyle = ClockStyle.SIGNATURE,
+    val iconStyle: IconStyle = IconStyle.MONOGRAM,
     val focusMode: Boolean = false,
     val reduceMotion: Boolean = false,
     val showLabels: Boolean = true,
@@ -25,6 +27,7 @@ class AtelierPreferences(context: Context) {
     private fun read(): AtelierSettings = AtelierSettings(
         material = runCatching { Material.valueOf(store.getString("material", "INK")!!) }.getOrDefault(Material.INK),
         clockStyle = runCatching { ClockStyle.valueOf(store.getString("clock", "SIGNATURE")!!) }.getOrDefault(ClockStyle.SIGNATURE),
+        iconStyle = runCatching { IconStyle.valueOf(store.getString("icon_style", "MONOGRAM")!!) }.getOrDefault(IconStyle.MONOGRAM),
         focusMode = store.getBoolean("focus", false),
         reduceMotion = store.getBoolean("reduce_motion", false),
         showLabels = store.getBoolean("show_labels", true),
@@ -38,6 +41,7 @@ class AtelierPreferences(context: Context) {
         store.edit()
             .putString("material", next.material.name)
             .putString("clock", next.clockStyle.name)
+            .putString("icon_style", next.iconStyle.name)
             .putBoolean("focus", next.focusMode)
             .putBoolean("reduce_motion", next.reduceMotion)
             .putBoolean("show_labels", next.showLabels)

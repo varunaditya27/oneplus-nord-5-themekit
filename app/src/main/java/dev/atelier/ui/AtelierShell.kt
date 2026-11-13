@@ -83,7 +83,8 @@ fun AtelierShell(
             listOf("HOME","APPS","CMD","CTRL","SET").forEachIndexed { index,label ->
                 val selected = page.ordinal==index
                 Column(Modifier.clickable { page=Page.entries[index] }.padding(8.dp),horizontalAlignment=Alignment.CenterHorizontally) {
-                    Text("0"+(index+1),color=if(selected)c.accent else c.muted,fontSize=10.sp,fontFamily=AtelierFonts.technical)
+                    AtelierGlyphIcon(listOf(AtelierGlyph.HOME,AtelierGlyph.LIBRARY,AtelierGlyph.COMMAND,AtelierGlyph.FOCUS,AtelierGlyph.SETTINGS)[index],
+                    tint=if(selected)c.accent else c.muted,modifier=Modifier.size(18.dp))
                     Text(label,color=if(selected)c.text else c.muted,fontSize=9.sp,letterSpacing=1.sp)
                 }
             }
@@ -117,7 +118,7 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Spacer(Modifier.height(23.dp))
             val favored=apps.filter { it.id in settings.favorites }.take(4).ifEmpty { apps.take(4) }
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-                favored.forEach { AppCell(it,c,settings.showLabels,false,{launch(it)},{}) }
+                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,{launch(it)},{}) }
             }
             Spacer(Modifier.height(22.dp))
             Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.surface)
@@ -142,11 +143,12 @@ private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
     Column {
         Heading(c,"Library","APPLICATIONS / "+apps.size)
         SearchBox(query,{query=it},"Search installed apps",c)
+        Text("Long-press an icon to pin or unpin it from Home",color=c.muted,fontSize=10.sp)
         Spacer(Modifier.height(18.dp))
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
             items(filtered,key={it.id}) { app ->
-                AppCell(app,c,true,app.id in s.favorites,{launch(app)},{favorite(app.id)})
+                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,{launch(app)},{favorite(app.id)})
             }
         }
     }
@@ -188,17 +190,17 @@ private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)-
     Column {
         Heading(c,"Control","SHELL CONTROLS / NOT SYSTEMUI")
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-            ControlTile(c,"Focus",s.focusMode,Modifier.weight(1f)) {update{it.copy(focusMode=!it.focusMode)}}
-            ControlTile(c,"Wi-Fi",false,Modifier.weight(1f)) {
+            ControlTile(c,"Focus",s.focusMode,AtelierGlyph.FOCUS,Modifier.weight(1f)) {update{it.copy(focusMode=!it.focusMode)}}
+            ControlTile(c,"Wi-Fi",false,AtelierGlyph.WIFI,Modifier.weight(1f)) {
                 runCatching{context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))}
             }
         }
         Spacer(Modifier.height(12.dp))
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-            ControlTile(c,"Bluetooth",false,Modifier.weight(1f)) {
+            ControlTile(c,"Bluetooth",false,AtelierGlyph.BLUETOOTH,Modifier.weight(1f)) {
                 runCatching{context.startActivity(Intent(Settings.ACTION_BLUETOOTH_SETTINGS))}
             }
-            ControlTile(c,"Wallpaper",false,Modifier.weight(1f),wallpaper)
+            ControlTile(c,"Wallpaper",false,AtelierGlyph.WALLPAPER,Modifier.weight(1f),wallpaper)
         }
         Spacer(Modifier.height(25.dp))
         Text("MATERIAL",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
@@ -209,15 +211,16 @@ private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)-
     }
 }
 @Composable
-private fun ControlTile(c:AtelierColors,title:String,active:Boolean,modifier:Modifier,onClick:()->Unit) {
+private fun ControlTile(c:AtelierColors,title:String,active:Boolean,glyph:AtelierGlyph,modifier:Modifier,onClick:()->Unit) {
     Column(modifier.height(122.dp).clip(RoundedCornerShape(16.dp))
         .background(if(active)c.text else c.surface)
         .border(1.dp,if(active)c.text else c.border,RoundedCornerShape(16.dp))
         .clickable(onClick=onClick).padding(16.dp),verticalArrangement=Arrangement.SpaceBetween) {
-        Text(if(active)"●" else "○",color=if(active)c.background else c.accent,fontSize=20.sp)
+        AtelierGlyphIcon(glyph,tint=if(active)c.background else c.text,modifier=Modifier.size(23.dp))
         Column {
             Text(title,color=if(active)c.background else c.text,fontSize=15.sp)
-            Text(if(active)"ACTIVE" else "OFF / SYSTEM",color=if(active)c.background else c.muted,fontSize=10.sp)
+            Text(if(active)"ACTIVE" else if(title=="Focus") "OFF" else "OPEN SETTINGS",
+                color=if(active)c.background else c.muted,fontSize=10.sp)
         }
     }
 }
@@ -230,6 +233,9 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         MaterialPicker(c,s,update)
         SwitchRow(c,"Reduced motion",s.reduceMotion){v->update{it.copy(reduceMotion=v)}}
         SwitchRow(c,"Show labels",s.showLabels){v->update{it.copy(showLabels=v)}}
+        SwitchRow(c,"ATELIER monograms",s.iconStyle==IconStyle.MONOGRAM){v->
+            update{it.copy(iconStyle=if(v)IconStyle.MONOGRAM else IconStyle.ORIGINAL)}
+        }
         SwitchRow(c,"Compact clock",s.clockStyle==ClockStyle.COMPACT){v->
             update{it.copy(clockStyle=if(v)ClockStyle.COMPACT else ClockStyle.SIGNATURE)}
         }
@@ -267,14 +273,18 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,onClick:()->Unit,onLongClick:()->Unit) {
+private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,onClick:()->Unit,onLongClick:()->Unit) {
     Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.width(70.dp)) {
         Box(Modifier.size(56.dp).clip(RoundedCornerShape(14.dp)).background(c.surface)
             .border(1.dp,if(favorite)c.accent else c.border,RoundedCornerShape(14.dp))
-            .combinedClickable(onClick=onClick,onLongClick=onLongClick),contentAlignment=Alignment.Center) {
-            val bmp=remember(app.id){runCatching{app.icon.toBitmap(width=72,height=72).asImageBitmap()}.getOrNull()}
+            .combinedClickable(onClick=onClick,onLongClick=onLongClick,onLongClickLabel="Pin or unpin app"),contentAlignment=Alignment.Center) {
+            val bmp=remember(app.id,iconStyle){
+                if(iconStyle==IconStyle.ORIGINAL) runCatching{app.icon.toBitmap(width=72,height=72).asImageBitmap()}.getOrNull()
+                else null
+            }
             if(bmp!=null) Image(bitmap=bmp,contentDescription=app.name,modifier=Modifier.size(30.dp))
-            else Text("◇",color=c.text,fontSize=25.sp)
+            else Text(app.name.trim().firstOrNull()?.uppercaseChar()?.toString() ?: "?",
+                color=c.text,fontSize=23.sp,fontFamily=AtelierFonts.display,fontWeight=FontWeight.Light)
         }
         if(showLabel) {
             Spacer(Modifier.height(7.dp))
