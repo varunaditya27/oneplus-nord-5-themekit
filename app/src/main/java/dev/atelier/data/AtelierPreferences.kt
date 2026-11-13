@@ -1,6 +1,7 @@
 package dev.atelier.data
 
 import android.content.Context
+import android.content.SharedPreferences
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -35,6 +36,12 @@ class AtelierPreferences(context: Context) {
     )
 
     fun refresh() { mutable.value = read() }
+
+    fun observeChanges(): () -> Unit {
+        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ -> refresh() }
+        store.registerOnSharedPreferenceChangeListener(listener)
+        return { store.unregisterOnSharedPreferenceChangeListener(listener) }
+    }
 
     fun update(transform: (AtelierSettings) -> AtelierSettings) {
         val next = transform(mutable.value)

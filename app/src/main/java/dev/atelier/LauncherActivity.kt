@@ -25,6 +25,7 @@ class LauncherActivity : ComponentActivity() {
     private lateinit var preferences: AtelierPreferences
     private var apps by mutableStateOf<List<AppItem>>(emptyList())
     private var appLoadJob: Job? = null
+    private var stopPreferenceObservation: (() -> Unit)? = null
 
     private val requestHome = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -34,6 +35,7 @@ class LauncherActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         catalog = AppCatalog(this)
         preferences = AtelierPreferences(this)
+        stopPreferenceObservation = preferences.observeChanges()
 
         setContent {
             val settings by preferences.settings.collectAsState()
@@ -64,6 +66,11 @@ class LauncherActivity : ComponentActivity() {
     override fun onPause() {
         appLoadJob?.cancel()
         super.onPause()
+    }
+
+    override fun onDestroy() {
+        stopPreferenceObservation?.invoke()
+        super.onDestroy()
     }
 
     private fun requestDefaultHome() {

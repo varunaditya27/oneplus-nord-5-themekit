@@ -26,6 +26,7 @@ class FocusTileService : TileService() {
         qsTile?.apply {
             state = if (enabled) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
             label = if (enabled) "Focus active" else "ATELIER Focus"
+            contentDescription = if (enabled) "ATELIER Focus is active" else "Activate ATELIER Focus"
             updateTile()
         }
     }
