@@ -21,6 +21,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
@@ -265,6 +266,7 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         Spacer(Modifier.height(11.dp))
         Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(7.dp)) {
             listOf(
+                IconStyle.THEMED to "THEMED",
                 IconStyle.SEMANTIC to "GLYPHS",
                 IconStyle.MONOGRAM to "LETTERS",
                 IconStyle.ORIGINAL to "ORIGINAL"
@@ -283,7 +285,7 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
             }
         }
         Spacer(Modifier.height(7.dp))
-        Text("Glyphs use functional symbols. Unknown apps use lettermarks; original artwork remains available.",
+        Text("Themed uses each app's own monochrome layer. Missing layers fall back to our glyphs or lettermarks.",
             color=c.muted,fontSize=11.sp,lineHeight=16.sp)
         Spacer(Modifier.height(18.dp))
         Text("GLYPH WEIGHT",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
@@ -339,7 +341,7 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,onClick:()->Unit,onLongClick:()->Unit) {
     val haptics = LocalHapticFeedback.current
     val semanticGlyph = remember(app.component.packageName, app.name, iconStyle) {
-        if (iconStyle == IconStyle.SEMANTIC)
+        if (iconStyle == IconStyle.SEMANTIC || iconStyle == IconStyle.THEMED)
             AtelierIconResolver.resolve(app.component.packageName, app.name)
         else null
     }
@@ -347,11 +349,20 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
         Box(Modifier.size(56.dp).clip(RoundedCornerShape(14.dp)).background(c.surface)
             .border(1.dp,c.border,RoundedCornerShape(14.dp))
             .combinedClickable(onClick=onClick,onLongClick={haptics.performHapticFeedback(HapticFeedbackType.LongPress);onLongClick()},onLongClickLabel="Pin or unpin app"),contentAlignment=Alignment.Center) {
-            val bmp=remember(app.id,iconStyle){
-                if(iconStyle==IconStyle.ORIGINAL) runCatching{app.icon.toBitmap(width=72,height=72).asImageBitmap()}.getOrNull()
-                else null
+            val bmp=remember(app.id,iconStyle,c.text){
+                when (iconStyle) {
+                    IconStyle.ORIGINAL -> runCatching {
+                        app.icon.toBitmap(width=72,height=72).asImageBitmap()
+                    }.getOrNull()
+                    IconStyle.THEMED -> ThemedAppIcon.rasterize(
+                        app.icon, c.text.toArgb()
+                    )?.asImageBitmap()
+                    else -> null
+                }
             }
-            if (semanticGlyph != null) {
+            if (bmp != null) {
+                Image(bitmap=bmp,contentDescription=app.name,modifier=Modifier.size(30.dp))
+            } else if (semanticGlyph != null) {
                 AtelierGlyphIcon(
                     glyph = semanticGlyph,
                     tint = c.text,
@@ -359,8 +370,6 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
                     description = app.name,
                     weight = if (iconWeight == IconWeight.CORE) AtelierIconWeight.CORE else AtelierIconWeight.CONTOUR
                 )
-            } else if(bmp!=null) {
-                Image(bitmap=bmp,contentDescription=app.name,modifier=Modifier.size(30.dp))
             } else {
                 Text(app.name.trim().firstOrNull()?.uppercaseChar()?.toString() ?: "?",
                     color=c.text,fontSize=23.sp,fontFamily=AtelierFonts.display,fontWeight=FontWeight.Light)

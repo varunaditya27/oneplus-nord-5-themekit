@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.StateFlow
 
 enum class Material { INK, GRAPHITE, SABLE }
 enum class ClockStyle { SIGNATURE, COMPACT }
-enum class IconStyle { SEMANTIC, MONOGRAM, ORIGINAL }
+enum class IconStyle { THEMED, SEMANTIC, MONOGRAM, ORIGINAL }
 enum class IconWeight { CONTOUR, CORE }
 
 data class AtelierSettings(
     val material: Material = Material.INK,
     val clockStyle: ClockStyle = ClockStyle.SIGNATURE,
-    val iconStyle: IconStyle = IconStyle.SEMANTIC,
+    val iconStyle: IconStyle = IconStyle.THEMED,
     val iconWeight: IconWeight = IconWeight.CORE,
     val focusMode: Boolean = false,
     val reduceMotion: Boolean = false,
@@ -30,7 +30,7 @@ class AtelierPreferences(context: Context) {
     private fun read(): AtelierSettings = AtelierSettings(
         material = runCatching { Material.valueOf(store.getString("material", "INK")!!) }.getOrDefault(Material.INK),
         clockStyle = runCatching { ClockStyle.valueOf(store.getString("clock", "SIGNATURE")!!) }.getOrDefault(ClockStyle.SIGNATURE),
-        iconStyle = runCatching { IconStyle.valueOf(store.getString("icon_style", "SEMANTIC")!!) }.getOrDefault(IconStyle.SEMANTIC),
+        iconStyle = runCatching { IconStyle.valueOf(store.getString("icon_style", "THEMED")!!) }.getOrDefault(IconStyle.THEMED),
         iconWeight = runCatching { IconWeight.valueOf(store.getString("icon_weight", "CORE")!!) }.getOrDefault(IconWeight.CORE),
         focusMode = store.getBoolean("focus", false),
         reduceMotion = store.getBoolean("reduce_motion", false),
