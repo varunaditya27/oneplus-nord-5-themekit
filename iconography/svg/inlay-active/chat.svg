@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Chat active" fill="none">
+  <title>Chat (active)</title>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="#151516" stroke="#353538" stroke-width="1"/>
+  <g transform="translate(17 17) scale(1.25)" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.2 6.2Q4.2 4.5 6 4.5h12q1.8 0 1.8 1.7v10.2Q19.8 18 18 18H9l-4.8 3v-4.6Z M8 10.5h.2 M12 10.5h.2 M16 10.5h.2"/>
+  </g>
+  <path d="M43 53h9" stroke="#CDA664" stroke-width="1.7" stroke-linecap="round"/>
+</svg>

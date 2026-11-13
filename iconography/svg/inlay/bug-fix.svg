@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Bug Fix" fill="none">
+  <title>Bug Fix</title>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="#151516" stroke="#353538" stroke-width="1"/>
+  <g transform="translate(17 17) scale(1.25)" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 9V6L6 4 M16 9V6l2-2 M7 11H4 M17 11h3 M8 8h8v11H8z M10 14l2 2 4-5"/>
+  </g>
+</svg>

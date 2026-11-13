@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1276" height="563" viewBox="0 0 1276 563">
+<rect width="100%" height="100%" fill="#080809"/>
+<text x="40" y="44" font-family="Arial,sans-serif" font-size="24" letter-spacing="4" fill="#F2F2EE">ATELIER / NAVIGATION</text>
+<path d="M40 62h1196" stroke="#373739"/>
+<path d="M40 62h36" stroke="#CDA664" stroke-width="2"/>
+<rect x="35" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="77" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6.5v6.5H4z M13.5 4H20v6.5h-6.5z M4 13.5h6.5V20H4z M13.5 13.5H20V20h-6.5z"/></svg>
+<text x="98" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">apps-grid</text>
+<text x="98" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="169" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="211" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v15 M5.5 13 12 19.5l6.5-6.5"/></svg>
+<text x="232" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">arrow-down</text>
+<text x="232" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="303" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="345" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12H4.5 M11 5.5 4.5 12 11 18.5"/></svg>
+<text x="366" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">arrow-left</text>
+<text x="366" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="437" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="479" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15 M13 5.5l6.5 6.5-6.5 6.5"/></svg>
+<text x="500" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">arrow-right</text>
+<text x="500" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="571" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="613" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19.5v-15 M5.5 11 12 4.5l6.5 6.5"/></svg>
+<text x="634" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">arrow-up</text>
+<text x="634" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="705" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="747" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></svg>
+<text x="768" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">check</text>
+<text x="768" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="839" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="881" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 8.5 12 15l6.5-6.5"/></svg>
+<text x="902" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">chevron-down</text>
+<text x="902" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="973" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1015" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 5.5 9 12l6.5 6.5"/></svg>
+<text x="1036" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">chevron-left</text>
+<text x="1036" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="1107" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1149" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5.5 15 12l-6.5 6.5"/></svg>
+<text x="1170" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">chevron-right</text>
+<text x="1170" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="35" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="77" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 15.5 12 9l6.5 6.5"/></svg>
+<text x="98" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">chevron-up</text>
+<text x="98" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="169" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="211" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l14 14 M19 5 5 19"/></svg>
+<text x="232" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">close</text>
+<text x="232" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="303" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="345" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h6V4 M4 10l7-7 M20 10h-6V4 M20 10l-7-7 M4 14h6v6 M4 14l7 7 M20 14h-6v6 M20 14l-7 7"/></svg>
+<text x="366" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">collapse</text>
+<text x="366" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="437" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="479" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H4v5 M4 4l6 6 M15 4h5v5 M20 4l-6 6 M4 15v5h5 M4 20l6-6 M20 15v5h-5 M20 20l-6-6"/></svg>
+<text x="500" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">expand</text>
+<text x="500" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="571" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="613" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h7v7 M20 4l-9.5 9.5 M19 14v5H5V5h5"/></svg>
+<text x="634" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">external-link</text>
+<text x="634" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="705" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="747" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5h17l-6.7 7.2V19l-3.6 1v-7.8Z"/></svg>
+<text x="768" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">filter</text>
+<text x="768" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="839" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="881" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 12 3.5 20 10V20H4Z M9 20v-7h6v7"/></svg>
+<text x="902" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">home</text>
+<text x="902" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="973" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1015" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h1 M9 6h11 M5 12h1 M9 12h11 M5 18h1 M9 18h11"/></svg>
+<text x="1036" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">list</text>
+<text x="1036" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="1107" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1149" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16 M4 12h16 M4 18h16"/></svg>
+<text x="1170" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">menu</text>
+<text x="1170" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="35" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="77" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/></svg>
+<text x="98" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">minus</text>
+<text x="98" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="169" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="211" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12h.1 M12 12h.1 M18.5 12h.1"/></svg>
+<text x="232" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">more-horizontal</text>
+<text x="232" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="303" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="345" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v.1 M12 12v.1 M12 18.5v.1"/></svg>
+<text x="366" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">more-vertical</text>
+<text x="366" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="437" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="479" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16 M4 12h16"/></svg>
+<text x="500" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">plus</text>
+<text x="500" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="571" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="613" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7v5h-5 M4 17v-5h5 M5.3 9a7.5 7.5 0 0 1 13.2-1.7L20 12 M4 12l1.5 4.7A7.5 7.5 0 0 0 18.7 15"/></svg>
+<text x="634" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">refresh</text>
+<text x="634" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="705" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="747" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10.8 4.2a6.6 6.6 0 1 0 0 13.2a6.6 6.6 0 1 0 0-13.2 M16 16l4.4 4.4"/></svg>
+<text x="768" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">search</text>
+<text x="768" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="839" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="881" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h6 M15 6h5 M4 12h11 M19 12h1 M4 18h4 M13 18h7 M10 3v6 M15 9v6 M8 15v6"/></svg>
+<text x="902" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">sliders</text>
+<text x="902" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="973" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1015" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14 M3.5 8 6 5l2.5 3 M18 19V5 M15.5 16.5 18 19l2.5-2.5 M11 9h4 M11 15h4"/></svg>
+<text x="1036" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">sort</text>
+<text x="1036" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+</svg>

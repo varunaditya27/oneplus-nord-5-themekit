@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1276" height="708" viewBox="0 0 1276 708">
+<rect width="100%" height="100%" fill="#080809"/>
+<text x="40" y="44" font-family="Arial,sans-serif" font-size="24" letter-spacing="4" fill="#F2F2EE">ATELIER / SYSTEM</text>
+<path d="M40 62h1196" stroke="#373739"/>
+<path d="M40 62h36" stroke="#CDA664" stroke-width="2"/>
+<rect x="35" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="77" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l18-8-5 17-3.5-7z M12.5 14 21 4"/></svg>
+<text x="98" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">airplane</text>
+<text x="98" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="169" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="211" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 4 7 M17 4l3 3 M12 6a7 7 0 1 0 0 14a7 7 0 1 0 0-14 M12 9v4l3 2"/></svg>
+<text x="232" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">alarm</text>
+<text x="232" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="303" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="345" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h15v10H4z M19 10h2v4 M7 10h7v4H7z"/></svg>
+<text x="366" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">battery</text>
+<text x="366" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="437" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="479" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h15v10H4z M19 10h2v4 M13 8.5 9 13h3l-1 3.5 4-4.5h-3z"/></svg>
+<text x="500" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">battery-charge</text>
+<text x="500" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="571" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="613" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 7.5l9 9-4.5 4V3.5l4.5 4-9 9"/></svg>
+<text x="634" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">bluetooth</text>
+<text x="634" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="705" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="747" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h16 M4 20h16 M12 3v2 M6.5 5.5 8 7 M17.5 5.5 16 7 M3 11h2 M19 11h2 M8 11a4 4 0 0 1 8 0"/></svg>
+<text x="768" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">brightness</text>
+<text x="768" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="839" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="881" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17 M12 7v5l3.5 2.5"/></svg>
+<text x="902" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">clock</text>
+<text x="902" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="973" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1015" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v13H3z M9 21h6 M12 18v3"/></svg>
+<text x="1036" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">display</text>
+<text x="1036" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="1107" y="92" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1149" y="114" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12q9-11 18 0-9 11-18 0z M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6"/></svg>
+<text x="1170" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">eye</text>
+<text x="1170" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="35" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="77" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 4l17 16 M3 12q3-4 6.8-5.2 M14 7q4 1 7 5-2.1 2.7-5 4 M5 15q6 5.2 12 1"/></svg>
+<text x="98" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">eye-off</text>
+<text x="98" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="169" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="211" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10a7 7 0 0 1 14 0 M7 13v-3a5 5 0 0 1 10 0v3 M10 18c-1.2-2.5-1-4.5-1-8a3 3 0 0 1 6 0v3 M12 11v6 M16 17c.4-1.5.5-3 .5-4 M8 20l-1.4-3"/></svg>
+<text x="232" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">fingerprint</text>
+<text x="232" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="303" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="345" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v6l-3.3 3.5V20h-3.4v-6.5L7 10z M7 8h10"/></svg>
+<text x="366" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">flashlight</text>
+<text x="366" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="437" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="479" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v5 M15 4h4v5 M5 15v4h4 M19 15v4h-4 M12 10a2 2 0 1 0 0 4a2 2 0 1 0 0-4"/></svg>
+<text x="500" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">focus</text>
+<text x="500" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="571" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="613" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18 M3 12h18 M12 3q-9 9 0 18 M12 3q9 9 0 18"/></svg>
+<text x="634" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">globe</text>
+<text x="634" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="705" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="747" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17a11 11 0 0 1 16 0 M7 14a7 7 0 0 1 10 0 M12 18h.1 M12 8v.1"/></svg>
+<text x="768" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">hotspot</text>
+<text x="768" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="839" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="881" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7-7-12a7 7 0 1 1 14 0c0 5-7 12-7 12z M12 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5"/></svg>
+<text x="902" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">location</text>
+<text x="902" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="973" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1015" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4 M12 15v3"/></svg>
+<text x="1036" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">lock</text>
+<text x="1036" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="1107" y="237" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1149" y="259" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18V9 M9 18V6 M13 18V12 M17 18V4 M21 18V8"/></svg>
+<text x="1170" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">mobile-data</text>
+<text x="1170" y="345" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="35" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="77" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 4.6a8.2 8.2 0 1 0 1.6 13.3A8.4 8.4 0 0 1 10 8.5a8.4 8.4 0 0 1 7.8-3.9z"/></svg>
+<text x="98" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">moon</text>
+<text x="98" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="169" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="211" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9 M7 5.5a8 8 0 1 0 10 0"/></svg>
+<text x="232" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">power</text>
+<text x="232" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="303" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="345" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9V5h4 M4.5 5a8.5 8.5 0 0 1 14.2 3 M19.5 15v4h-4 M19.5 19a8.5 8.5 0 0 1-14.2-3"/></svg>
+<text x="366" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">rotate</text>
+<text x="366" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="437" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="479" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5h4l.5 2 2 1 1.8-.8 2.1 3.6-1.5 1.5v2.4l1.5 1.5-2.1 3.6-1.8-.8-2 1-.5 2h-4l-.5-2-2-1-1.8.8-2.1-3.6 1.5-1.5v-2.4L3 10l2.1-3.6 1.8.8 2-1z M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6"/></svg>
+<text x="500" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">settings</text>
+<text x="500" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="571" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="613" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.7-2.8 7.3-8 9-5.2-1.7-8-4.3-8-9V6z"/></svg>
+<text x="634" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">shield</text>
+<text x="634" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="705" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="747" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8 M12 2.5v2.2 M12 19.3v2.2 M2.5 12h2.2 M19.3 12h2.2 M5.4 5.4 7 7 M17 17l1.6 1.6 M18.6 5.4 17 7 M7 17l-1.6 1.6"/></svg>
+<text x="768" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">sun</text>
+<text x="768" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="839" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="881" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6 M12 3v3 M18 6l2 2 M12 7a7 7 0 1 0 0 14a7 7 0 1 0 0-14 M12 11v4l2 1"/></svg>
+<text x="902" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">timer</text>
+<text x="902" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="973" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1015" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0 M12 15v3"/></svg>
+<text x="1036" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">unlock</text>
+<text x="1036" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="1107" y="382" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="1149" y="404" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z M16 9q4 3 0 6 M18 5q8 7 0 14"/></svg>
+<text x="1170" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">volume</text>
+<text x="1170" y="490" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="35" y="527" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="77" y="549" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z M16 9l5 6 M21 9l-5 6"/></svg>
+<text x="98" y="618" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">volume-off</text>
+<text x="98" y="635" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="169" y="527" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="211" y="549" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h16v15H4z M4 16l4.5-4.5 3.5 3.5 4-5 4 5.5 M8 8.5h.1"/></svg>
+<text x="232" y="618" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">wallpaper</text>
+<text x="232" y="635" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+<rect x="303" y="527" width="125" height="136" rx="13" fill="#151516" stroke="#333336"/>
+<svg x="345" y="549" width="43" height="43" viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8q9-8 18 0 M6 11.8q6-5.2 12 0 M9 15.5q3-2.7 6 0 M12 19h.1"/></svg>
+<text x="366" y="618" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#E0E0DE">wifi</text>
+<text x="366" y="635" text-anchor="middle" font-family="monospace" font-size="9" fill="#89898A">24 / CONTOUR</text>
+</svg>

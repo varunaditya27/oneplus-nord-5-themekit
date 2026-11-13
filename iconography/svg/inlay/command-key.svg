@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Command Key" fill="none">
+  <title>Command Key</title>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="#151516" stroke="#353538" stroke-width="1"/>
+  <g transform="translate(17 17) scale(1.25)" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 7H6a2 2 0 1 1 2-2v14a2 2 0 1 1-2-2h12a2 2 0 1 1-2 2V5a2 2 0 1 1 2 2H9z"/>
+  </g>
+</svg>

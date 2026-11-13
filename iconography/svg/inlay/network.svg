@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Network" fill="none">
+  <title>Network</title>
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="#151516" stroke="#353538" stroke-width="1"/>
+  <g transform="translate(17 17) scale(1.25)" stroke="#F2F2EE" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4v6 M5 19v-6h14v6 M12 10v3 M12 2a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M5 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4 M19 17a2 2 0 1 0 0 4a2 2 0 1 0 0-4"/>
+  </g>
+</svg>
