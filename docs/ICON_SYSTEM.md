@@ -38,6 +38,21 @@ Every button gets the proper localized content description. Search and unknown s
 ## Review gate
 A glyph passes only when its full-size and 20px exports communicate the same action, when a same-row neighbor can't be mistaken for it, and when it remains visually balanced alongside the rest of its category.
 
+## App icon policy in the native launcher
+
+ATELIER offers four user-selectable app icon modes.
+
+| Mode | Source | Fallback |
+|:--|:--|:--|
+| **THEMED (default)** | Installed app's own monochrome adaptive-icon layer (Android API 33+) | ATELIER semantic glyph, then lettermark |
+| **GLYPHS** | ATELIER original icon based on a known function | Lettermark |
+| **LETTERS** | Geometric display-font initial | No need for app-specific artwork |
+| **ORIGINAL** | Android-installed application icon | Same drawable or lettermark if loading fails |
+
+The themed mode **does not redraw vendor logos** or attempt to identify arbitrary brands by appearance. Known functions are mapped through `AtelierIconResolver` using exact package/label rules. Unknown applications retain fallback artwork. An unrecognized app must never be assigned a misleading symbol.
+
+Users may choose CORE or CONTOUR optical weights for the original ATELIER glyphs. The native app drawer's icon area remains intentionally matte, without gold borders. The tiny brass marker indicates a favorite, not a permanently colored icon.
+
 ## Delivered assets
 
 The master [catalog](../iconography/catalog.json) currently contains **155 original semantic symbols across seven categories**. Generated artifacts:

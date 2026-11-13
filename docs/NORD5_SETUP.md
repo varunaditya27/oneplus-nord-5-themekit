@@ -45,7 +45,7 @@ Android Back returns to Home from ATELIER's secondary screens. Android still han
 
 No light mode is supplied. The ivory color represents readable text.
 
-App icons default to **ATELIER monograms** to give the home screen consistent geometry. Switch off **ATELIER monograms** in Settings to reveal original app icons where quick recognition matters more.
+App icons default to **THEMED**, which uses the installed app's own monochrome adaptive icon when available, otherwise an ATELIER functional glyph or a lettermark. Choose **GLYPHS**, **LETTERS**, or **ORIGINAL** in Settings to adjust the style. The custom glyph modes also offer Contour and Core optical weights; no unofficial brand logos are drawn.
 
 ## 5. Install or generate wallpapers
 
