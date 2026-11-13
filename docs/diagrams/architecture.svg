@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="475" viewBox="0 0 1200 475" role="img" aria-labelledby="title description">
+<title id="title">ATELIER architecture and Android system boundaries</title>
+<desc id="description">Input from gestures and the launcher flows into the ATELIER Compose shell, pure command engine and preferences, while the Android operating system retains secure and protected system interfaces.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#89898E"/></marker></defs>
+<rect width="1200" height="475" fill="#080809"/>
+<path d="M30 74 H1170 M30 416 H1170" stroke="#28282B" stroke-width="1"/>
+<path d="M31 74 H78" stroke="#CDA664" stroke-width="2"/>
+<text x="30" y="42" font-family="Arial, sans-serif" font-size="20" font-weight="500" letter-spacing="2" fill="#F2F2EE">ATELIER / RUNTIME ARCHITECTURE</text>
+<text x="30" y="103" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="#AEB0B5">01 / INPUT</text>
+<text x="355" y="103" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="#AEB0B5">02 / LAUNCHER-OWNED</text>
+<text x="885" y="103" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="#AEB0B5">03 / ANDROID-OWNED</text>
+<g><rect x="30" y="132" rx="15" width="235" height="94" fill="#171719" stroke="#39393C" stroke-width="1.2"/><text x="50" y="165" font-family="Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="0" fill="#F2F2EE">Home gesture</text><text x="50" y="189" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="0" fill="#B9B9BD">Opt-in HOME role</text></g>
+<g><rect x="30" y="274" rx="15" width="235" height="94" fill="#171719" stroke="#39393C" stroke-width="1.2"/><text x="50" y="307" font-family="Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="0" fill="#F2F2EE">Commands &amp; apps</text><text x="50" y="331" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="0" fill="#B9B9BD">Tap, search, launch</text></g>
+<g><rect x="355" y="132" rx="15" width="427" height="94" fill="#171719" stroke="#39393C" stroke-width="1.2"/><text x="375" y="165" font-family="Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="0" fill="#F2F2EE">Compose interface</text><text x="375" y="189" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="0" fill="#B9B9BD">Home · Library · Controls</text></g>
+<g><rect x="355" y="274" rx="15" width="197" height="94" fill="#171719" stroke="#39393C" stroke-width="1.2"/><text x="375" y="307" font-family="Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="0" fill="#F2F2EE">Command engine</text><text x="375" y="331" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="0" fill="#B9B9BD">Allowlisted actions</text></g>
+<g><rect x="585" y="274" rx="15" width="197" height="94" fill="#171719" stroke="#39393C" stroke-width="1.2"/><text x="605" y="307" font-family="Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="0" fill="#F2F2EE">Local preferences</text><text x="605" y="331" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="0" fill="#B9B9BD">Material · Focus · Clock</text></g>
+<g><rect x="885" y="132" rx="15" width="285" height="94" fill="#171719" stroke="#39393C" stroke-width="1.2"/><text x="905" y="165" font-family="Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="0" fill="#F2F2EE">Android services</text><text x="905" y="189" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="0" fill="#B9B9BD">LauncherApps · Wallpaper</text></g>
+<g><rect x="885" y="274" rx="15" width="285" height="94" fill="#171719" stroke="#39393C" stroke-width="1.2"/><rect x="885" y="274" width="4" height="94" fill="#CDA664"/><text x="905" y="307" font-family="Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="0" fill="#F2F2EE">System boundaries</text><text x="905" y="331" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="0" fill="#B9B9BD">Lock screen · AOD · Shade</text></g>
+<path d="M265 180 H347" stroke="#89898E" stroke-width="1.25" fill="none" marker-end="url(#arrow)"/>
+<path d="M265 320 H347" stroke="#89898E" stroke-width="1.25" fill="none" marker-end="url(#arrow)"/>
+<path d="M782 179 H877" stroke="#89898E" stroke-width="1.25" fill="none" marker-end="url(#arrow)"/>
+<path d="M782 321 H877" stroke="#89898E" stroke-width="1.25" fill="none" marker-end="url(#arrow)"/>
+<path d="M565 226 V248 H453 V265" fill="none" stroke="#89898E" stroke-width="1.1" marker-end="url(#arrow)"/>
+<path d="M572 248 H682 V265" fill="none" stroke="#89898E" stroke-width="1.1" marker-end="url(#arrow)"/>
+<text x="30" y="444" font-family="Arial, sans-serif" font-size="10" font-weight="400" letter-spacing="1.5" fill="#AEB0B5">NO ROOT / NO SYSTEMUI REPLACEMENT</text>
+<text x="882" y="444" font-family="Arial, sans-serif" font-size="10" font-weight="400" letter-spacing="1.5" fill="#CDA664">SOURCE / PRE-ALPHA</text>
+</svg>
