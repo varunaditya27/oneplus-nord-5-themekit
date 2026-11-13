@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - "web/**"
+      - "iconography/catalog.json"
+      - "iconography/build.mjs"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -33,6 +35,7 @@ jobs:
           node --check web/app.js
           node web/test-smoke.mjs
           node --check web/icons/gallery.js
+          node iconography/build.mjs
           node iconography/check.mjs
           echo "ATELIER's site, font assets, and complete icon library passed validation."
 

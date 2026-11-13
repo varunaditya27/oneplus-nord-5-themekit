@@ -19,6 +19,7 @@ jobs:
         run: |
           node --check web/app.js
           node --check web/icons/gallery.js
+          node iconography/build.mjs
           node iconography/check.mjs
       - name: Static markup and asset tests
         run: node web/test-smoke.mjs
