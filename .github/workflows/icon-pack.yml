@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     paths:
+      - "iconography/catalog.json"
+      - "iconography/build.mjs"
       - "iconography/qa.py"
       - ".github/workflows/icon-pack.yml"
   workflow_dispatch:
@@ -28,6 +30,7 @@ jobs:
 
       - name: Verify canonical icon exports
         run: |
+          node iconography/build.mjs
           node iconography/check.mjs
           node --check web/icons/gallery.js
 
