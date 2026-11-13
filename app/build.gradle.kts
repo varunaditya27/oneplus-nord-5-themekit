@@ -4,7 +4,7 @@ plugins {
 }
 android {
     namespace = "dev.atelier.black"
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig {
         applicationId = "dev.atelier.black"
         minSdk = 31

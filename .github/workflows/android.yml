@@ -25,11 +25,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "9.7.0"
-      - name: Install Android 36
+      - name: Install Android 37 compile platform
         run: |
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER=$(command -v sdkmanager); fi
-          "$SDKMANAGER" --install "platforms;android-36" "build-tools;36.0.0"
+          "$SDKMANAGER" --install "platforms;android-37" "build-tools;36.0.0"
       - name: Unit tests and debug build
         run: gradle --no-daemon testDebugUnitTest assembleDebug --stacktrace
       - name: Attach unsigned debug APK
