@@ -76,11 +76,11 @@ The Motion Studio includes three genuine reversible icon transitions:
 
 These are live HTML/SVG interactions with keyboard-operable buttons, `aria-pressed` semantics and reduced-motion equivalents. They are explicitly labeled browser previews; they do **not** control actual audio or device settings.
 
-Icon states should **never animate without a meaningful source-state change**. In particular, representing connectivity, download progress, CPU load or music playback requires real app/system state, not randomly generated telemetry. The Android equivalents of these three semantic-state controls remain a future implementation milestone.
+Icon states should **never animate without a meaningful source-state change**. In particular, representing connectivity, download progress, CPU load or music playback requires real app/system state, not randomly generated telemetry. The Android app also includes these as Compose Canvas-driven interactive preview controls. Neither the browser nor native previews operate system audio or media.
 
 ## Native cinematic preview implementation
 
-- **Home:** A translucent procedural stage composites over the optional live wallpaper; its time field uses original path numerals. A physical vertical swipe drags the sheet before navigating.
+- **Home:** An opaque near-black base carries its own procedural Canvas atmosphere, independently of the Android live wallpaper. This prevents bright OEM wallpaper bleed; the separately installed WallpaperService draws the same scene on system-managed surfaces. Its time field uses original path numerals. A physical vertical swipe drags the sheet before navigating.
 - **Navigation:** Directional horizontal swipes track finger distance, then hand off to interruptible fade, scale and vertical movement.
 - **Surfaces:** App icons, quick controls, material selectors and navigation items respond with spring pressure; the Expressive preset is stronger than Signature.
 - **Telemetry:** Real battery/RAM/storage measurements gently resolve into three gauges; no fabricated percentages.

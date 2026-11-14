@@ -8,7 +8,7 @@
 
 A typography-led Android launcher and visual theme kit for the OnePlus Nord 5.
 
-<sub>PRE-ALPHA · NATIVE ANDROID BUILD VERIFIED · DEVICE TESTING PENDING</sub>
+<sub>0.9.0 PREVIEW · ANDROID CI + EMULATOR QA VERIFIED · NORD 5 HARDWARE TESTING PENDING</sub>
 
 [Visual study](web/index.html) · [Motion Studio](web/motion/index.html) · [Explore 155 icons](web/icons/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
 
@@ -16,7 +16,7 @@ A typography-led Android launcher and visual theme kit for the OnePlus Nord 5.
 
 ## Why
 
-Most custom Android themes change the wallpaper and icons while leaving the interaction model untouched. ATELIER treats the home screen as a complete interface: original vector clock numerals, functional application discovery, a precise command palette, quiet motion and intentionally restrained materials.
+Most custom Android themes change the wallpaper and icons while leaving the interaction model untouched. ATELIER treats the home screen as a complete interface: original vector clock numerals, functional application discovery, a precise command palette, expressive but purposeful motion and intentionally restrained materials.
 
 It is not an OEM replacement. Android retains the secure lock screen, biometric interface and system notification shade.
 
@@ -47,6 +47,8 @@ Wallpaper motion responds to scrolling and touch, while visibility, battery save
 
 [Latest build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/android.yml) · [Device installation and recovery](docs/NORD5_SETUP.md) · [Release notes](docs/RELEASE_NOTES.md)
 
+Use **Settings → EXPORT KIT** to preserve the curated appearance and custom icons in a local JSON file. After an APK reinstall, use **IMPORT KIT** to restore everything without requiring an account. An optional one-time opening reveal can also be toggled in Settings.
+
 ## Motion and interaction
 
 The kinetic layer combines non-bouncy press compression, quiet control-state transitions, short navigation crossfades, vector clock reveals, and a procedurally drawn Silkfield wallpaper.
@@ -63,13 +65,15 @@ The browser study simulates Android UI states. It does not change OxygenOS setti
 
 Kotlin and Jetpack Compose own the launcher screens. Local preferences store appearance and Focus state; the command engine executes a small, explicit action vocabulary. A lifecycle-aware `WallpaperService` renders Silkfield, and an optional Quick Settings tile changes ATELIER's own Focus state, not Android Do Not Disturb.
 
-## Status
+## Status and installability
 
-**Pre-alpha, not yet a Nord 5 release.** The Android debug build and unit tests have passed on [this GitHub Actions run](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43495262730). Physical-device navigation, battery performance, wallpaper lifecycle and accessibility still require verification.
+**ATELIER 0.9.0 Preview 1** has passed [Android unit tests and debug APK compilation](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43565347475). The [strict emulator smoke run](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43564888822) verified that the app starts, that Home, Library and Settings are distinct accessible screens, that no blocking emulator ANR dialog is present, and that the material stays dark in screenshots.
 
-The repository currently includes the native launcher source, procedural wallpapers, an original SVG icon collection and a six-screen [browser design study](web/index.html). The study demonstrates layout and interaction; it does not launch real Android applications.
+**This is not yet Nord 5 certified.** OxygenOS 16 compatibility, live-wallpaper behavior, thermals, performance under 120/144 Hz, accessibility and battery longevity require hardware testing. The debug APK has an ephemeral signing identity across CI runs.
 
-For the build prerequisites and current limitations, see [Testing](docs/TESTING.md). Generated wallpapers are available through [GitHub Actions](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/wallpapers.yml). GitHub Pages publishing is not yet enabled.
+[View the Android Actions workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/android.yml) · [Emulator QA workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/android-emulator.yml) · [Install and recovery instructions](docs/NORD5_SETUP.md).
+
+The interactive [visual study](https://varunaditya27.github.io/oneplus-nord-5-themekit/), [Motion Studio](https://varunaditya27.github.io/oneplus-nord-5-themekit/motion/), and [icon archive](https://varunaditya27.github.io/oneplus-nord-5-themekit/icons/) are published on GitHub Pages.
 
 ## Documentation
 

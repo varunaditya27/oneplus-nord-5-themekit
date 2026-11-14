@@ -11,7 +11,7 @@ Automated source checks and physical-device acceptance.
 - SVGs: `python3 scripts/check_assets.py`
 - Native: `gradle --no-daemon testDebugUnitTest assembleDebug` (requires Android SDK 36 and compatible JDK/Gradle)
 
-Android unit tests and debug builds are currently passing on CI; device validation remains open. Artifact publication is not a device-level usability guarantee.
+Android unit tests and debug builds currently pass in CI. A separate API 35 emulator smoke test verifies launch, Home/Library/Settings accessibility text, no blocking dialogs, live process, distinct screenshots and near-black background. This does not certify Nord 5 hardware.
 
 ## Nord 5 acceptance passes
 
@@ -26,11 +26,13 @@ Device checks are not yet completed. Use [the setup guide](NORD5_SETUP.md) for r
 - Confirm no unexpected network access, accessibility permission prompts, notification capture, or privileged settings modifications.
 
 ## Known restrictions
-The web demo is a simulator, not an APK. Native compilation is CI-verified; battery profiling, wallpaper transparency, OEM role handling and accessibility need physical-device checks.
+The web demo is a simulator, not an APK. Native compilation is CI-verified; battery profiling, OEM role handling, OxygenOS live wallpaper visibility, and accessibility need physical-device checks.
 
 ## Cinematic preview acceptance list
 
-- [x] GitHub Actions: unit test task and debug build compile the expanded native sources
+- [x] GitHub Actions: unit tests pass and debug APK compiles
+- [x] API 35 emulator: activity starts, no AndroidRuntime fatal errors, Home/Library/Settings accessibility checks and dark screenshot tests pass
+- [x] Automated theme-backup JSON round-trip and invalid-input tests
 - [ ] Physical Nord 5: verify default HOME role recovery on OxygenOS 16
 - [ ] Physical Nord 5: confirm Silkfield / Strata / Eclipse render correctly as live wallpaper
 - [ ] Physical Nord 5: verify touch, parallax, animation cadence and memory usage
