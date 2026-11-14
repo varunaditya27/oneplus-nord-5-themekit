@@ -60,8 +60,7 @@ fun AtelierOpeningSequence(settings: AtelierSettings) {
                 horizontalAlignment=Alignment.CenterHorizontally,
                 modifier=Modifier.fillMaxWidth().padding(horizontal=50.dp)
             ) {
-                Text("A",fontFamily=AtelierFonts.display,fontSize=124.sp,
-                    fontWeight=FontWeight.ExtraLight,color=c.text)
+                AtelierBrandMark(c.text,c.accent,Modifier.size(142.dp))
                 Spacer(Modifier.height(15.dp))
                 Box(Modifier.width(92.dp).height(1.dp).background(c.border)) {
                     Box(Modifier.fillMaxWidth(underline).height(1.dp).background(c.accent))
