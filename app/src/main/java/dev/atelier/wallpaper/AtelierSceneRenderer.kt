@@ -40,11 +40,12 @@ class AtelierSceneRenderer {
         offsetY: Float = .5f,
         touchX: Float = -1f,
         touchY: Float = -1f,
-        rippleAge: Float = 5f
+        rippleAge: Float = 5f,
+        drawBackground: Boolean = true
     ) {
         val w = canvas.width.toFloat().coerceAtLeast(1f)
         val h = canvas.height.toFloat().coerceAtLeast(1f)
-        canvas.drawColor(
+        if(drawBackground) canvas.drawColor(
             when(material) {
                 Material.INK -> Color.rgb(8,8,9)
                 Material.GRAPHITE -> Color.rgb(17,19,21)
