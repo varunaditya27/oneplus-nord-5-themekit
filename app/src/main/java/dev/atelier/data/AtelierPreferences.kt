@@ -3,6 +3,7 @@ package dev.atelier.data
 import android.content.Context
 import android.content.SharedPreferences
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.json.JSONObject
 import kotlinx.coroutines.flow.StateFlow
 
 enum class Material { INK, GRAPHITE, SABLE }
@@ -25,7 +26,8 @@ data class AtelierSettings(
     val focusMode: Boolean = false,
     val reduceMotion: Boolean = false,
     val showLabels: Boolean = true,
-    val favorites: Set<String> = emptySet()
+    val favorites: Set<String> = emptySet(),
+    val iconOverrides: Map<String,String> = emptyMap()
 )
 
 /** Local-only and explicitly reversible; no identity, telemetry or cloud sync. */
@@ -51,7 +53,13 @@ class AtelierPreferences(context: Context) {
         focusMode = store.getBoolean("focus", false),
         reduceMotion = store.getBoolean("reduce_motion", false),
         showLabels = store.getBoolean("show_labels", true),
-        favorites = store.getStringSet("favorites", emptySet()).orEmpty().toSet()
+        favorites = store.getStringSet("favorites", emptySet()).orEmpty().toSet(),
+        iconOverrides = runCatching {
+            val objectValue = JSONObject(store.getString("icon_overrides","{}")!!)
+            objectValue.keys().asSequence().associateWith { key ->
+                objectValue.optString(key)
+            }.filterValues { it.isNotBlank() }
+        }.getOrDefault(emptyMap())
     )
 
     fun refresh() { mutable.value = read() }
@@ -78,6 +86,7 @@ class AtelierPreferences(context: Context) {
             .putBoolean("reduce_motion", next.reduceMotion)
             .putBoolean("show_labels", next.showLabels)
             .putStringSet("favorites", next.favorites.toSet())
+            .putString("icon_overrides", JSONObject(next.iconOverrides).toString())
             .apply()
         mutable.value = next
     }
@@ -85,4 +94,8 @@ class AtelierPreferences(context: Context) {
         it.copy(favorites = if (id in it.favorites) it.favorites - id else it.favorites + id)
     }
     fun setFocus(enabled: Boolean) = update { it.copy(focusMode = enabled) }
+    fun setAppIcon(id: String, glyphName: String?) = update {
+        it.copy(iconOverrides = if(glyphName==null)it.iconOverrides-id
+            else it.iconOverrides + (id to glyphName))
+    }
 }
