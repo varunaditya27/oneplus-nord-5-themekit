@@ -1,0 +1,66 @@
+name: Android / emulator smoke and screenshots
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/android-emulator.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.7.0"
+      - name: Install Android build platform
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER=$(command -v sdkmanager); fi
+          "$SDKMANAGER" --install "platforms;android-36" "build-tools;36.0.0"
+      - name: Build preview
+        run: gradle --no-daemon assembleDebug
+      - name: Enable KVM
+        run: |
+          if [ -e /dev/kvm ]; then sudo chmod 666 /dev/kvm; fi
+      - name: Install, open and screenshot
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
+          script: |
+            set -e
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb shell am start -n dev.atelier.black/dev.atelier.LauncherActivity
+            sleep 10
+            mkdir -p dist/emulator
+            adb shell screencap -p /sdcard/atelier-home.png
+            adb pull /sdcard/atelier-home.png dist/emulator/home.png
+            adb shell dumpsys activity activities | grep -E 'dev.atelier.black|LauncherActivity' | head -10
+            adb logcat -d -v brief -s AndroidRuntime:E > dist/emulator/crashes.txt
+            if grep -q 'FATAL EXCEPTION' dist/emulator/crashes.txt; then
+              cat dist/emulator/crashes.txt
+              exit 1
+            fi
+            test -s dist/emulator/home.png
+            echo "ATELIER opened without an AndroidRuntime FATAL EXCEPTION."
+      - name: Attach screenshot and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atelier-emulator-smoke
+          path: dist/emulator
+          retention-days: 14
