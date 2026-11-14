@@ -7,7 +7,15 @@ on:
       - ".github/workflows/android-emulator.yml"
       - "scripts/ci/emulator-smoke.sh"
       - "scripts/ci/check_screenshots.py"
+      - "app/src/main/java/**"
+      - "app/src/main/AndroidManifest.xml"
+      - "app/src/main/res/values/**"
+      - "app/build.gradle.kts"
   workflow_dispatch:
+
+concurrency:
+  group: android-emulator-main
+  cancel-in-progress: true
 
 permissions:
   contents: read
