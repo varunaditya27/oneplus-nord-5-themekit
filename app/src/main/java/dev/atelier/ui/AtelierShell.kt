@@ -101,6 +101,13 @@ fun AtelierShell(
         Row(Modifier.fillMaxWidth().height(68.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
             listOf("HOME","APPS","CMD","CTRL","SET").forEachIndexed { index,label ->
                 val selected = page.ordinal==index
+                val selectionTint by animateColorAsState(
+                    targetValue=if(selected)c.accent else c.muted,
+                    animationSpec=tween(
+                        if(settings.reduceMotion || settings.motionMode==MotionMode.STILL) 0 else 150
+                    ),
+                    label="navigation-selection"
+                )
                 Column(
                     Modifier
                         .sizeIn(minWidth=48.dp,minHeight=48.dp)
@@ -109,7 +116,7 @@ fun AtelierShell(
                     horizontalAlignment=Alignment.CenterHorizontally
                 ) {
                     AtelierGlyphIcon(listOf(AtelierGlyph.HOME,AtelierGlyph.LIBRARY,AtelierGlyph.COMMAND,AtelierGlyph.FOCUS,AtelierGlyph.SETTINGS)[index],
-                    tint=if(selected)c.accent else c.muted,modifier=Modifier.size(18.dp))
+                    tint=selectionTint,modifier=Modifier.size(18.dp))
                     Text(label,color=if(selected)c.text else c.muted,fontSize=9.sp,letterSpacing=1.sp)
                 }
             }
@@ -142,7 +149,8 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Text("THE BLACK SYSTEM",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
             Spacer(Modifier.height(28.dp))
             if(settings.clockStyle==ClockStyle.SIGNATURE) {
-                SignatureClock(now.format(DateTimeFormatter.ofPattern("HH")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion || settings.motionMode == MotionMode.STILL)
+                SignatureClock(now.format(DateTimeFormatter.ofPattern("HH")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion || settings.motionMode == MotionMode.STILL,
+                    drawDurationMillis=if(settings.motionMode == MotionMode.EXPRESSIVE) 640 else 560)
                 SignatureClock(now.format(DateTimeFormatter.ofPattern("mm")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion)
             } else Text(now.format(DateTimeFormatter.ofPattern("HH:mm")),color=c.text,fontWeight=FontWeight.ExtraLight,fontSize=72.sp,fontFamily=AtelierFonts.display)
             Spacer(Modifier.height(24.dp))

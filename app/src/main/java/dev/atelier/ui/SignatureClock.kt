@@ -26,13 +26,14 @@ fun SignatureClock(
     modifier: Modifier = Modifier,
     digitWidth: Int = 72,
     digitHeight: Int = 104,
-    reducedMotion: Boolean = false
+    reducedMotion: Boolean = false,
+    drawDurationMillis: Int = 560
 ) {
     var isVisible by remember(value) { mutableStateOf(false) }
     LaunchedEffect(value) { isVisible = true }
     val reveal by animateFloatAsState(
         targetValue = if (isVisible) 1f else 0f,
-        animationSpec = tween(if (reducedMotion) 0 else 560),
+        animationSpec = tween(if (reducedMotion) 0 else drawDurationMillis),
         label = "signature-clock-reveal"
     )
     Row(modifier, horizontalArrangement = Arrangement.spacedBy(0.dp)) {
