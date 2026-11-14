@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080809">
+<meta name="description" content="ATELIER Motion Studio: tactile, stateful, reduced-motion aware interface prototypes.">
+<title>MOTION STUDY / ATELIER</title>
+<link rel="stylesheet" href="./studio.css">
+<script src="./studio.js" defer></script>
+</head>
+<body>
+<div class="shell">
+  <header class="mast">
+    <a href="../index.html" class="brand" aria-label="ATELIER home"><span class="mark">A<i>.</i></span><span><strong>ATELIER</strong><small>THE BLACK SYSTEM</small></span></a>
+    <nav class="links"><a href="../icons/">SYMBOL ARCHIVE</a><a href="../index.html">THE SYSTEM ↗</a></nav>
+  </header>
+  <section class="intro">
+    <div><div class="eyebrow"><i></i> EXPERIENCE STUDY / 002</div>
+    <h1>NOTHING<br>WITHOUT <span>INTENT.</span></h1>
+    <p>Pressure without bounce. State without spectacle. A quiet interface that answers your touch and otherwise leaves you alone.</p>
+    </div>
+    <div class="hero-meta"><span>MOTION GRAMMAR / 01</span><span>DESIGNED TO BE INTERRUPTIBLE</span><span>NO GLOW. NO THEATRICS.</span></div>
+  </section>
+  <div class="workbench">
+    <aside class="rail">
+      <div class="section-label">01 / PARAMETERS</div>
+      <div class="rule"></div>
+      <p class="label">INTERACTION PRESET</p>
+      <div class="presets" id="presets" role="group" aria-label="Motion intensity">
+        <button data-preset="still" aria-pressed="false"><span>STILL</span><small>NO SPATIAL MOTION</small></button>
+        <button data-preset="signature" aria-pressed="true"><span>SIGNATURE</span><small>CONTROLLED / DEFAULT</small></button>
+        <button data-preset="expressive" aria-pressed="false"><span>EXPRESSIVE</span><small>MORE PRESENCE, NOT BOUNCE</small></button>
+      </div>
+      <div class="rule"></div>
+      <p class="label">AMBIENT MATERIAL</p>
+      <button class="option" id="ambientSwitch" aria-pressed="true"><span>Graphite Silkfield</span><span class="toggle"></span></button>
+      <div class="rule"></div>
+      <p class="label">DESIGN TOKENS</p>
+      <dl class="metrics" id="metrics"><dt>CONTACT</dt><dd>0.955×</dd><dt>STATE</dt><dd>180ms</dd><dt>NAVIGATION</dt><dd>220ms</dd><dt>REVEAL</dt><dd>560ms</dd></dl>
+      <p class="disclaimer">Browser interactions are functional prototypes, not commands to OxygenOS. Your system's reduced-motion preference takes priority.</p>
+    </aside>
+
+    <section class="stage" aria-label="Interactive phone study">
+      <div class="stage-head"><span>02 / LIVE INTERFACE</span><span id="stageCaption">HOME / NORMAL</span></div>
+      <div class="device">
+        <div class="screen" id="phone">
+          <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+          <div class="status"><span>09:41</span><span>▥  ◔  87%</span></div><div class="camera-hole"></div>
+          <div id="phoneContent" class="phone-content"></div>
+          <div class="gesture" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="stage-foot"><span>ATELIER / NORD 5 CONCEPT</span><span>TOUCH THE CONTROLS</span></div>
+    </section>
+
+    <aside class="inspector">
+      <div class="section-label">03 / EVENT FEEDBACK</div><div class="rule"></div>
+      <h2>RESPONSIVE.<br><span>NOT RESTLESS.</span></h2>
+      <p>Every interaction must answer one question: <em>what changed?</em></p>
+      <div id="eventName" class="event-name">READY / IDLE</div>
+      <div id="eventDesc" class="event-desc" role="status" aria-live="polite">Select an interaction in the phone or from the experiments below.</div>
+      <div class="rule"></div>
+      <div class="section-label">ACTIVE PRINCIPLES</div>
+      <div class="principle"><span>01</span>Geometry remains recognizable</div>
+      <div class="principle"><span>02</span>Gold denotes a state</div>
+      <div class="principle"><span>03</span>No continuous icon movement</div>
+      <div class="principle"><span>04</span>Physical touch target stays stable</div>
+      <div class="principle"><span>05</span>Motion can be disabled instantly</div>
+      <div class="rule"></div>
+      <p class="disclaimer">All interactive stages can be repeated. Every press and toggle has a real state change in this prototype.</p>
+    </aside>
+  </div>
+  <section class="experiments" aria-label="Motion behavior gallery">
+    <div class="exp-head"><div><span class="section-label">04 / BEHAVIOR LIBRARY</span><h2>SMALL MOVEMENTS.<br>LASTING IMPRESSIONS.</h2></div><span class="mono">01—06 / TESTABLE</span></div>
+    <div class="exp-grid">
+      <article><div class="exp-id">01 / PRESSURE</div><h3>Contact</h3><p>A 4.5% compression. A fast, non-bouncy return.</p><button data-action="press" class="demo-button pressable"><span class="demo-glyph" data-symbol="terminal"></span> PRESS TO FEEL</button></article>
+      <article><div class="exp-id">02 / SELECTION</div><h3>Inlay</h3><p>Only selection receives a short brass accent.</p><button data-action="pin" class="demo-button pressable"><span class="demo-glyph" data-symbol="bookmark"></span><span id="pinLabel">PIN APPLICATION</span><span class="tiny-bar" id="pinBar"></span></button></article>
+      <article><div class="exp-id">03 / STATE</div><h3>Focus</h3><p>A quiet material inversion. The workspace becomes quieter.</p><button data-action="focus" class="demo-button pressable"><span class="demo-glyph" data-symbol="focus"></span><span id="focusLabel">ENTER FOCUS</span></button></article>
+      <article><div class="exp-id">04 / NAVIGATION</div><h3>Continuity</h3><p>Minimal displacement and opacity. No full-screen sliding.</p><button data-action="navigate" class="demo-button pressable"><span class="demo-glyph" data-symbol="apps-grid"></span> SWITCH SURFACE</button></article>
+      <article><div class="exp-id">05 / PRECISION</div><h3>Numerals</h3><p>An original vector clock draws on demand, never repeatedly.</p><button data-action="clock" class="demo-button pressable"><span class="demo-glyph" data-symbol="clock"></span> REPLAY CLOCK</button></article>
+      <article><div class="exp-id">06 / ATMOSPHERE</div><h3>Silkfield</h3><p>Slow procedural strands; painting stops when hidden.</p><button data-action="ambient" class="demo-button pressable"><span class="demo-glyph" data-symbol="wallpaper"></span><span id="ambientLabel">PAUSE ATMOSPHERE</span></button></article>
+    </div>
+  </section>
+  <footer class="footer"><span>ATELIER / THE BLACK SYSTEM</span><span>ONEPLUS NORD 5 / DESIGN STUDY</span><span>FORM FOLLOWS INTENT.</span></footer>
+</div>
+</body>
+</html>
