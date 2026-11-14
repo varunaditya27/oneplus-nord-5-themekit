@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/android-emulator.yml"
       - "scripts/ci/emulator-smoke.sh"
+      - "scripts/ci/check_screenshots.py"
   workflow_dispatch:
 
 permissions:
@@ -43,6 +44,10 @@ jobs:
           profile: pixel_6
           emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
           script: bash scripts/ci/emulator-smoke.sh
+      - name: Audit screenshots for darkness and page changes
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 scripts/ci/check_screenshots.py
       - name: Attach screenshot and logs
         if: always()
         uses: actions/upload-artifact@v4
