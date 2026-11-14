@@ -61,6 +61,7 @@ function setPreset(name){
  $('metrics').innerHTML='<dt>CONTACT</dt><dd>'+t.press.toFixed(3)+'×</dd><dt>STATE</dt><dd>'+t.state+'ms</dd><dt>NAVIGATION</dt><dd>'+t.page+'ms</dd><dt>REVEAL</dt><dd>'+t.clock+'ms</dd>';
  document.querySelectorAll('[data-preset]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.preset===name)));
  render();
+ if(reduced())stopAmbient();else scheduleAmbient();
  event('MOTION / '+name.toUpperCase(),reduced()?'Spatial movement disabled. Essential state information remains visible.':'Preset applied. Touch responses remain restrained and interruptible.');
 }
 function drawClock(){
@@ -113,7 +114,7 @@ function act(action,arg){
  if(action==='go'){navigate(arg);return;}
  if(action==='command'){navigate('command');return;}
  if(action==='clock'){state.page='home';render();event('PRECISION / DRAW','Original numerals trace once on request. They do not loop or spin.');return;}
- if(action==='ambient'){state.ambient=!state.ambient;render();event('ATMOSPHERE / '+(state.ambient?'ON':'OFF'),'Canvas strands '+(state.ambient?'resume when visible':'stop updating')+'.');return;}
+ if(action==='ambient'){state.ambient=!state.ambient;render();if(state.ambient)scheduleAmbient();else stopAmbient();event('ATMOSPHERE / '+(state.ambient?'ON':'OFF'),'Canvas strands '+(state.ambient?'resume when visible':'stop updating')+'.');return;}
  if(action==='launch'){state.selected=arg;event('APP / '+String(arg).toUpperCase(),'Application launch is a browser simulation. No actual Android app was started.');}
 }
 document.addEventListener('click',e=>{
@@ -137,10 +138,20 @@ document.addEventListener('submit',e=>{
 });
 osReduced.addEventListener('change',()=>setPreset(state.preset));
 const canvas=$('ambientCanvas');
-const ctx=canvas?.getContext('2d');let last=0;
+const ctx=canvas?.getContext('2d');
+let last=0,frameHandle=0;
+function stopAmbient(){
+ if(frameHandle)cancelAnimationFrame(frameHandle);
+ frameHandle=0;
+}
+function scheduleAmbient(){
+ if(!frameHandle&&ctx&&!document.hidden&&state.ambient&&!reduced())
+  frameHandle=requestAnimationFrame(paint);
+}
 function paint(stamp){
- requestAnimationFrame(paint);
- if(!ctx||document.hidden||!state.ambient||reduced()||stamp-last<100)return;
+ frameHandle=0;
+ if(!ctx||document.hidden||!state.ambient||reduced())return;
+ if(stamp-last<100){scheduleAmbient();return;}
  last=stamp;
  const box=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
  const w=Math.round(box.width*dpr),h=Math.round(box.height*dpr);
@@ -157,7 +168,9 @@ function paint(stamp){
  }
  ctx.strokeStyle='rgba(205,166,100,.16)';ctx.lineWidth=dpr*.8;ctx.beginPath();
  ctx.moveTo(w*.24,h*.97);ctx.bezierCurveTo(w*.38,h*.73,w*.64,h*.53,w*.73,h*.3);ctx.stroke();
+ scheduleAmbient();
 }
+document.addEventListener('visibilitychange',()=>document.hidden?stopAmbient():scheduleAmbient());
 Promise.all([fetch('../icons/catalog.json').then(x=>x.json()),fetch('./tokens.json').then(x=>x.json())]).then(([data,tokens])=>{
  if(!data||!Array.isArray(data.icons))throw Error('No icon catalog');
  if(!tokens||tokens.schema!=='atelier.motion.v1')throw Error('No motion tokens');
@@ -168,7 +181,7 @@ Promise.all([fetch('../icons/catalog.json').then(x=>x.json()),fetch('./tokens.js
  symbols=Object.fromEntries(data.icons.map(x=>[x.name,x.d]));
  document.querySelectorAll('[data-symbol]').forEach(node=>node.innerHTML=icon(node.dataset.symbol));
  setPreset('signature');
- requestAnimationFrame(paint);
+ scheduleAmbient();
 }).catch(()=>{
  event('STUDIO / DATA UNAVAILABLE','Start a local HTTP server or open the deployed site. Icons cannot load directly from file://.');
 });
