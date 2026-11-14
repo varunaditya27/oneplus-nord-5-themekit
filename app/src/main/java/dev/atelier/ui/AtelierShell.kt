@@ -5,6 +5,8 @@ import android.provider.Settings
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
@@ -92,7 +94,13 @@ fun AtelierShell(
         Row(Modifier.fillMaxWidth().height(68.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
             listOf("HOME","APPS","CMD","CTRL","SET").forEachIndexed { index,label ->
                 val selected = page.ordinal==index
-                Column(Modifier.clickable { page=Page.entries[index] }.padding(8.dp),horizontalAlignment=Alignment.CenterHorizontally) {
+                Column(
+                    Modifier
+                        .sizeIn(minWidth=48.dp,minHeight=48.dp)
+                        .atelierPressable(settings.reduceMotion,onClick={page=Page.entries[index]})
+                        .padding(8.dp),
+                    horizontalAlignment=Alignment.CenterHorizontally
+                ) {
                     AtelierGlyphIcon(listOf(AtelierGlyph.HOME,AtelierGlyph.LIBRARY,AtelierGlyph.COMMAND,AtelierGlyph.FOCUS,AtelierGlyph.SETTINGS)[index],
                     tint=if(selected)c.accent else c.muted,modifier=Modifier.size(18.dp))
                     Text(label,color=if(selected)c.text else c.muted,fontSize=9.sp,letterSpacing=1.sp)
@@ -146,11 +154,12 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Spacer(Modifier.height(23.dp))
             val favored=apps.filter { it.id in settings.favorites }.take(4).ifEmpty { apps.take(4) }
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,{launch(it)},{}) }
+                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,settings.reduceMotion,{launch(it)},{}) }
             }
             Spacer(Modifier.height(22.dp))
             Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.surface)
-                .border(1.dp,c.border,RoundedCornerShape(14.dp)).clickable(onClick=command).padding(17.dp),
+                .border(1.dp,c.border,RoundedCornerShape(14.dp))
+                .atelierPressable(settings.reduceMotion,onClick=command).padding(17.dp),
                 verticalAlignment=Alignment.CenterVertically) {
                 Text("›",color=c.accent,fontSize=24.sp)
                 Spacer(Modifier.width(13.dp))
@@ -176,7 +185,7 @@ private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
             items(filtered,key={it.id}) { app ->
-                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,{launch(app)},{favorite(app.id)})
+                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,s.reduceMotion,{launch(app)},{favorite(app.id)})
             }
         }
     }
@@ -218,17 +227,19 @@ private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)-
     Column {
         Heading(c,"Control","SHELL CONTROLS / NOT SYSTEMUI")
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-            ControlTile(c,"Focus",s.focusMode,AtelierGlyph.FOCUS,Modifier.weight(1f)) {update{it.copy(focusMode=!it.focusMode)}}
-            ControlTile(c,"Wi-Fi",false,AtelierGlyph.WIFI,Modifier.weight(1f)) {
+            ControlTile(c,"Focus",s.focusMode,AtelierGlyph.FOCUS,s.reduceMotion,Modifier.weight(1f)) {
+                update{it.copy(focusMode=!it.focusMode)}
+            }
+            ControlTile(c,"Wi-Fi",false,AtelierGlyph.WIFI,s.reduceMotion,Modifier.weight(1f)) {
                 runCatching{context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))}
             }
         }
         Spacer(Modifier.height(12.dp))
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-            ControlTile(c,"Bluetooth",false,AtelierGlyph.BLUETOOTH,Modifier.weight(1f)) {
+            ControlTile(c,"Bluetooth",false,AtelierGlyph.BLUETOOTH,s.reduceMotion,Modifier.weight(1f)) {
                 runCatching{context.startActivity(Intent(Settings.ACTION_BLUETOOTH_SETTINGS))}
             }
-            ControlTile(c,"Wallpaper",false,AtelierGlyph.WALLPAPER,Modifier.weight(1f),wallpaper)
+            ControlTile(c,"Wallpaper",false,AtelierGlyph.WALLPAPER,s.reduceMotion,Modifier.weight(1f),wallpaper)
         }
         Spacer(Modifier.height(25.dp))
         Text("MATERIAL",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
@@ -239,14 +250,31 @@ private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)-
     }
 }
 @Composable
-private fun ControlTile(c:AtelierColors,title:String,active:Boolean,glyph:AtelierGlyph,modifier:Modifier,onClick:()->Unit) {
-    Column(modifier.height(122.dp).clip(RoundedCornerShape(16.dp))
-        .background(if(active)c.text else c.surface)
-        .border(1.dp,if(active)c.text else c.border,RoundedCornerShape(16.dp))
-        .clickable(onClick=onClick).padding(16.dp),verticalArrangement=Arrangement.SpaceBetween) {
-        AtelierGlyphIcon(glyph,tint=if(active)c.background else c.text,modifier=Modifier.size(23.dp))
+private fun ControlTile(
+    c:AtelierColors,title:String,active:Boolean,glyph:AtelierGlyph,
+    reduceMotion:Boolean,modifier:Modifier,onClick:()->Unit
+) {
+    val fill by animateColorAsState(
+        targetValue=if(active)c.text else c.surface,
+        animationSpec=tween(if(reduceMotion) 0 else 180),
+        label="control-material"
+    )
+    val foreground by animateColorAsState(
+        targetValue=if(active)c.background else c.text,
+        animationSpec=tween(if(reduceMotion) 0 else 180),
+        label="control-ink"
+    )
+    Column(
+        modifier.height(122.dp).clip(RoundedCornerShape(16.dp))
+            .background(fill)
+            .border(1.dp,if(active)c.text else c.border,RoundedCornerShape(16.dp))
+            .atelierPressable(reduceMotion,onClick=onClick)
+            .padding(16.dp),
+        verticalArrangement=Arrangement.SpaceBetween
+    ) {
+        AtelierGlyphIcon(glyph,tint=foreground,modifier=Modifier.size(23.dp))
         Column {
-            Text(title,color=if(active)c.background else c.text,fontSize=15.sp)
+            Text(title,color=foreground,fontSize=15.sp)
             Text(if(active)"ACTIVE" else if(title=="Focus") "OFF" else "OPEN SETTINGS",
                 color=if(active)c.background else c.muted,fontSize=10.sp)
         }
@@ -328,7 +356,7 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
             val m=colors(material)
             Column(Modifier.weight(1f).clip(RoundedCornerShape(12.dp)).background(c.surface)
                 .border(1.dp,if(s.material==material)c.accent else c.border,RoundedCornerShape(12.dp))
-                .clickable{update{it.copy(material=material)}}.padding(10.dp)) {
+                .atelierPressable(s.reduceMotion,onClick={update{it.copy(material=material)}}).padding(10.dp)) {
                 Box(Modifier.fillMaxWidth().height(32.dp).background(m.background))
                 Spacer(Modifier.height(8.dp))
                 Text(material.name,color=c.text,fontSize=10.sp)
@@ -338,8 +366,7 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,onClick:()->Unit,onLongClick:()->Unit) {
-    val haptics = LocalHapticFeedback.current
+private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,reduceMotion:Boolean,onClick:()->Unit,onLongClick:()->Unit) {
     val semanticGlyph = remember(app.component.packageName, app.name, iconStyle) {
         if (iconStyle == IconStyle.SEMANTIC || iconStyle == IconStyle.THEMED)
             AtelierIconResolver.resolve(app.component.packageName, app.name)
@@ -348,7 +375,12 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
     Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.width(70.dp)) {
         Box(Modifier.size(56.dp).clip(RoundedCornerShape(14.dp)).background(c.surface)
             .border(1.dp,c.border,RoundedCornerShape(14.dp))
-            .combinedClickable(onClick=onClick,onLongClick={haptics.performHapticFeedback(HapticFeedbackType.LongPress);onLongClick()},onLongClickLabel="Pin or unpin app"),contentAlignment=Alignment.Center) {
+            .atelierPressable(
+                reduceMotion = reduceMotion,
+                onClick = onClick,
+                onLongClick = onLongClick,
+                onLongClickLabel = "Pin or unpin app"
+            ),contentAlignment=Alignment.Center) {
             val bmp=remember(app.id,iconStyle,c.text){
                 when (iconStyle) {
                     IconStyle.ORIGINAL -> runCatching {
