@@ -10,7 +10,7 @@ A typography-led Android launcher and visual theme kit for the OnePlus Nord 5.
 
 <sub>PRE-ALPHA · NATIVE ANDROID BUILD VERIFIED · DEVICE TESTING PENDING</sub>
 
-[Visual study](web/index.html) · [Explore 155 icons](web/icons/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
+[Visual study](web/index.html) · [Motion Studio](web/motion/index.html) · [Explore 155 icons](web/icons/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
 
 </div>
 
@@ -38,6 +38,16 @@ It is not an OEM replacement. Android retains the secure lock screen, biometric 
 [Explore the searchable icon archive](web/icons/index.html) · [Browse the complete source catalog](iconography/catalog.json) · [Read the critical design audit](docs/ICON_AUDIT.md) · [See export instructions](docs/ICON_SYSTEM.md)
 
 No recreated third-party logos: a generic repository icon is not a counterfeit GitHub logo. Brand-identifiable app icons remain available through Android's original-app-artwork option.
+
+## Motion and interaction
+
+The kinetic layer combines non-bouncy press compression, quiet control-state transitions, short navigation crossfades, vector clock reveals, and a procedurally drawn Silkfield wallpaper.
+
+The launcher includes three motion presets: **Still**, **Signature**, and **Expressive**. Reduced-motion preferences take priority. The wallpaper redraws only while visible, can become static, and respects Android power-saving mode.
+
+[Open the interactive Motion Studio](https://varunaditya27.github.io/oneplus-nord-5-themekit/motion/) · [Read the motion specification](docs/MOTION.md) · [View canonical motion tokens](motion/tokens.json)
+
+The browser study simulates Android UI states. It does not change OxygenOS settings or launch real apps.
 
 ## Architecture
 

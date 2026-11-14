@@ -8,6 +8,7 @@ on:
       - "web/**"
       - "iconography/catalog.json"
       - "iconography/build.mjs"
+      - "motion/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -33,6 +34,7 @@ jobs:
           set -euo pipefail
           test -s web/index.html
           node --check web/app.js
+          node --check web/motion/studio.js
           node web/test-smoke.mjs
           node --check web/icons/gallery.js
           node iconography/build.mjs

@@ -31,7 +31,7 @@ Choosing ATELIER as HOME is reversible. It does not uninstall the OnePlus launch
 - **Swipe down on Home:** ATELIER Controls, not the native notification shade.
 - **Library:** Search installed launchable applications. Long-press an app icon to pin or unpin it from Home.
 - **Command:** Search an app by name or run an allowlisted ATELIER command.
-- **Settings:** Material finish, compact clock, app labels, icon style, reduced motion, wallpaper picker and HOME role.
+- **Settings:** Material finish, compact clock, app labels, icon style, Still/Signature/Expressive motion presets, reduced motion, wallpaper picker and HOME role.
 
 Android Back returns to Home from ATELIER's secondary screens. Android still handles gestures and system navigation outside the launcher.
 

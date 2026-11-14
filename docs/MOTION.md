@@ -57,3 +57,11 @@ These are initial targets, not validated hardware timings. A durable kinetic sys
 - [Compose animation specs and springs](https://developer.android.com/develop/ui/compose/animation/customize)
 - [MDN reduced-motion guidance](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
 - [WCAG 2.3.3, Animation from Interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions)
+
+## Live behavior studio
+
+[Open ATELIER Motion Studio](https://varunaditya27.github.io/oneplus-nord-5-themekit/motion/).
+
+Six interactive experiments let reviewers test Contact, Inlay, Focus, Navigation, Numerals, and Silkfield without any rendered animation files. Their behavior uses actual state, CSS transforms and opacity, original SVG strokes and a visibility-aware Canvas loop.
+
+The default web motion specification is maintained in [motion/tokens.json](../motion/tokens.json) and mirrored in [web/motion/tokens.json](../web/motion/tokens.json), with CI checking parity.
