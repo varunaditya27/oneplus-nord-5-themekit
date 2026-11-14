@@ -62,6 +62,7 @@ fun AtelierShell(
 ) {
     val c = colors(settings.material)
     var page by remember { mutableStateOf(Page.HOME) }
+    var editingApp by remember { mutableStateOf<AppItem?>(null) }
     BackHandler(enabled = page != Page.HOME) { page = Page.HOME }
     var now by remember { mutableStateOf(LocalDateTime.now()) }
     LaunchedEffect(Unit) {
@@ -115,8 +116,8 @@ fun AtelierShell(
                 label="cinematic-page"
             ) { current ->
                 when(current) {
-                    Page.HOME -> Home(c,now,settings,apps,onLaunch,{page=Page.COMMAND},{page=Page.LIBRARY},{page=Page.CONTROL})
-                    Page.LIBRARY -> Library(c,apps,settings,onFavorite,onLaunch)
+                    Page.HOME -> Home(c,now,settings,apps,onLaunch,{page=Page.COMMAND},{page=Page.LIBRARY},{page=Page.CONTROL},{editingApp=it})
+                    Page.LIBRARY -> Library(c,apps,settings,onFavorite,onLaunch,{editingApp=it})
                     Page.COMMAND -> CommandPage(c,apps,::execute,onLaunch)
                     Page.CONTROL -> Control(c,settings,onUpdate,onOpenWallpaper)
                     Page.SETTINGS -> SettingsPage(c,settings,onUpdate,onRequestHome,onOpenWallpaper)
@@ -148,11 +149,26 @@ fun AtelierShell(
             }
         }
         }
+        editingApp?.let { app ->
+            AtelierAppEditor(
+                app=app,settings=settings,c=c,
+                onDismiss={editingApp=null},
+                onPin={onFavorite(app.id)},
+                onSetIcon={ glyph ->
+                    onUpdate {
+                        it.copy(iconOverrides=
+                            if(glyph==null)it.iconOverrides-app.id
+                            else it.iconOverrides+(app.id to glyph.name))
+                    }
+                }
+            )
+        }
     }
 }
 @Composable
 private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps:List<AppItem>,
-    launch:(AppItem)->Boolean,command:()->Unit,library:()->Unit,control:()->Unit) {
+    launch:(AppItem)->Boolean,command:()->Unit,library:()->Unit,
+    control:()->Unit,onEdit:(AppItem)->Unit) {
     var dragOffset by remember { mutableFloatStateOf(0f) }
     val visualDrag by animateFloatAsState(
         targetValue=dragOffset,
@@ -214,7 +230,14 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Spacer(Modifier.height(23.dp))
             val favored=apps.filter { it.id in settings.favorites }.take(4).ifEmpty { apps.take(4) }
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,settings.reduceMotion,settings.motionMode,settings.hapticsEnabled,{launch(it)},{}) }
+                favored.forEach { app ->
+                    val glyph = settings.iconOverrides[app.id]?.let { name ->
+                        runCatching { AtelierGlyph.valueOf(name) }.getOrNull()
+                    }
+                    AppCell(app,c,settings.showLabels,false,glyph,settings.iconStyle,
+                        settings.iconWeight,settings.reduceMotion,settings.motionMode,
+                        settings.hapticsEnabled,{launch(app)},{onEdit(app)})
+                }
             }
             Spacer(Modifier.height(22.dp))
             Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.surface)
@@ -234,7 +257,7 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
 }
 @Composable
 private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
-    favorite:(String)->Unit,launch:(AppItem)->Boolean) {
+    favorite:(String)->Unit,launch:(AppItem)->Boolean,onEdit:(AppItem)->Unit) {
     var query by remember { mutableStateOf("") }
     val filtered=remember(apps,query) { apps.filter { it.name.contains(query,true) } }
     Column {
@@ -245,7 +268,11 @@ private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
             items(filtered,key={it.id}) { app ->
-                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,s.reduceMotion,s.motionMode,s.hapticsEnabled,{launch(app)},{favorite(app.id)})
+                val glyph = s.iconOverrides[app.id]?.let { name ->
+                    runCatching { AtelierGlyph.valueOf(name) }.getOrNull()
+                }
+                AppCell(app,c,true,app.id in s.favorites,glyph,s.iconStyle,s.iconWeight,
+                    s.reduceMotion,s.motionMode,s.hapticsEnabled,{launch(app)},{onEdit(app)})
             }
         }
     }
@@ -472,14 +499,19 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,reduceMotion:Boolean,motionMode:MotionMode,hapticsEnabled:Boolean,onClick:()->Unit,onLongClick:()->Unit) {
+private fun AppCell(
+    app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,
+    customGlyph:AtelierGlyph?,iconStyle:IconStyle,iconWeight:IconWeight,
+    reduceMotion:Boolean,motionMode:MotionMode,hapticsEnabled:Boolean,
+    onClick:()->Unit,onLongClick:()->Unit
+) {
     val pinAlpha by androidx.compose.animation.core.animateFloatAsState(
         targetValue = if (favorite) 1f else 0f,
         animationSpec = tween(if(reduceMotion || motionMode == MotionMode.STILL) 0 else 150),
         label = "favorite-inlay"
     )
-    val semanticGlyph = remember(app.component.packageName, app.name, iconStyle) {
-        if (iconStyle == IconStyle.SEMANTIC || iconStyle == IconStyle.THEMED)
+    val semanticGlyph = remember(app.component.packageName,app.name,iconStyle,customGlyph) {
+        customGlyph ?: if (iconStyle == IconStyle.SEMANTIC || iconStyle == IconStyle.THEMED)
             AtelierIconResolver.resolve(app.component.packageName, app.name)
         else null
     }
@@ -490,12 +522,12 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
                 reduceMotion = reduceMotion,
                 onClick = onClick,
                 onLongClick = onLongClick,
-                onLongClickLabel = "Pin or unpin app",
+                onLongClickLabel = "Customize app icon and favorites",
                 mode = motionMode,
                 hapticsEnabled = hapticsEnabled
             ),contentAlignment=Alignment.Center) {
-            val bmp=remember(app.id,iconStyle,c.text){
-                when (iconStyle) {
+            val bmp=remember(app.id,iconStyle,c.text,customGlyph){
+                if(customGlyph!=null)null else when (iconStyle) {
                     IconStyle.ORIGINAL -> runCatching {
                         app.icon.toBitmap(width=72,height=72).asImageBitmap()
                     }.getOrNull()
