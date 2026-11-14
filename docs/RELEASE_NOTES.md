@@ -1,5 +1,18 @@
 # ATELIER / The Black System
 
+## 0.9.0 Preview 2 · Public prerelease
+
+The original ATELIER identity is now implemented across the source repo, Android app and web experience.
+
+- Crossbar-free original A mark and path-drawn wordmark, built without proprietary fonts.
+- Android adaptive icon with near-black background, ivory/brass foreground and monochrome themed variant.
+- Cinematic opening reveals the actual logo instead of a generic font character.
+- Source SVGs for the lockup, favicon, avatar, GitHub cover, social banner, phone splash and brand pattern.
+- A bundled brand kit and directly downloadable APK in the public GitHub prerelease.
+- Includes all native launcher features described in Preview 1 below.
+
+**Release classification:** public prerelease; debug-signed APK for hands-on evaluation, not a Play Store or production-signed package. Nord 5 hardware performance and battery life remain unverified.
+
 ## 0.9.0 Preview 1
 
 A fully native, dark-only Android launcher and procedural live wallpaper for the OnePlus Nord 5, designed around original vector typography, matte blacks, ivory controls and rare brass accents.

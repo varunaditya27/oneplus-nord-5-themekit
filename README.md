@@ -8,9 +8,9 @@
 
 A typography-led Android launcher and visual theme kit for the OnePlus Nord 5.
 
-<sub>0.9.0 PREVIEW · ANDROID CI + EMULATOR QA VERIFIED · NORD 5 HARDWARE TESTING PENDING</sub>
+<sub>0.9.0 PREVIEW 2 · ANDROID CI + EMULATOR QA VERIFIED · NORD 5 HARDWARE TESTING PENDING</sub>
 
-[Visual study](web/index.html) · [Motion Studio](web/motion/index.html) · [Explore 155 icons](web/icons/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
+[Public APK release](https://github.com/varunaditya27/oneplus-nord-5-themekit/releases/tag/v0.9.0-preview.2) · [Visual study](web/index.html) · [Motion Studio](web/motion/index.html) · [Explore 155 icons](web/icons/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
 
 </div>
 
@@ -28,6 +28,14 @@ It is not an OEM replacement. Android retains the secure lock screen, biometric 
 - **Let actions explain themselves.** Motion is short, interruptible and optional.
 - **Keep developer behavior real.** Search and allowlisted commands replace decorative terminal jargon.
 - **Preserve escape routes.** No root, no undocumented system hooks and no forced default-launcher takeover.
+
+## The original ATELIER identity
+
+![ATELIER original monogram](assets/brand/mark.svg)
+
+A distinct crossbar-free architectural **A** and a precision-drawn wordmark form the official identity. These are **editable vector sources**, not crops of a concept presentation. The same form now appears in the Android launcher icon, the opening reveal, and the website.
+
+[Logo](assets/brand/mark.svg) · [Wordmark](assets/brand/wordmark.svg) · [Lockup](assets/brand/lockup.svg) · [App icon](assets/brand/app-icon.svg) · [Repo cover](assets/brand/repo-cover.svg) · [Avatar](assets/brand/avatar.svg) · [Social card](assets/brand/social-card.svg) · [Splash](assets/brand/splash.svg) · [Brand guide](docs/BRAND_IDENTITY.md)
 
 ## The iconography system
 
@@ -67,7 +75,7 @@ Kotlin and Jetpack Compose own the launcher screens. Local preferences store app
 
 ## Status and installability
 
-**ATELIER 0.9.0 Preview 1** has passed [Android unit tests and debug APK compilation](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43565347475). The [strict emulator smoke run](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43564888822) verified that the app starts, that Home, Library and Settings are distinct accessible screens, that no blocking emulator ANR dialog is present, and that the material stays dark in screenshots.
+**ATELIER 0.9.0 Preview 2** has passed [Android unit tests and debug APK compilation](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43565347475). The [strict emulator smoke run](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43564888822) verified that the app starts, that Home, Library and Settings are distinct accessible screens, that no blocking emulator ANR dialog is present, and that the material stays dark in screenshots.
 
 **This is not yet Nord 5 certified.** OxygenOS 16 compatibility, live-wallpaper behavior, thermals, performance under 120/144 Hz, accessibility and battery longevity require hardware testing. The debug APK has an ephemeral signing identity across CI runs.
 
@@ -87,7 +95,8 @@ The interactive [visual study](https://varunaditya27.github.io/oneplus-nord-5-th
 - [Publishing](docs/PUBLISHING.md): enabling GitHub Pages for the interactive study.
 - [Licensing](docs/LICENSING.md): asset provenance and unresolved project license.
 - [Glossary](docs/glossary.md): plain-language definitions of Android and design terms.
-- [Brand artwork](assets/brand/): original vector cover and interface studies.
+- [Brand identity](docs/BRAND_IDENTITY.md): original logo construction, sources, application and export rules.
+- [Brand artwork](assets/brand/): original vector logo, wordmark, app icon, covers and interface studies.
 - [Surface studies](assets/brand/surface-studies.svg): lock, home and control visual concepts.
 
 ## Contributing

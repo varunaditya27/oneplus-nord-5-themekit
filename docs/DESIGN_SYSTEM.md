@@ -33,6 +33,12 @@ The system is **dark-only**. Ivory (`paper/000`) denotes the text color, not a l
 
 **Licensing:** Typography must remain replaceable. Never bundle Neue Machina or other proprietary fonts without permission.
 
+## Official mark
+
+ATELIER uses a geometric open A with a single short brass register, not a standard typeface letter. The canonical source is [mark.svg](../assets/brand/mark.svg), with coordinated [wordmark](../assets/brand/wordmark.svg) and [lockup](../assets/brand/lockup.svg). The mark contains no gradient, glow, ornament or trademark imitation. Atmospheric texture belongs to the surrounding surface, not the logo.
+
+See the complete [Brand identity guide](BRAND_IDENTITY.md).
+
 ## Geometry
 Use an 8pt spacing skeleton, 1px optical hairlines and sharply tiered radii. Controls should be comfortable to tap (minimum 48dp recommended) even when visually small. Grid density should be controlled by content, not desire to fill empty space.
 
