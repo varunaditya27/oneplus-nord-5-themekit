@@ -3,8 +3,18 @@ package dev.atelier.ui
 import android.content.Intent
 import android.provider.Settings
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.Crossfade
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.foundation.*
@@ -73,20 +83,36 @@ fun AtelierShell(
             Command.Unknown -> Unit
         }
     }
-    Column(Modifier.fillMaxSize().background(if(page==Page.HOME) c.background.copy(alpha=.76f) else c.background).statusBarsPadding().navigationBarsPadding().padding(horizontal=24.dp)) {
+    Box(Modifier.fillMaxSize()) {
+        if (page == Page.HOME) AtelierCinematicBackdrop(settings)
+        Column(
+            Modifier.fillMaxSize()
+                .background(if(page==Page.HOME)c.background.copy(alpha=.56f) else c.background)
+                .statusBarsPadding().navigationBarsPadding()
+                .padding(horizontal=24.dp)
+        ) {
         Row(Modifier.fillMaxWidth().height(58.dp), horizontalArrangement=Arrangement.SpaceBetween, verticalAlignment=Alignment.CenterVertically) {
             Text("ATELIER", color=c.text, fontSize=12.sp, letterSpacing=4.sp, fontWeight=FontWeight.Medium, fontFamily=AtelierFonts.display)
             Text(if(page==Page.HOME) "INTERFACE / 001" else "CLOSE ×", color=c.muted, fontSize=10.sp,
                 fontFamily=AtelierFonts.technical, modifier=Modifier.clickable { page=Page.HOME })
         }
         Box(Modifier.weight(1f)) {
-            Crossfade(
-                page,
-                animationSpec=tween(
-                    if(settings.reduceMotion || settings.motionMode==MotionMode.STILL) 0
-                    else if(settings.motionMode==MotionMode.EXPRESSIVE) 275 else 220
-                ),
-                label="page"
+            AnimatedContent(
+                targetState=page,
+                transitionSpec={
+                    val still = settings.reduceMotion || settings.motionMode==MotionMode.STILL
+                    val duration=if(still)0 else if(settings.motionMode==MotionMode.EXPRESSIVE)440 else 280
+                    (
+                        fadeIn(tween(duration,delayMillis=if(still)0 else 45)) +
+                        slideInVertically(tween(duration),initialOffsetY={it/14}) +
+                        scaleIn(tween(duration),initialScale=.965f)
+                    ) togetherWith (
+                        fadeOut(tween(if(still)0 else 160)) +
+                        slideOutVertically(tween(if(still)0 else 230),targetOffsetY={-it/22}) +
+                        scaleOut(tween(if(still)0 else 230),targetScale=.988f)
+                    )
+                },
+                label="cinematic-page"
             ) { current ->
                 when(current) {
                     Page.HOME -> Home(c,now,settings,apps,onLaunch,{page=Page.COMMAND},{page=Page.LIBRARY},{page=Page.CONTROL})
@@ -121,28 +147,45 @@ fun AtelierShell(
                 }
             }
         }
+        }
     }
 }
 @Composable
 private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps:List<AppItem>,
     launch:(AppItem)->Boolean,command:()->Unit,library:()->Unit,control:()->Unit) {
+    var dragOffset by remember { mutableFloatStateOf(0f) }
+    val visualDrag by animateFloatAsState(
+        targetValue=dragOffset,
+        animationSpec=spring(
+            dampingRatio=Spring.DampingRatioNoBouncy,
+            stiffness=Spring.StiffnessMedium
+        ),
+        label="home-drag"
+    )
     Column(
-        Modifier.fillMaxSize().pointerInput(library,control) {
-            var distance = 0f
-            detectVerticalDragGestures(
-                onDragStart = { distance = 0f },
-                onVerticalDrag = { change,amount ->
-                    distance += amount
-                    change.consume()
-                },
-                onDragEnd = {
-                    if (distance < -85f) library()
-                    if (distance > 85f) control()
-                    distance = 0f
-                },
-                onDragCancel = { distance = 0f }
-            )
-        },
+        Modifier.fillMaxSize()
+            .graphicsLayer {
+                translationY=if(settings.reduceMotion || settings.motionMode==MotionMode.STILL)
+                    0f else visualDrag*.22f
+            }
+            .pointerInput(library,control) {
+                var distance=0f
+                detectVerticalDragGestures(
+                    onDragStart={ distance=0f;dragOffset=0f },
+                    onVerticalDrag={ change,amount ->
+                        distance+=amount
+                        dragOffset=distance.coerceIn(-210f,210f)
+                        change.consume()
+                    },
+                    onDragEnd={
+                        dragOffset=0f
+                        if(distance < -85f)library()
+                        if(distance > 85f)control()
+                        distance=0f
+                    },
+                    onDragCancel={dragOffset=0f;distance=0f}
+                )
+            },
         verticalArrangement=Arrangement.SpaceBetween
     ) {
         Column(Modifier.padding(top=32.dp)) {
@@ -160,6 +203,8 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Text(if(settings.focusMode) "FOCUS / ACTIVE" else "WORKSPACE / READY",color=c.muted,fontSize=10.sp,fontFamily=AtelierFonts.technical)
         }
         Column {
+            AtelierTelemetryStrip(c,settings)
+            Spacer(Modifier.height(29.dp))
             Text("TODAY / WORKSPACE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
             Spacer(Modifier.height(9.dp))
             Text(if(settings.focusMode) "Make room for the work." else "Everything in its place.",
@@ -369,7 +414,24 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         SwitchRow(c,"Compact clock",s.clockStyle==ClockStyle.COMPACT){v->
             update{it.copy(clockStyle=if(v)ClockStyle.COMPACT else ClockStyle.SIGNATURE)}
         }
-        Spacer(Modifier.height(24.dp))
+        Spacer(Modifier.height(28.dp))
+        Text("LIVING MATERIAL",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
+        Spacer(Modifier.height(12.dp))
+        AtelierScenePicker(c,s,update)
+        Spacer(Modifier.height(13.dp))
+        SwitchRow(c,"Animate atmosphere",s.ambientEnabled){v->
+            update{it.copy(ambientEnabled=v)}
+        }
+        SwitchRow(c,"Wallpaper parallax",s.parallaxEnabled){v->
+            update{it.copy(parallaxEnabled=v)}
+        }
+        SwitchRow(c,"Tactile feedback",s.hapticsEnabled){v->
+            update{it.copy(hapticsEnabled=v)}
+        }
+        Spacer(Modifier.height(8.dp))
+        Text("Silkfield, Strata and Eclipse are original procedural scenes. The wallpaper pauses when hidden, in Still mode, or when battery saver is active.",
+            color=c.muted,fontSize=11.sp,lineHeight=17.sp)
+        Spacer(Modifier.height(25.dp))
         Text("INTEGRATION",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
         OutlinedButton(onClick=request,modifier=Modifier.fillMaxWidth()){Text("REQUEST DEFAULT HOME ROLE",color=c.text,fontSize=11.sp)}
         OutlinedButton(onClick=wallpaper,modifier=Modifier.fillMaxWidth()){Text("CHOOSE SILKFIELD WALLPAPER",color=c.text,fontSize=11.sp)}
