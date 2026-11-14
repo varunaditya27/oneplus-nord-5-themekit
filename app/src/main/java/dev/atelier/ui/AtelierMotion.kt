@@ -35,7 +35,8 @@ fun Modifier.atelierPressable(
     onClick: () -> Unit,
     onLongClick: (() -> Unit)? = null,
     onLongClickLabel: String? = null,
-    mode: MotionMode = MotionMode.SIGNATURE
+    mode: MotionMode = MotionMode.SIGNATURE,
+    hapticsEnabled: Boolean = true
 ): Modifier {
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
@@ -69,7 +70,7 @@ fun Modifier.atelierPressable(
             onClickLabel = null,
             onLongClickLabel = onLongClickLabel,
             onLongClick = {
-                haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                if(hapticsEnabled)haptics.performHapticFeedback(HapticFeedbackType.LongPress)
                 onLongClick()
             },
             onClick = onClick

@@ -214,7 +214,7 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Spacer(Modifier.height(23.dp))
             val favored=apps.filter { it.id in settings.favorites }.take(4).ifEmpty { apps.take(4) }
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,settings.reduceMotion,settings.motionMode,{launch(it)},{}) }
+                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,settings.reduceMotion,settings.motionMode,settings.hapticsEnabled,{launch(it)},{}) }
             }
             Spacer(Modifier.height(22.dp))
             Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.surface)
@@ -245,7 +245,7 @@ private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
             items(filtered,key={it.id}) { app ->
-                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,s.reduceMotion,s.motionMode,{launch(app)},{favorite(app.id)})
+                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,s.reduceMotion,s.motionMode,s.hapticsEnabled,{launch(app)},{favorite(app.id)})
             }
         }
     }
@@ -289,7 +289,7 @@ private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)-
         Heading(c,"Control","SHELL CONTROLS / NOT SYSTEMUI")
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
             ControlTile(c,"Focus",s.focusMode,AtelierGlyph.FOCUS,s.reduceMotion,s.motionMode,Modifier.weight(1f)) {
-                haptics.performHapticFeedback(
+                if(s.hapticsEnabled) haptics.performHapticFeedback(
                     if(s.focusMode) HapticFeedbackType.ToggleOff else HapticFeedbackType.ToggleOn
                 )
                 update{it.copy(focusMode=!it.focusMode)}
@@ -465,7 +465,7 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,reduceMotion:Boolean,motionMode:MotionMode,onClick:()->Unit,onLongClick:()->Unit) {
+private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,reduceMotion:Boolean,motionMode:MotionMode,hapticsEnabled:Boolean,onClick:()->Unit,onLongClick:()->Unit) {
     val pinAlpha by androidx.compose.animation.core.animateFloatAsState(
         targetValue = if (favorite) 1f else 0f,
         animationSpec = tween(if(reduceMotion || motionMode == MotionMode.STILL) 0 else 150),
@@ -484,7 +484,8 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
                 onClick = onClick,
                 onLongClick = onLongClick,
                 onLongClickLabel = "Pin or unpin app",
-                mode = motionMode
+                mode = motionMode,
+                hapticsEnabled = hapticsEnabled
             ),contentAlignment=Alignment.Center) {
             val bmp=remember(app.id,iconStyle,c.text){
                 when (iconStyle) {
