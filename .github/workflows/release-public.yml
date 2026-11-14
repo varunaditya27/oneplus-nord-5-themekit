@@ -1,0 +1,120 @@
+name: Release / ATELIER public preview
+
+# Intentionally run on the first commit of this workflow, then by explicit dispatch.
+# This keeps a public release pinned to one reviewed source revision.
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/release-public.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atelier-public-preview-v0.9.0-preview.2
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build, package and publish public prerelease
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      TAG: v0.9.0-preview.2
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout source at release commit
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check official brand geometry
+        run: python3 scripts/brand/verify.py
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.7.0"
+
+      - name: Install required Android SDK
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER=$(command -v sdkmanager); fi
+          "$SDKMANAGER" --install "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Unit tests and fully compiled APK
+        run: gradle --no-daemon testDebugUnitTest assembleDebug --stacktrace
+
+      - name: Export real SVG / PNG brand kit
+        run: |
+          python3 -m pip install --quiet "CairoSVG>=2.7,<3.0"
+          python3 scripts/brand/export.py dist/release
+
+      - name: Assemble release assets
+        run: |
+          set -euo pipefail
+          mkdir -p dist/release
+          cp app/build/outputs/apk/debug/app-debug.apk              dist/release/ATELIER-v0.9.0-preview.2-debug.apk
+          cp dist/release/png/repo-cover-1280x640.png              dist/release/ATELIER-release-cover.png
+          (
+            cd dist/release
+            sha256sum               ATELIER-v0.9.0-preview.2-debug.apk               ATELIER-brand-kit-v0.9.0-preview.2.zip               ATELIER-release-cover.png > SHA256SUMS.txt
+          )
+          test -s dist/release/ATELIER-v0.9.0-preview.2-debug.apk
+          test -s dist/release/ATELIER-brand-kit-v0.9.0-preview.2.zip
+          cat dist/release/SHA256SUMS.txt
+
+      - name: Publicly publish on GitHub Releases
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk="dist/release/ATELIER-v0.9.0-preview.2-debug.apk"
+          brand="dist/release/ATELIER-brand-kit-v0.9.0-preview.2.zip"
+          cover="dist/release/ATELIER-release-cover.png"
+          hashes="dist/release/SHA256SUMS.txt"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            existing_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" -q '.object.sha')"
+            if [ "$existing_sha" != "$GITHUB_SHA" ]; then
+              echo "::error::Release tag already targets a different commit; refusing to overwrite public binaries."
+              exit 1
+            fi
+            gh release upload "$TAG" "$apk" "$brand" "$cover" "$hashes" --clobber               --repo "$GITHUB_REPOSITORY"
+            gh release edit "$TAG" --title "ATELIER 0.9.0 Preview 2 · The Black System"               --notes-file docs/RELEASE_PUBLIC.md --prerelease --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" "$apk" "$brand" "$cover" "$hashes"               --repo "$GITHUB_REPOSITORY"               --target "$GITHUB_SHA"               --title "ATELIER 0.9.0 Preview 2 · The Black System"               --notes-file docs/RELEASE_PUBLIC.md               --prerelease
+          fi
+
+      - name: Confirm publication and APK asset
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > dist/release/published.json
+          jq -e '.draft == false and .prerelease == true' dist/release/published.json
+          jq -e '.assets | map(.name) | index("ATELIER-v0.9.0-preview.2-debug.apk") != null'              dist/release/published.json
+          {
+            echo '## ATELIER public prerelease published'
+            echo ''
+            echo "Release: https://github.com/$GITHUB_REPOSITORY/releases/tag/$TAG"
+            echo ''
+            echo 'Contains APK, editable brand kit, cover and SHA256 checksums.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Preserve release artifacts in Actions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ATELIER-v0.9.0-preview.2-build
+          path: |
+            dist/release/*.apk
+            dist/release/*.zip
+            dist/release/SHA256SUMS.txt
+            dist/release/ATELIER-release-cover.png
+          retention-days: 30
