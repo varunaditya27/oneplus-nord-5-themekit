@@ -3,6 +3,12 @@
 const $ = id => document.getElementById(id);
 const osReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const state={preset:'signature',ambient:true,focus:false,pinned:false,page:'home',selected:'terminal'};
+const semanticStates={play:false,menu:false,mute:false};
+const semanticLabels={
+ play:['READY TO PLAY','PAUSED / PREVIEW'],
+ menu:['NAVIGATION CLOSED','NAVIGATION OPEN'],
+ mute:['SOUND ENABLED','MUTED / PREVIEW']
+};
 const presets={
 still:{press:1,state:0,page:0,release:0,clock:0},
 signature:{press:.955,state:180,page:220,release:170,clock:560},
@@ -141,6 +147,19 @@ function act(action,arg){
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.morph){
+  const key=b.dataset.morph;
+  if(!(key in semanticStates))return;
+  semanticStates[key]=!semanticStates[key];
+  b.classList.toggle('is-on',semanticStates[key]);
+  b.setAttribute('aria-pressed',String(semanticStates[key]));
+  const label=b.querySelector('[data-morph-label]');
+  if(label)label.textContent=semanticLabels[key][semanticStates[key]?1:0];
+  event('SEMANTIC ICON / '+key.toUpperCase(),
+    'A real local two-state transition. '+(semanticStates[key]?'Active':'Inactive')+
+    ' is reflected in the icon and accessible pressed state.');
+  return;
+ }
  if(b.dataset.preset)return setPreset(b.dataset.preset);
  if(b.dataset.action)return act(b.dataset.action,b.dataset.go||b.dataset.name);
  if(b.id==='ambientSwitch')return act('ambient');

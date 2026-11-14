@@ -81,6 +81,44 @@
       <article><div class="exp-id">06 / ATMOSPHERE</div><h3>Silkfield</h3><p>Slow procedural strands; painting stops when hidden.</p><button data-action="ambient" class="demo-button pressable"><span class="demo-glyph" data-symbol="wallpaper"></span><span id="ambientLabel">PAUSE ATMOSPHERE</span></button></article>
     </div>
   </section>
+  <section class="semantic" aria-label="Semantic icon state demonstrations">
+    <div class="exp-head">
+      <div><span class="section-label">05 / SEMANTIC STATES</span><h2>WHEN A SYMBOL<br>HAS SOMETHING TO SAY.</h2></div>
+      <span class="mono">THREE HONEST TRANSITIONS</span>
+    </div>
+    <p class="semantic-intro">Only icons that represent two related states should transform. These buttons change a local demo state; they do not operate music or device audio.</p>
+    <div class="semantic-grid">
+      <button class="semantic-demo pressable" data-morph="play" aria-pressed="false" aria-label="Preview Play and Pause icon states">
+        <span class="semantic-art">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path class="play-shape" d="M7.5 4.5L20 12 7.5 19.5Z"/>
+            <g class="pause-shape"><path d="M7 5h3v14H7z"/><path d="M14 5h3v14h-3z"/></g>
+          </svg>
+        </span>
+        <strong>PLAY / PAUSE</strong><small data-morph-label="play">READY TO PLAY</small><i class="semantic-inlay" aria-hidden="true"></i>
+      </button>
+      <button class="semantic-demo pressable" data-morph="menu" aria-pressed="false" aria-label="Preview Menu and Close icon states">
+        <span class="semantic-art">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <line class="menu-top" x1="5" y1="6.5" x2="19" y2="6.5"/>
+            <line class="menu-middle" x1="5" y1="12" x2="19" y2="12"/>
+            <line class="menu-bottom" x1="5" y1="17.5" x2="19" y2="17.5"/>
+          </svg>
+        </span>
+        <strong>MENU / CLOSE</strong><small data-morph-label="menu">NAVIGATION CLOSED</small><i class="semantic-inlay" aria-hidden="true"></i>
+      </button>
+      <button class="semantic-demo pressable" data-morph="mute" aria-pressed="false" aria-label="Preview Sound and Muted icon states">
+        <span class="semantic-art">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9h4l5-4v14l-5-4H3z"/>
+            <g class="volume-waves"><path d="M15 9q4 3 0 6"/><path d="M18 5q7 7 0 14"/></g>
+            <path class="mute-slash" d="M5 4l16 16"/>
+          </svg>
+        </span>
+        <strong>SOUND / MUTED</strong><small data-morph-label="mute">SOUND ENABLED</small><i class="semantic-inlay" aria-hidden="true"></i>
+      </button>
+    </div>
+  </section>
   <footer class="footer"><span>ATELIER / THE BLACK SYSTEM</span><span>ONEPLUS NORD 5 / DESIGN STUDY</span><span>FORM FOLLOWS INTENT.</span></footer>
 </div>
 </body>

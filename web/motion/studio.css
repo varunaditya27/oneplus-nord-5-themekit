@@ -16,3 +16,31 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.clock-digit path.reveal{stroke-dashoffset:0!important}}
 body[data-preset=still] *,body[data-preset=still] *:before,body[data-preset=still] *:after{animation:none!important;transition:none!important}
 body[data-preset=still] .clock-digit path.reveal{stroke-dashoffset:0}
+
+/* Semantic state icons: legitimate two-state meanings, no abstract shape theater. */
+.semantic{border-top:1px solid var(--edge);padding:39px 0 55px;margin-top:30px}
+.semantic-intro{font-size:13px;color:#959599;line-height:1.8;max-width:680px;margin:-3px 0 25px}
+.semantic-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.semantic-demo{position:relative;min-height:190px;border-radius:15px;border:1px solid #353537;background:#121213;padding:24px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;overflow:hidden}
+.semantic-demo:hover{background:#1B1B1D;border-color:#545456}
+.semantic-demo.is-on{border-color:#655A48}
+.semantic-art{display:grid;place-items:center;width:62px;height:62px;border-radius:15px;background:#1B1B1D;border:1px solid #333336}
+.semantic-art svg{width:36px;height:36px;overflow:visible}
+.semantic-demo strong{font:12px var(--mono);letter-spacing:1px;margin-top:15px}
+.semantic-demo small{font:10px var(--mono);color:#8F8F94;margin-top:8px}
+.semantic-inlay{position:absolute;bottom:23px;right:23px;width:11px;height:2px;background:var(--au);opacity:0;transition:opacity var(--state-ms)}
+.semantic-demo.is-on .semantic-inlay{opacity:1}
+.play-shape,.pause-shape,.volume-waves{transition:opacity var(--state-ms) var(--ease),transform var(--state-ms) var(--ease);transform-origin:center}
+.pause-shape{opacity:0;transform:scale(.92)}
+.semantic-demo[data-morph=play].is-on .play-shape{opacity:0;transform:scale(.9)}
+.semantic-demo[data-morph=play].is-on .pause-shape{opacity:1;transform:scale(1)}
+.menu-top,.menu-middle,.menu-bottom{transition:transform var(--page-ms) var(--ease),opacity var(--state-ms) var(--ease);transform-origin:12px 12px}
+.semantic-demo[data-morph=menu].is-on .menu-top{transform:translateY(5.5px) rotate(45deg)}
+.semantic-demo[data-morph=menu].is-on .menu-middle{opacity:0;transform:scaleX(.5)}
+.semantic-demo[data-morph=menu].is-on .menu-bottom{transform:translateY(-5.5px) rotate(-45deg)}
+.mute-slash{stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset var(--page-ms) var(--ease)}
+.semantic-demo[data-morph=mute].is-on .mute-slash{stroke-dashoffset:0}
+.semantic-demo[data-morph=mute].is-on .volume-waves{opacity:0;transform:translateX(-2px)}
+@media(max-width:700px){.semantic-grid{grid-template-columns:1fr}.semantic-demo{min-height:165px}}
+@media(prefers-reduced-motion:reduce){.semantic-demo *{transition:none!important}}
+body[data-preset=still] .semantic-demo *{transition:none!important}

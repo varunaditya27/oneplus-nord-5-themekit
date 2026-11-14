@@ -65,3 +65,15 @@ These are initial targets, not validated hardware timings. A durable kinetic sys
 Six interactive experiments let reviewers test Contact, Inlay, Focus, Navigation, Numerals, and Silkfield without any rendered animation files. Their behavior uses actual state, CSS transforms and opacity, original SVG strokes and a visibility-aware Canvas loop.
 
 The default web motion specification is maintained in [motion/tokens.json](../motion/tokens.json) and mirrored in [web/motion/tokens.json](../web/motion/tokens.json), with CI checking parity.
+
+## Animated icons: explicit semantic-state exceptions
+
+The Motion Studio includes three genuine reversible icon transitions:
+
+- **Play ↔ Pause:** Crossfades related media controls without inventing a shape that resembles neither state.
+- **Menu ↔ Close:** Three strokes converge into the familiar close glyph when navigation is open.
+- **Sound ↔ Muted:** A slash is drawn only while the local mute-preview state is active.
+
+These are live HTML/SVG interactions with keyboard-operable buttons, `aria-pressed` semantics and reduced-motion equivalents. They are explicitly labeled browser previews; they do **not** control actual audio or device settings.
+
+Icon states should **never animate without a meaningful source-state change**. In particular, representing connectivity, download progress, CPU load or music playback requires real app/system state, not randomly generated telemetry. The Android equivalents of these three semantic-state controls remain a future implementation milestone.

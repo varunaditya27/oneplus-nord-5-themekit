@@ -47,3 +47,9 @@ assert.ok(motionJs.includes('osReduced.matches'),'Reduced-motion detection missi
 assert.ok(motionCss.includes('prefers-reduced-motion'),'Reduced-motion styling missing');
 assert.ok(html.includes('./motion/'),'Main visual study should link to Motion Studio');
 console.log('ATELIER Motion Studio source and shared token checks passed.');
+
+for(const semantic of ['play','menu','mute']){
+ assert.ok(motionHtml.includes('data-morph="'+semantic+'"'),'Missing semantic state '+semantic);
+}
+assert.ok(motionJs.includes('semanticStates'),'Icon motion must have explicit state');
+assert.ok(motionCss.includes('.mute-slash'),'Muted state should draw a semantically meaningful slash');
