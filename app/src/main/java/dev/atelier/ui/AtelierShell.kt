@@ -305,7 +305,7 @@ private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
     Column {
         Heading(c,"Library","APPLICATIONS / "+apps.size)
         SearchBox(query,{query=it},"Search installed apps",c)
-        Text("Long-press an icon to pin or unpin it from Home",color=c.muted,fontSize=10.sp)
+        Text("Long-press to customize the icon and Home favorites",color=c.muted,fontSize=10.sp)
         Spacer(Modifier.height(18.dp))
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
@@ -528,7 +528,7 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         Spacer(Modifier.height(25.dp))
         Text("INTEGRATION",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
         OutlinedButton(onClick=request,modifier=Modifier.fillMaxWidth()){Text("REQUEST DEFAULT HOME ROLE",color=c.text,fontSize=11.sp)}
-        OutlinedButton(onClick=wallpaper,modifier=Modifier.fillMaxWidth()){Text("CHOOSE SILKFIELD WALLPAPER",color=c.text,fontSize=11.sp)}
+        OutlinedButton(onClick=wallpaper,modifier=Modifier.fillMaxWidth()){Text("CHOOSE ATELIER LIVE WALLPAPER",color=c.text,fontSize=11.sp)}
         Spacer(Modifier.height(18.dp))
         Text("The secure lock screen, AOD, biometric UI and system Quick Settings remain controlled by OxygenOS.",
             color=c.muted,fontSize=12.sp,lineHeight=19.sp)

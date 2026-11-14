@@ -56,7 +56,7 @@ fun AtelierCinematicBackdrop(
     }
     Canvas(
         modifier.fillMaxSize().graphicsLayer {
-            alpha = if (settings.motionMode == MotionMode.EXPRESSIVE) .52f else .28f
+            alpha = if (settings.motionMode == MotionMode.EXPRESSIVE) .78f else .40f
         }
     ) {
         drawIntoCanvas {

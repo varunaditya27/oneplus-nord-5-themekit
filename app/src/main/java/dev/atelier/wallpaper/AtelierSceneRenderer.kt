@@ -72,6 +72,26 @@ class AtelierSceneRenderer {
     }
 
     private fun silkfield(canvas:Canvas,w:Float,h:Float,t:Float) {
+        // Satin fold: one atmospheric volume, never a gradient over the UI.
+        path.reset()
+        path.moveTo(w*.03f,h*1.04f)
+        path.cubicTo(w*.19f,h*.76f,w*.56f,h*.45f,w*.57f,h*.12f)
+        path.lineTo(w*.77f,h*.15f)
+        path.cubicTo(w*.76f,h*.49f,w*.44f,h*.79f,w*.33f,h*1.04f)
+        path.close()
+        fill.shader = LinearGradient(
+            w*.24f,h*.87f,w*.65f,h*.31f,
+            intArrayOf(
+                Color.TRANSPARENT,
+                Color.argb(77,66,62,58),
+                Color.argb(25,30,31,33),
+                Color.TRANSPARENT
+            ),
+            floatArrayOf(0f,.36f,.78f,1f),
+            Shader.TileMode.CLAMP
+        )
+        canvas.drawPath(path,fill)
+        fill.shader = null
         // Layered satin-like curves, each offset minutely to suggest depth.
         for (i in 0..68) {
             val p=i/68f
@@ -83,9 +103,9 @@ class AtelierSceneRenderer {
                 w*(.52f+p*.12f)+drift,h*.48f,
                 w*(.56f+p*.16f)+drift,h*.15f
             )
-            val shade=(27+(i%11)*2.9f).toInt()
+            val shade=(38+(i%11)*3.0f).toInt()
             pen.shader=null
-            pen.color=Color.argb(if(i%13==0) 44 else 18,shade,shade,shade+3)
+            pen.color=Color.argb(if(i%13==0) 70 else 28,shade,shade,shade+3)
             pen.strokeWidth=if(i%17==0) 1.35f else .7f
             canvas.drawPath(path,pen)
         }
@@ -93,8 +113,8 @@ class AtelierSceneRenderer {
         path.reset()
         path.moveTo(w*.11f,h*.95f)
         path.cubicTo(w*.34f,h*.77f,w*.68f,h*.52f,w*.73f,h*.16f)
-        pen.color=Color.argb(75,205,166,100)
-        pen.strokeWidth=1.15f
+        pen.color=Color.argb(132,205,166,100)
+        pen.strokeWidth=1.35f
         canvas.drawPath(path,pen)
     }
 

@@ -22,6 +22,9 @@ A fully native, dark-only Android launcher and procedural live wallpaper for the
 - Long-press app editing: searchable 155-glyph selection, pin/unpin, persistent per-app override, and reset.
 - Native semantic icon previews: Play/Pause, Menu/Close and Sound/Mute.
 - Local preference persistence; no cloud account, telemetry collection or external asset service.
+- Optional, skippable opening-title animation with reduced-motion handling.
+- Portable theme export/import, including your scenes, motion choices, pinned apps and icon assignments.
+- Emulator smoke coverage for Home, Library and Settings with explicit dialog detection and screenshot contrast checks.
 
 ### Important limitations
 
@@ -31,7 +34,7 @@ The APK is **debug signed**, for testing. Signing identity is not guaranteed acr
 
 ### Install and recover
 
-Download the `atelier-debug-apk` artifact from a successful Android workflow run or the attached preview APK from this release. Install it, open the app, and request the default HOME role. Keep the stock OnePlus launcher installed.
+Download the `atelier-debug-apk` artifact from a successful Android workflow run or the installable APK attached to a conversation. Install it, open the app, and request the default HOME role. Keep the stock OnePlus launcher installed.
 
 To revert, set **Settings → Apps → Default apps → Home app** back to the stock launcher. See [the complete setup guide](https://github.com/varunaditya27/oneplus-nord-5-themekit/blob/main/docs/NORD5_SETUP.md).
 

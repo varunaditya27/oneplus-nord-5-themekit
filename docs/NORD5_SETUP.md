@@ -50,7 +50,7 @@ App icons default to **THEMED**, which uses the installed app's own monochrome a
 
 ## 5. Install or generate wallpapers
 
-Open ATELIER Settings and select **CHOOSE SILKFIELD WALLPAPER**. Android's live wallpaper picker should present Silkfield as a choice. Android controls whether the wallpaper is applied to Home, Lock or both.
+Open ATELIER Settings and select **CHOOSE ATELIER LIVE WALLPAPER**. Android's live wallpaper picker should present Silkfield as a choice. Android controls whether the wallpaper is applied to Home, Lock or both.
 
 For static wallpapers, open the [Wallpapers / generate and export workflow](../.github/workflows/wallpapers.yml) from Actions and download its `atelier-wallpaper-masters` artifact. The same assets can be produced locally:
 
