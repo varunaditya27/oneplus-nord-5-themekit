@@ -1,48 +1,48 @@
-<div align="center">
+# ATELIER / Engineering roadmap
 
-# Engineering roadmap
+[Download the current preview](https://github.com/varunaditya27/oneplus-nord-5-themekit/releases/tag/v0.9.0-preview.2) · [Testing protocol](TESTING.md) · [Setup guide](NORD5_SETUP.md)
 
-Source milestones and outstanding Nord 5 acceptance work.
+This document separates **implemented**, **automatically verified**, and **physically verified** work. A source feature is not automatically a Nord 5-certified feature.
 
-</div>
+## Shipped in the 0.9 preview
 
-## P0 / Source foundation
-- [x] Define design tokens and visual identity
-- [x] Establish Android module structure
-- [x] Implement command parser and test cases in source
-- [x] Create original vector clock logic and procedural assets
-- [x] Create independent interactive web study
-- [x] Verify Gradle build and unit tests on GitHub Actions (emulator/physical-device QA remains)
-- [ ] Test default HOME role flow on Nord 5
+- [x] Original brand identity, typography system, icon source and generator
+- [x] Native Kotlin/Compose HOME application, app discovery, search and allowlisted commands
+- [x] Four app-icon strategies and a searchable per-app 155-glyph editor
+- [x] Favorite pinning, local preferences, JSON export/import
+- [x] Original vector clock and three procedural wallpaper scenes
+- [x] Native kinetic interactions, gesture feedback and Still/Signature/Expressive modes
+- [x] Real battery, RAM and storage instruments
+- [x] Skippable opening logo reveal and locally controlled haptics
+- [x] Public GitHub release with a test APK, brand assets and checksums
+- [x] Android build/unit tests, app startup and Home/Library/Settings emulator smoke tests
 
-## P1 / Minimum delightful launcher
-- [ ] Polish app catalog loading, work profiles and error states
-- [x] Native monogram/icon switch and original glyphs (device QA remains)
-- [ ] Search ranking and command discovery
-- [ ] Favorite apps, folders, drag behavior and quick launch
-- [ ] Day summary populated with real device data with explicit permissions
-- [x] Source implementation of Home swipes and Back navigation (device QA remains)
+## P0 / Physical Nord 5 acceptance
 
-## P2 / Signature motion
-- [ ] Fine-tune clock vector geometry across numeral samples
-- [ ] Honor both reduced motion and battery saver in every animation (reduced-motion setting implemented, battery saver pending)
-- [ ] GPU shader alternative and wallpaper fallback
-- [ ] Animation frame and energy profiling on physical device
-- [ ] Native haptics and sound cues with user toggles
+- [ ] Default HOME role assignment and safe return to stock OxygenOS launcher
+- [ ] Correct app launching, work/personal profiles and empty-catalog handling
+- [ ] Gestures and 3-button navigation, screen insets, rotation and cutouts
+- [ ] OLED contrast, typography, scaling and TalkBack interaction
+- [ ] Long-session wallpaper FPS, thermal behavior and battery impact
+- [ ] Still mode, battery saver and reduced-motion correctness under real OEM behavior
+- [ ] Quick Settings Focus tile and wallpaper picker compatibility
 
-## P3 / Companion surfaces
-- [ ] Widget host integration and selected original native widgets
-- [ ] Settings detail screens and backup/restore
-- [ ] Quick Settings tile OEM testing
-- [ ] Profile switching with opt-in scheduled focus state
-- [ ] Better compatibility with Android predictive back, landscape and accessibility
+## P1 / Functional depth
 
-## P4 / Release readiness
-- [ ] CI, unit and UI instrumentation tests
-- [ ] Audit launcher permissions and Android package visibility
-- [ ] Review font rights and settle repository/project license
-- [ ] Produce signed test APK + checksums
-- [ ] Test rollback to OxygenOS Launcher
+- [ ] App folders, richer favorite organization and drag/drop customization
+- [ ] Stronger app search ranking, aliases and discovery
+- [ ] Widget hosting, with permission-aware user controls
+- [ ] Durable settings migration and optional backup diff/preview
+- [ ] Better landscape, predictive Back and large-screen behavior
+
+## P2 / Release engineering
+
+- [ ] Add full instrumented UI coverage, screenshot baselines and performance benchmarks
+- [ ] Test update paths across build variants and preserve stable application signing
+- [ ] Review package visibility, crash handling and backup threat surface
+- [ ] Choose a project license with the owner's approval
+- [ ] Device-tested, production-signed release candidate
 
 ### Definition of done
-No item is complete solely because code exists. Build, interaction, accessibility and device checks all matter.
+
+A feature moves from *implemented* to *verified* only with suitable tests; from *verified* to *device-ready* only after hardware acceptance. The secure lock screen, system notification shade, native AOD and biometric animations remain outside the scope of an unprivileged Android launcher.

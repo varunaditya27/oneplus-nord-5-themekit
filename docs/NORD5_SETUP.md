@@ -8,15 +8,17 @@ Install and evaluate ATELIER on OxygenOS 16 without root or system modifications
 
 ## Before installing
 
-ATELIER is a **versioned preview build**. It compiles and passes unit tests in CI but has not been verified on a physical Nord 5. Use the stock OxygenOS launcher as a fallback. Its native source compiles in CI but has not been verified on a physical Nord 5. Test with the stock OxygenOS launcher still installed and available.
+ATELIER is a **public, debug-signed preview**. Its source passes Android CI and emulator smoke checks, but it has not been verified on physical Nord 5 hardware. Keep the stock OxygenOS launcher installed as a fallback.
 
 Target hardware: OnePlus Nord 5, CPH2707, OxygenOS 16. This is a target, not a device certification.
 
 ## 1. Get the debug build
 
-Open [Android / pre-alpha verification](../.github/workflows/android.yml) or the repository's **Actions** tab. Select a successful Android workflow run and locate the **atelier-debug-apk** artifact. GitHub may require sign-in to download workflow artifacts.
+**Recommended:** download [ATELIER v0.9.0 Preview 2](https://github.com/varunaditya27/oneplus-nord-5-themekit/releases/tag/v0.9.0-preview.2), specifically `ATELIER-v0.9.0-preview.2-debug.apk`. The public release also includes checksums and the brand kit.
 
-The APK is a **debug build** intended for testing, not a production release. Verify the run belongs to this repository before installing it. If using Android Studio, you can open the project and build `assembleDebug`.
+**For developers:** alternatively download the `atelier-debug-apk` artifact from the [Android build workflow](../.github/workflows/android.yml). Actions artifacts may require GitHub sign-in and expire.
+
+The APK is a **debug-signed build** intended for testing, not a production release. Verify the run belongs to this repository before installing it. If using Android Studio, you can open the project and build `assembleDebug`.
 
 ## 2. Open ATELIER and request the Home role
 
@@ -97,7 +99,7 @@ Source and automated build verification are not substitutes for these checks.
 
 ## APK installation and signing
 
-The Actions workflow produces an installable **debug-signed APK**. This is a preview artifact, not a store-ready signed release. The CI signing key is ephemeral and may change between runs. If Android reports that the existing installation conflicts with a newer preview, return to the stock launcher, export your theme from **Settings → EXPORT KIT**, uninstall ATELIER and reinstall the new preview. Uninstalling deletes local app preferences and icon overrides.
+The public release and Actions workflow produce installable **debug-signed APKs**. This is a preview artifact, not a store-ready signed release. The CI signing key is ephemeral and may change between runs. If Android reports that the existing installation conflicts with a newer preview, return to the stock launcher, export your theme from **Settings → EXPORT KIT**, uninstall ATELIER and reinstall the new preview. Uninstalling deletes local app preferences and icon overrides.
 
 For production release/update continuity, configure a stable, privately held Android signing key in GitHub Secrets and use a separate production signing workflow. Never commit private signing credentials to this repository.
 

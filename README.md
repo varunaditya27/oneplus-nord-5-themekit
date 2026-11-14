@@ -1,118 +1,120 @@
 <div align="center">
 
-<img src="assets/brand/atelier-cover.svg" alt="ATELIER: The Black System, expressed in black, ivory and one restrained brass highlight" width="100%">
+<img src="assets/brand/repo-cover.svg" alt="ATELIER / The Black System. An ivory architectural monogram and restrained brass edge on a near-black surface." width="100%">
 
 # ATELIER
 
 **THE BLACK SYSTEM**
 
-A typography-led Android launcher and visual theme kit for the OnePlus Nord 5.
+A cinematic, dark-only Android launcher and live wallpaper, designed around an original visual language for the OnePlus Nord 5.
 
-<sub>0.9.0 PREVIEW 2 · ANDROID CI + EMULATOR QA VERIFIED · NORD 5 HARDWARE TESTING PENDING</sub>
+[**Download Android preview**](https://github.com/varunaditya27/oneplus-nord-5-themekit/releases/tag/v0.9.0-preview.2) · [**Explore the interface**](https://varunaditya27.github.io/oneplus-nord-5-themekit/) · [Motion Studio](https://varunaditya27.github.io/oneplus-nord-5-themekit/motion/) · [Icon Archive](https://varunaditya27.github.io/oneplus-nord-5-themekit/icons/)
 
-[Public APK release](https://github.com/varunaditya27/oneplus-nord-5-themekit/releases/tag/v0.9.0-preview.2) · [Visual study](web/index.html) · [Motion Studio](web/motion/index.html) · [Explore 155 icons](web/icons/index.html) · [Design language](docs/DESIGN_SYSTEM.md) · [Build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions)
+<sub>v0.9.0-preview.2 · Kotlin / Jetpack Compose · Android 12+ · Debug-signed public prerelease</sub>
 
 </div>
 
-## Why
+---
 
-Most custom Android themes change the wallpaper and icons while leaving the interaction model untouched. ATELIER treats the home screen as a complete interface: original vector clock numerals, functional application discovery, a precise command palette, expressive but purposeful motion and intentionally restrained materials.
+## An operating surface with its own character
 
-It is not an OEM replacement. Android retains the secure lock screen, biometric interface and system notification shade.
+ATELIER is not another wallpaper-and-icon swap. It's a custom Android **Home** experience whose clock, symbols, gestures, control surfaces, type and animation all speak the same visual language.
 
-## Principles
+Near-black materials provide the stage. Ivory carries information. Antique brass appears only when something deserves attention. Motion gives every interaction physicality, without turning the UI into a light show.
 
-- **Subtract first.** If an element is neither useful nor legible, remove it.
-- **Make time distinctive.** Draw clock numerals with original geometric paths instead of default fonts.
-- **Give color a job.** Near-black ink and ivory do most of the work; antique gold marks deliberate states.
-- **Let actions explain themselves.** Motion is short, interruptible and optional.
-- **Keep developer behavior real.** Search and allowlisted commands replace decorative terminal jargon.
-- **Preserve escape routes.** No root, no undocumented system hooks and no forced default-launcher takeover.
+<sub>Independent project. Not affiliated with OnePlus. Built for the Nord 5; physical-device verification is still pending.</sub>
 
-## The original ATELIER identity
+## Inside ATELIER
 
-![ATELIER original monogram](assets/brand/mark.svg)
+| Surface | What it does |
+| :-- | :-- |
+| **The living canvas** | Three procedural scenes: **Silkfield**, **Strata** and **Eclipse**. Touch and wallpaper offsets add depth; rendering pauses when hidden or motion is disabled. |
+| **The launcher** | Native Home, searchable app library, custom commands, settings and Focus controls. Horizontal and vertical navigation responds to your gestures. |
+| **The icon language** | **155 original symbols**, with Contour, Core, Etch and Inlay exports. Choose original app art, monochrome adaptive icons, functional glyphs or lettermarks. |
+| **The kinetic system** | Still, Signature and Expressive motion presets; interruptible presses, cinematic navigation, vector-clock reveals and semantic icon transitions. |
+| **The instruments** | Native battery, memory and storage readouts, not fabricated dashboard statistics. |
+| **The personal toolkit** | Pin apps, assign individual glyphs, adjust materials and haptics, then export/import your curated appearance as local JSON. |
 
-A distinct crossbar-free architectural **A** and a precision-drawn wordmark form the official identity. These are **editable vector sources**, not crops of a concept presentation. The same form now appears in the Android launcher icon, the opening reveal, and the website.
+### The visual language
 
-[Logo](assets/brand/mark.svg) · [Wordmark](assets/brand/wordmark.svg) · [Lockup](assets/brand/lockup.svg) · [App icon](assets/brand/app-icon.svg) · [Repo cover](assets/brand/repo-cover.svg) · [Avatar](assets/brand/avatar.svg) · [Social card](assets/brand/social-card.svg) · [Splash](assets/brand/splash.svg) · [Brand guide](docs/BRAND_IDENTITY.md)
+<img src="iconography/preview/overview.svg" alt="ATELIER original icon system, with different optical weights and inlay treatments" width="100%">
 
-## The iconography system
+[Explore all 155 symbols](https://varunaditya27.github.io/oneplus-nord-5-themekit/icons/) · [View the design system](docs/DESIGN_SYSTEM.md) · [Inspect the brand identity](docs/BRAND_IDENTITY.md)
 
-![ATELIER's four coherent icon treatments: Contour, Core, Etch and Inlay](iconography/preview/overview.svg)
+The logo, wordmark, UI glyphs and clock numerals are original vector constructions. The wallpaper scenes are rendered programmatically, not played back as looping image files.
 
-**155 original functional drawings, 775 export-ready SVGs, and 465 Android VectorDrawables.** Four deliberate presentations are generated from the same reviewed source geometry: Contour for normal UI, Core for dense small controls, Etch for large editorial surfaces, and Inlay for launcher tiles. Active Inlay variants reserve a single gold mark for selection.
+### Motion, without compromise
 
-[Explore the searchable icon archive](web/icons/index.html) · [Browse the complete source catalog](iconography/catalog.json) · [Read the critical design audit](docs/ICON_AUDIT.md) · [See export instructions](docs/ICON_SYSTEM.md)
+[**Open the interactive Motion Studio**](https://varunaditya27.github.io/oneplus-nord-5-themekit/motion/)
 
-No recreated third-party logos: a generic repository icon is not a counterfeit GitHub logo. Brand-identifiable app icons remain available through Android's original-app-artwork option.
+Try press physics, favorite-state inlays, Focus transitions, navigation, vector numerals, the Silkfield atmosphere and Play/Pause, Menu/Close and Sound/Mute states. The web study is an interactive **prototype**; the installable launcher has its own native Android implementations.
 
-## The cinematic Android preview
+## Install the preview
 
-The installable Android application now includes three original procedural wallpaper scenes (**Silkfield, Strata, Eclipse**), app-aware icon selection, a searchable glyph editor with persistent per-app overrides, physical drag-follow gestures, animated page choreography, three motion presets, real device gauges, and a native semantic-icon interaction gallery.
+1. **[Get v0.9.0 Preview 2 from GitHub Releases](https://github.com/varunaditya27/oneplus-nord-5-themekit/releases/tag/v0.9.0-preview.2)** and download `ATELIER-v0.9.0-preview.2-debug.apk`.
+2. Install and open ATELIER. If you want to use it as your launcher, request the default **Home** role in ATELIER Settings. Android will ask for approval.
+3. Explore the surfaces, select a scene, long-press apps to customize their glyphs and choose the motion personality that feels right.
 
-Wallpaper motion responds to scrolling and touch, while visibility, battery saver and reduced-motion controls prevent unnecessary rendering. The application does **not** replace OxygenOS's protected lock screen, fingerprint animations, AOD or notification shade.
+**Reversible by design.** Keep the stock launcher installed. To return, use **Android Settings → Apps → Default apps → Home app** and select the OnePlus launcher. Use **EXPORT KIT** before uninstalling a debug build so your preferences survive.
 
-[Latest build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/android.yml) · [Device installation and recovery](docs/NORD5_SETUP.md) · [Release notes](docs/RELEASE_NOTES.md)
+[Full Nord 5 setup and recovery guide](docs/NORD5_SETUP.md) · [Download checksums](https://github.com/varunaditya27/oneplus-nord-5-themekit/releases/download/v0.9.0-preview.2/SHA256SUMS.txt)
 
-Use **Settings → EXPORT KIT** to preserve the curated appearance and custom icons in a local JSON file. After an APK reinstall, use **IMPORT KIT** to restore everything without requiring an account. An optional one-time opening reveal can also be toggled in Settings.
+> [!IMPORTANT]
+> **Public preview, not a production-certified phone theme.** The release APK is debug-signed; future builds may have different signing keys. Android compilation, unit tests and emulator smoke checks pass, but OxygenOS/Nord 5 battery use, refresh-rate performance, gesture conflicts and accessibility need testing on physical hardware.
 
-## Motion and interaction
+## What ATELIER can and cannot change
 
-The kinetic layer combines non-bouncy press compression, quiet control-state transitions, short navigation crossfades, vector clock reveals, and a procedurally drawn Silkfield wallpaper.
+**ATELIER controls:** its own Home interface, live wallpaper, app grid, vector icon assignments, local Focus state, procedural visuals and launcher-owned interactions.
 
-The launcher includes three motion presets: **Still**, **Signature**, and **Expressive**. Reduced-motion preferences take priority. The wallpaper redraws only while visible, can become static, and respects Android power-saving mode.
+**Android/OxygenOS controls:** the secure lock screen, Always-On Display, fingerprint animation, notification shade, system font and native Quick Settings UI. ATELIER cannot replace those with ordinary launcher permissions, and does not ask for root or hidden OEM hooks.
 
-[Open the interactive Motion Studio](https://varunaditya27.github.io/oneplus-nord-5-themekit/motion/) · [Read the motion specification](docs/MOTION.md) · [View canonical motion tokens](motion/tokens.json)
+## Engineering
 
-The browser study simulates Android UI states. It does not change OxygenOS settings or launch real apps.
+| Layer | Implementation |
+| :-- | :-- |
+| App | Kotlin, Jetpack Compose, Android HOME role |
+| Wallpaper | `WallpaperService` and procedural Canvas scene renderer |
+| Preferences | Local state; JSON theme import/export using Android's document picker |
+| Command engine | Explicit, allowlisted commands, never shell execution |
+| Brand & icons | Source SVG paths, native VectorDrawables and a reproducible export pipeline |
+| Web studies | Static HTML/CSS/JS and programmatically animated SVG/Canvas |
+| Verification | Gradle unit tests, emulator UI smoke/screenshots, asset validation and web checks |
 
-## Architecture
+For a local build, install JDK 17 and Android SDK 36, then run:
 
-<p align="center"><img src="docs/diagrams/architecture.svg" alt="ATELIER input and launcher layers connect to Android public services, while the secure lock screen and system controls remain Android-owned" width="100%"></p>
+```sh
+gradle --no-daemon testDebugUnitTest assembleDebug
+```
 
-Kotlin and Jetpack Compose own the launcher screens. Local preferences store appearance and Focus state; the command engine executes a small, explicit action vocabulary. A lifecycle-aware `WallpaperService` renders Silkfield, and an optional Quick Settings tile changes ATELIER's own Focus state, not Android Do Not Disturb.
+The test APK appears at `app/build/outputs/apk/debug/app-debug.apk`. The GitHub release supplies the packaged preview without requiring a local build.
 
-## Status and installability
+**Verification:** [Android release workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43571085242) · [Emulator smoke test](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43570929013) · [Test plan](docs/TESTING.md)
 
-**ATELIER 0.9.0 Preview 2** has passed [Android unit tests and debug APK compilation](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43565347475). The [strict emulator smoke run](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/runs/43564888822) verified that the app starts, that Home, Library and Settings are distinct accessible screens, that no blocking emulator ANR dialog is present, and that the material stays dark in screenshots.
+## Explore the project
 
-**This is not yet Nord 5 certified.** OxygenOS 16 compatibility, live-wallpaper behavior, thermals, performance under 120/144 Hz, accessibility and battery longevity require hardware testing. The debug APK has an ephemeral signing identity across CI runs.
+| Start here | Go deeper |
+| :-- | :-- |
+| [Get started](docs/NORD5_SETUP.md) | Installation, launcher recovery and theme backups |
+| [Brand identity](docs/BRAND_IDENTITY.md) | Monogram, wordmark, material system and export rules |
+| [Architecture](docs/ARCHITECTURE.md) | Launcher structure, permission boundaries and wallpaper lifecycle |
+| [Motion specification](docs/MOTION.md) | Interaction tokens, presets and accessibility |
+| [Iconography](docs/ICON_SYSTEM.md) | The 155-symbol taxonomy, optical weights and exports |
+| [Roadmap](docs/ROADMAP.md) | Implemented work versus device-testing milestones |
+| [Changelog](CHANGELOG.md) | Published previews and project milestones |
+| [Contributing](CONTRIBUTING.md) | Setup, engineering expectations and pull requests |
 
-[View the Android Actions workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/android.yml) · [Emulator QA workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/android-emulator.yml) · [Install and recovery instructions](docs/NORD5_SETUP.md).
+## Project status
 
-The interactive [visual study](https://varunaditya27.github.io/oneplus-nord-5-themekit/), [Motion Studio](https://varunaditya27.github.io/oneplus-nord-5-themekit/motion/), and [icon archive](https://varunaditya27.github.io/oneplus-nord-5-themekit/icons/) are published on GitHub Pages.
+**v0.9.0-preview.2 is publicly downloadable.** The source and release build have passed CI and emulator smoke testing. It remains a **preview** until the launcher's behavior has been validated on the actual OnePlus Nord 5, including power draw, thermals, OEM gestures, profile handling and accessibility.
 
-## Documentation
+Issues and focused pull requests are welcome. Please respect the project's original artwork, fonts and user data.
 
-- [Nord 5 setup](docs/NORD5_SETUP.md): install, customize, use gestures and restore OxygenOS.
-- [Iconography system](docs/ICON_SYSTEM.md): symbol taxonomy, optical sizes, and exports.
-- [Design system](docs/DESIGN_SYSTEM.md): color, typography, spacing, icons and visual restraint.
-- [Architecture](docs/ARCHITECTURE.md): module responsibilities, permissions and Android boundaries.
-- [Roadmap](docs/ROADMAP.md): completed source work and unverified device milestones.
-- [Motion](docs/MOTION.md): how animations respond to state and respect reduced motion.
-- [Testing](docs/TESTING.md): reproducible automated checks and Nord 5 acceptance criteria.
-- [Publishing](docs/PUBLISHING.md): enabling GitHub Pages for the interactive study.
-- [Licensing](docs/LICENSING.md): asset provenance and unresolved project license.
-- [Glossary](docs/glossary.md): plain-language definitions of Android and design terms.
-- [Brand identity](docs/BRAND_IDENTITY.md): original logo construction, sources, application and export rules.
-- [Brand artwork](assets/brand/): original vector logo, wordmark, app icon, covers and interface studies.
-- [Surface studies](assets/brand/surface-studies.svg): lock, home and control visual concepts.
-
-## Contributing
-
-Focused, testable improvements are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md) before opening a change. For visual contributions, demonstrate the change at phone scale and explain the user-facing benefit.
-
-## Licence
-
-**Project licence not yet selected.** Source is public for evaluation; do not assume permission to redistribute or relicense it. Third-party font licences are separate, and proprietary fonts are not included. See [licensing notes](docs/LICENSING.md).
-
-ATELIER is an independent project, not affiliated with OnePlus.
+**Licensing:** a project-wide code/artwork license has **not yet been chosen**. Public source visibility is not permission to redistribute or relicense it. Bundled fonts have their own notices. See [Licensing and provenance](docs/LICENSING.md).
 
 <div align="center">
 
-<img src="assets/brand/atelier-cover.svg" alt="ATELIER visual identity" width="240">
+<img src="assets/brand/lockup.svg" width="235" alt="ATELIER / The Black System">
 
-<sub>ATELIER / THE BLACK SYSTEM</sub>
+<sub>ENGINEERED TO FEEL DIFFERENT.</sub>
 
 </div>
