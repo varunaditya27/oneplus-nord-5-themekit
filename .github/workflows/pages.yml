@@ -9,6 +9,7 @@ on:
       - "iconography/catalog.json"
       - "iconography/build.mjs"
       - "motion/**"
+      - "assets/brand/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -40,6 +41,22 @@ jobs:
           node iconography/build.mjs
           node iconography/check.mjs
           echo "ATELIER's site, font assets, and complete icon library passed validation."
+
+      - name: Embed brand art and social preview
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet "CairoSVG>=2.7,<3.0"
+          mkdir -p web/brand
+          cp assets/brand/*.svg web/brand/
+          python3 - <<'PY'
+          import cairosvg
+          from pathlib import Path
+          cairosvg.svg2png(url="assets/brand/social-card.svg",
+                           write_to="web/brand/social-card.png",
+                           output_width=1200,output_height=630)
+          assert Path("web/brand/favicon.svg").stat().st_size > 100
+          assert Path("web/brand/social-card.png").stat().st_size > 100
+          PY
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
