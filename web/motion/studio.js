@@ -84,7 +84,14 @@ function render(){
  $('stageCaption').textContent=state.page.toUpperCase()+' / '+(state.focus?'FOCUS':'NORMAL');
  $('phoneContent').innerHTML=({home,library,focus,command}[state.page]||home)();
  $('phoneStatusTime').textContent=timeNow().time;
- if(!reduced())$('phoneContent').classList.add('page-enter');else $('phoneContent').classList.remove('page-enter');
+ const panel=$('phoneContent');
+ panel.getAnimations().forEach(animation=>animation.cancel());
+ if(!reduced() && typeof panel.animate==='function') {
+  panel.animate(
+   [{opacity:0.1,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0px)'}],
+   {duration:presets[state.preset].page,easing:'cubic-bezier(.2,.8,.2,1)'}
+  );
+ }
  if(state.page==='home'){
   const stack=$('clockStack');
   if(stack)stack.dataset.minute=timeNow().time;
