@@ -77,3 +77,15 @@ The Motion Studio includes three genuine reversible icon transitions:
 These are live HTML/SVG interactions with keyboard-operable buttons, `aria-pressed` semantics and reduced-motion equivalents. They are explicitly labeled browser previews; they do **not** control actual audio or device settings.
 
 Icon states should **never animate without a meaningful source-state change**. In particular, representing connectivity, download progress, CPU load or music playback requires real app/system state, not randomly generated telemetry. The Android equivalents of these three semantic-state controls remain a future implementation milestone.
+
+## Native cinematic preview implementation
+
+- **Home:** A translucent procedural stage composites over the optional live wallpaper; its time field uses original path numerals. A physical vertical swipe drags the sheet before navigating.
+- **Navigation:** Directional horizontal swipes track finger distance, then hand off to interruptible fade, scale and vertical movement.
+- **Surfaces:** App icons, quick controls, material selectors and navigation items respond with spring pressure; the Expressive preset is stronger than Signature.
+- **Telemetry:** Real battery/RAM/storage measurements gently resolve into three gauges; no fabricated percentages.
+- **Glyphs:** Native Play/Pause, Menu/Close and Sound/Mute previews use stateful Canvas geometry.
+- **Wallpaper:** One renderer supplies three procedural scene families to the actual Android WallpaperService, its settings thumbnails and Home overlay. Touch introduces a brief concentric ripple, and the system wallpaper offset provides parallax.
+- **Accessibility:** Still mode, reduced-motion setting, controlled haptics and battery saver are implemented. TalkBack, contrast and OEM behavior still require hardware checks.
+
+The app does not and cannot safely replace OxygenOS-owned secure surfaces through ordinary launcher APIs.

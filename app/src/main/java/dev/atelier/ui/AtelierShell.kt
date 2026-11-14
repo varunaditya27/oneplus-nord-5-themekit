@@ -411,7 +411,7 @@ private fun ControlTile(
 private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)->AtelierSettings)->Unit,
     request:()->Unit,wallpaper:()->Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
-        Heading(c,"Settings","ATELIER / 0.1 PRE-ALPHA")
+        Heading(c,"Settings","ATELIER / 0.9 PREVIEW")
         Text("APPEARANCE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
         MaterialPicker(c,s,update)
         SwitchRow(c,"Reduced motion",s.reduceMotion){v->update{it.copy(reduceMotion=v)}}

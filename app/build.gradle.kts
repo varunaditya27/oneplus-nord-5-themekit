@@ -9,8 +9,8 @@ android {
         applicationId = "dev.atelier.black"
         minSdk = 31
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 9
+        versionName = "0.9.0-preview.1"
     }
     buildFeatures { compose = true }
     compileOptions {

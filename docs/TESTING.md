@@ -27,3 +27,17 @@ Device checks are not yet completed. Use [the setup guide](NORD5_SETUP.md) for r
 
 ## Known restrictions
 The web demo is a simulator, not an APK. Native compilation is CI-verified; battery profiling, wallpaper transparency, OEM role handling and accessibility need physical-device checks.
+
+## Cinematic preview acceptance list
+
+- [x] GitHub Actions: unit test task and debug build compile the expanded native sources
+- [ ] Physical Nord 5: verify default HOME role recovery on OxygenOS 16
+- [ ] Physical Nord 5: confirm Silkfield / Strata / Eclipse render correctly as live wallpaper
+- [ ] Physical Nord 5: verify touch, parallax, animation cadence and memory usage
+- [ ] Physical Nord 5: compare Still, Signature and Expressive under 60Hz / high-refresh configurations
+- [ ] Physical Nord 5: check battery drain overnight and thermals during long sessions
+- [ ] Physical Nord 5: test TalkBack, large text, font scaling and gesture conflicts
+- [ ] Physical Nord 5: validate per-app overrides across work/personal profiles
+- [ ] Physical Nord 5: confirm installation/uninstallation and stock launcher fallback
+
+A successful CI build is not the same as physical-device certification.

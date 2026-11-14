@@ -39,6 +39,14 @@ It is not an OEM replacement. Android retains the secure lock screen, biometric 
 
 No recreated third-party logos: a generic repository icon is not a counterfeit GitHub logo. Brand-identifiable app icons remain available through Android's original-app-artwork option.
 
+## The cinematic Android preview
+
+The installable Android application now includes three original procedural wallpaper scenes (**Silkfield, Strata, Eclipse**), app-aware icon selection, a searchable glyph editor with persistent per-app overrides, physical drag-follow gestures, animated page choreography, three motion presets, real device gauges, and a native semantic-icon interaction gallery.
+
+Wallpaper motion responds to scrolling and touch, while visibility, battery saver and reduced-motion controls prevent unnecessary rendering. The application does **not** replace OxygenOS's protected lock screen, fingerprint animations, AOD or notification shade.
+
+[Latest build workflow](https://github.com/varunaditya27/oneplus-nord-5-themekit/actions/workflows/android.yml) · [Device installation and recovery](docs/NORD5_SETUP.md) · [Release notes](docs/RELEASE_NOTES.md)
+
 ## Motion and interaction
 
 The kinetic layer combines non-bouncy press compression, quiet control-state transitions, short navigation crossfades, vector clock reveals, and a procedurally drawn Silkfield wallpaper.

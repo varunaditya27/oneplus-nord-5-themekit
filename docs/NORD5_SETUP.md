@@ -8,7 +8,7 @@ Install and evaluate ATELIER on OxygenOS 16 without root or system modifications
 
 ## Before installing
 
-ATELIER is **pre-alpha**. Its native source compiles in CI but has not been verified on a physical Nord 5. Test with the stock OxygenOS launcher still installed and available.
+ATELIER is a **versioned preview build**. It compiles and passes unit tests in CI but has not been verified on a physical Nord 5. Use the stock OxygenOS launcher as a fallback. Its native source compiles in CI but has not been verified on a physical Nord 5. Test with the stock OxygenOS launcher still installed and available.
 
 Target hardware: OnePlus Nord 5, CPH2707, OxygenOS 16. This is a target, not a device certification.
 
@@ -26,12 +26,13 @@ Choosing ATELIER as HOME is reversible. It does not uninstall the OnePlus launch
 
 ## 3. Explore the surfaces
 
-- **Home:** Signature vector clock, live workspace label, up to four shortcuts, and command field.
+- **Home:** Signature vector clock, animated atmosphere, real battery/RAM/storage gauges, up to four shortcuts, and command field.
 - **Swipe up on Home:** App library. The bottom navigation is an alternative.
 - **Swipe down on Home:** ATELIER Controls, not the native notification shade.
-- **Library:** Search installed launchable applications. Long-press an app icon to pin or unpin it from Home.
+- **Swipe horizontally:** Navigate between ATELIER screens, with drag-follow movement.
+- **Library:** Search installed launchable applications. Long-press an app icon to open the native editor, choose from 155 glyphs, pin/unpin, or reset the override.
 - **Command:** Search an app by name or run an allowlisted ATELIER command.
-- **Settings:** Material finish, compact clock, app labels, icon style, Still/Signature/Expressive motion presets, reduced motion, wallpaper picker and HOME role.
+- **Settings:** Material finish, compact clock, icon language, still/signature/expressive motion, Silkfield/Strata/Eclipse scene selectors, wallpaper parallax, animated atmosphere, haptics, kinetic glyphs, and HOME role.
 
 Android Back returns to Home from ATELIER's secondary screens. Android still handles gestures and system navigation outside the launcher.
 
@@ -93,3 +94,11 @@ If system navigation or lock-screen controls look wrong, disable ATELIER's live 
 The following remain open: work-profile app discovery, fast gesture navigation, wallpaper visibility behind the translucent window, battery use over long sessions, app launch error behavior, large fonts/TalkBack, and landscape cutout handling.
 
 Source and automated build verification are not substitutes for these checks.
+
+## APK installation and signing
+
+The Actions workflow produces an installable **debug-signed APK**. This is a preview artifact, not a store-ready signed release. The CI signing key is ephemeral and may change between runs. If Android reports that the existing installation conflicts with a newer preview, return to the stock launcher, back up any desired settings manually (no export is implemented), uninstall ATELIER and reinstall the new preview. Uninstalling deletes local app preferences and icon overrides.
+
+For production release/update continuity, configure a stable, privately held Android signing key in GitHub Secrets and use a separate production signing workflow. Never commit private signing credentials to this repository.
+
+No root or system modifications are required.
