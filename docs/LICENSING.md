@@ -31,3 +31,9 @@ The `assets/icons/` SVG files are original ATELIER outline studies. Named app la
 `scripts/generate_assets.py` generates the original raster wallpaper masters from mathematical geometry and noise. These are reproducible first-party assets.
 
 OnePlus, Nord and OxygenOS are trademarks of their respective owners. ATELIER is an independent project without endorsement or affiliation.
+
+## Official ATELIER identity, Preview 2
+
+The vector artwork under `assets/brand/` is original first-party ATELIER artwork. It is not a trademark imitation and is authored as editable path geometry, rather than a tracing of generated concept boards. The publicly accessible source and packaged release **do not override the project's undecided license**.
+
+The adaptive Android monogram and the site's favicon and sharing graphics derive from this same identity. ATELIER remains independent of OnePlus.
