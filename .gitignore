@@ -11,3 +11,9 @@ local.properties
 *.jks
 __pycache__/
 .venv/
+
+# Generated release archives and local tooling
+dist/
+.pytest_cache/
+.ruff_cache/
+*.log

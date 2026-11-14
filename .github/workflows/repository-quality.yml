@@ -1,0 +1,37 @@
+name: Repository / documentation and identity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "CHANGELOG.md"
+      - "CONTRIBUTING.md"
+      - "SECURITY.md"
+      - "docs/**"
+      - "assets/brand/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
+      - ".github/REPOSITORY_PROFILE.json"
+      - ".github/workflows/repository-quality.yml"
+      - "scripts/brand/**"
+      - "scripts/repository/**"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Source links, repository profile and brand
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Validate README, docs and GitHub About profile
+        run: python3 scripts/repository/verify.py
+      - name: Verify canonical SVG brand assets
+        run: python3 scripts/brand/verify.py

@@ -1,4 +1,4 @@
-name: Android / pre-alpha verification
+name: Android / build and unit tests
 on:
   push:
     branches: [main]
@@ -32,7 +32,7 @@ jobs:
           "$SDKMANAGER" --install "platforms;android-36" "build-tools;36.0.0"
       - name: Unit tests and debug build
         run: gradle --no-daemon testDebugUnitTest assembleDebug --stacktrace
-      - name: Attach unsigned debug APK
+      - name: Attach debug-signed APK
         if: success()
         uses: actions/upload-artifact@v4
         with:

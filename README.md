@@ -101,6 +101,7 @@ The test APK appears at `app/build/outputs/apk/debug/app-debug.apk`. The GitHub 
 | [Iconography](docs/ICON_SYSTEM.md) | The 155-symbol taxonomy, optical weights and exports |
 | [Roadmap](docs/ROADMAP.md) | Implemented work versus device-testing milestones |
 | [Changelog](CHANGELOG.md) | Published previews and project milestones |
+| [Repository profile](docs/REPOSITORY_PROFILE.md) | GitHub About description, homepage, topics and admin setup |
 | [Contributing](CONTRIBUTING.md) | Setup, engineering expectations and pull requests |
 
 ## Project status

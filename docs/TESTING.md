@@ -8,10 +8,11 @@ Automated source checks and physical-device acceptance.
 
 ## Automated source checks
 - Web: `node --check web/app.js` then `node web/test-smoke.mjs`
-- SVGs: `python3 scripts/check_assets.py`
+- SVGs: `python3 scripts/check_assets.py` and `python3 scripts/brand/verify.py`
+- Public README/documentation/metadata: `python3 scripts/repository/verify.py`
 - Native: `gradle --no-daemon testDebugUnitTest assembleDebug` (requires Android SDK 36 and compatible JDK/Gradle)
 
-Android unit tests and debug builds currently pass in CI. A separate API 35 emulator smoke test verifies launch, Home/Library/Settings accessibility text, no blocking dialogs, live process, distinct screenshots and near-black background. This does not certify Nord 5 hardware.
+The public v0.9.0-preview.2 release includes a debug-signed APK and checksum file. Android unit tests and debug builds currently pass in CI. A separate API 35 emulator smoke test verifies launch, Home/Library/Settings accessibility text, no blocking dialogs, live process, distinct screenshots and near-black background. This does not certify Nord 5 hardware.
 
 ## Nord 5 acceptance passes
 
