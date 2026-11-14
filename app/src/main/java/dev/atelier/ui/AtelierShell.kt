@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.lazy.grid.*
@@ -63,6 +64,15 @@ fun AtelierShell(
     val c = colors(settings.material)
     var page by remember { mutableStateOf(Page.HOME) }
     var editingApp by remember { mutableStateOf<AppItem?>(null) }
+    var horizontalDrag by remember { mutableFloatStateOf(0f) }
+    val horizontalVisual by animateFloatAsState(
+        targetValue=horizontalDrag,
+        animationSpec=spring(
+            dampingRatio=Spring.DampingRatioNoBouncy,
+            stiffness=Spring.StiffnessMediumLow
+        ),
+        label="horizontal-navigation-drag"
+    )
     BackHandler(enabled = page != Page.HOME) { page = Page.HOME }
     var now by remember { mutableStateOf(LocalDateTime.now()) }
     LaunchedEffect(Unit) {
@@ -97,7 +107,33 @@ fun AtelierShell(
             Text(if(page==Page.HOME) "INTERFACE / 001" else "CLOSE ×", color=c.muted, fontSize=10.sp,
                 fontFamily=AtelierFonts.technical, modifier=Modifier.clickable { page=Page.HOME })
         }
-        Box(Modifier.weight(1f)) {
+        Box(
+            Modifier.weight(1f)
+                .graphicsLayer {
+                    translationX=if(settings.reduceMotion || settings.motionMode==MotionMode.STILL)
+                        0f else horizontalVisual*.12f
+                }
+                .pointerInput(page,settings.motionMode) {
+                    var distance=0f
+                    detectHorizontalDragGestures(
+                        onDragStart={distance=0f;horizontalDrag=0f},
+                        onHorizontalDrag={change,delta->
+                            distance+=delta
+                            horizontalDrag=distance.coerceIn(-260f,260f)
+                            change.consume()
+                        },
+                        onDragEnd={
+                            if(distance < -108f && page.ordinal < Page.entries.lastIndex)
+                                page=Page.entries[page.ordinal+1]
+                            else if(distance > 108f && page.ordinal > 0)
+                                page=Page.entries[page.ordinal-1]
+                            horizontalDrag=0f
+                            distance=0f
+                        },
+                        onDragCancel={horizontalDrag=0f;distance=0f}
+                    )
+                }
+        ) {
             AnimatedContent(
                 targetState=page,
                 transitionSpec={
@@ -249,7 +285,7 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
                 Text("Search, launch or command",color=c.muted,fontSize=12.sp)
             }
             Spacer(Modifier.height(18.dp))
-            Text("SWIPE TO APPS  /  "+apps.size+" INSTALLED",color=c.muted,fontSize=9.sp,
+            Text("SWIPE UP / APPS     DOWN / CONTROL     LEFT / NEXT",color=c.muted,fontSize=9.sp,
                 modifier=Modifier.clickable(onClick=library),letterSpacing=1.sp)
             Spacer(Modifier.height(13.dp))
         }
