@@ -142,7 +142,7 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Text("THE BLACK SYSTEM",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
             Spacer(Modifier.height(28.dp))
             if(settings.clockStyle==ClockStyle.SIGNATURE) {
-                SignatureClock(now.format(DateTimeFormatter.ofPattern("HH")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion)
+                SignatureClock(now.format(DateTimeFormatter.ofPattern("HH")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion || settings.motionMode == MotionMode.STILL)
                 SignatureClock(now.format(DateTimeFormatter.ofPattern("mm")),c.text,digitWidth=65,digitHeight=90,reducedMotion=settings.reduceMotion)
             } else Text(now.format(DateTimeFormatter.ofPattern("HH:mm")),color=c.text,fontWeight=FontWeight.ExtraLight,fontSize=72.sp,fontFamily=AtelierFonts.display)
             Spacer(Modifier.height(24.dp))
@@ -231,10 +231,14 @@ private fun CommandPage(c:AtelierColors,apps:List<AppItem>,execute:(Command)->Un
 @Composable
 private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)->AtelierSettings)->Unit,wallpaper:()->Unit) {
     val context=LocalContext.current
+    val haptics=LocalHapticFeedback.current
     Column {
         Heading(c,"Control","SHELL CONTROLS / NOT SYSTEMUI")
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
             ControlTile(c,"Focus",s.focusMode,AtelierGlyph.FOCUS,s.reduceMotion,s.motionMode,Modifier.weight(1f)) {
+                haptics.performHapticFeedback(
+                    if(s.focusMode) HapticFeedbackType.ToggleOff else HapticFeedbackType.ToggleOn
+                )
                 update{it.copy(focusMode=!it.focusMode)}
             }
             ControlTile(c,"Wi-Fi",false,AtelierGlyph.WIFI,s.reduceMotion,s.motionMode,Modifier.weight(1f)) {

@@ -1,10 +1,17 @@
 package dev.atelier.wallpaper
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.os.Handler
 import android.os.Looper
+import android.os.PowerManager
+import androidx.core.content.ContextCompat
 import android.os.SystemClock
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
@@ -24,6 +31,37 @@ class SilkfieldWallpaperService : WallpaperService() {
         private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
         private val start = SystemClock.elapsedRealtime()
         private val animation = Runnable { drawFrame() }
+        private val preferences = getSharedPreferences("atelier.v1", Context.MODE_PRIVATE)
+        private val power = getSystemService(Context.POWER_SERVICE) as PowerManager
+        private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == "reduce_motion" || key == "motion_mode") {
+                handler.removeCallbacks(animation)
+                if (visible) drawFrame()
+            }
+        }
+        private val powerReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent?.action == PowerManager.ACTION_POWER_SAVE_MODE_CHANGED) {
+                    handler.removeCallbacks(animation)
+                    if (visible) drawFrame()
+                }
+            }
+        }
+
+        init {
+            preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
+            ContextCompat.registerReceiver(
+                this@SilkfieldWallpaperService,
+                powerReceiver,
+                IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED),
+                ContextCompat.RECEIVER_NOT_EXPORTED
+            )
+        }
+
+        private fun shouldHold(): Boolean =
+            preferences.getBoolean("reduce_motion", false) ||
+                preferences.getString("motion_mode", "SIGNATURE") == "STILL" ||
+                power.isPowerSaveMode
 
         override fun onVisibilityChanged(visible: Boolean) {
             this.visible = visible
@@ -48,7 +86,12 @@ class SilkfieldWallpaperService : WallpaperService() {
                 if (canvas != null) runCatching { surfaceHolder.unlockCanvasAndPost(canvas) }
             }
             handler.removeCallbacks(animation)
-            if (visible && !destroyed) handler.postDelayed(animation, 100L)
+            if (visible && !destroyed && !shouldHold()) {
+                val cadence = if (
+                    preferences.getString("motion_mode", "SIGNATURE") == "EXPRESSIVE"
+                ) 85L else 115L
+                handler.postDelayed(animation, cadence)
+            }
         }
 
         private fun render(canvas: Canvas, seconds: Float) {
@@ -84,6 +127,8 @@ class SilkfieldWallpaperService : WallpaperService() {
             destroyed = true
             visible = false
             handler.removeCallbacks(animation)
+            preferences.unregisterOnSharedPreferenceChangeListener(preferenceListener)
+            runCatching { unregisterReceiver(powerReceiver) }
             super.onDestroy()
         }
     }
