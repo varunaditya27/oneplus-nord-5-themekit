@@ -86,10 +86,29 @@ function navigate(next){
  event('NAVIGATION / '+next.toUpperCase(),'Short positional entry with opacity. The previous surface is replaced; no ornamental overscroll.');
  if(next==='command')$('commandInput')?.focus();
 }
+function syncLiveState(){
+ $('stageCaption').textContent=state.page.toUpperCase()+' / '+(state.focus?'FOCUS':'NORMAL');
+ $('focusLabel').textContent=state.focus?'EXIT FOCUS':'ENTER FOCUS';
+ $('pinLabel').textContent=state.pinned?'UNPIN APPLICATION':'PIN APPLICATION';
+ $('pinBar').classList.toggle('active',state.pinned);
+ document.querySelectorAll('.launcher-app[data-name=terminal]').forEach(b=>b.classList.toggle('selected',state.pinned));
+ if(state.page==='home'){
+  const note=$('phoneContent').querySelector('.screen-note');
+  const statement=$('phoneContent').querySelector('.screen-work h3');
+  if(note)note.textContent=state.focus?'FOCUS / ACTIVE':'WORKSPACE / READY';
+  if(statement)statement.textContent=state.focus?'Room for the work.':'Everything in its place.';
+ }
+ if(state.page==='focus'){
+  const focusTile=$('phoneContent').querySelector('[data-action=focus]');
+  if(focusTile)focusTile.classList.toggle('active',state.focus);
+  const note=$('phoneContent').querySelector('.screen-note');
+  if(note)note.textContent=state.focus?'FOCUS IS ACTIVE':'FOCUS IS OFF';
+ }
+}
 function act(action,arg){
  if(action==='press'){event('CONTACT / PRESSED','The surface compresses toward your finger, then returns without bounce. Hit area stays unchanged.');return;}
- if(action==='pin'){state.pinned=!state.pinned;render();event('SELECTION / '+(state.pinned?'PINNED':'UNPINNED'),'One brass inlay communicates the new favorite state, without recoloring the whole icon.');return;}
- if(action==='focus'){state.focus=!state.focus;render();event('STATE / '+(state.focus?'FOCUS ON':'FOCUS OFF'),'Material contrast and workspace copy respond to a real in-prototype Focus state.');return;}
+ if(action==='pin'){state.pinned=!state.pinned;syncLiveState();event('SELECTION / '+(state.pinned?'PINNED':'UNPINNED'),'One brass inlay communicates the new favorite state, without recoloring the whole icon.');return;}
+ if(action==='focus'){state.focus=!state.focus;syncLiveState();event('STATE / '+(state.focus?'FOCUS ON':'FOCUS OFF'),'Material contrast and workspace copy respond to a real in-prototype Focus state.');return;}
  if(action==='navigate'){navigate(state.page==='home'?'library':'home');return;}
  if(action==='go'){navigate(arg);return;}
  if(action==='command'){navigate('command');return;}
@@ -139,8 +158,13 @@ function paint(stamp){
  ctx.strokeStyle='rgba(205,166,100,.16)';ctx.lineWidth=dpr*.8;ctx.beginPath();
  ctx.moveTo(w*.24,h*.97);ctx.bezierCurveTo(w*.38,h*.73,w*.64,h*.53,w*.73,h*.3);ctx.stroke();
 }
-Promise.all([fetch('../icons/catalog.json').then(x=>x.json()),fetch('../../motion/tokens.json').then(x=>x.json()).catch(()=>null)]).then(([data])=>{
+Promise.all([fetch('../icons/catalog.json').then(x=>x.json()),fetch('./tokens.json').then(x=>x.json())]).then(([data,tokens])=>{
  if(!data||!Array.isArray(data.icons))throw Error('No icon catalog');
+ if(!tokens||tokens.schema!=='atelier.motion.v1')throw Error('No motion tokens');
+ presets.signature.press=tokens.press.downScale;
+ presets.signature.state=tokens.durationsMs.state;
+ presets.signature.page=tokens.durationsMs.page;
+ presets.signature.clock=tokens.durationsMs.clockDraw;
  symbols=Object.fromEntries(data.icons.map(x=>[x.name,x.d]));
  document.querySelectorAll('[data-symbol]').forEach(node=>node.innerHTML=icon(node.dataset.symbol));
  setPreset('signature');
