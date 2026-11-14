@@ -428,6 +428,13 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         SwitchRow(c,"Tactile feedback",s.hapticsEnabled){v->
             update{it.copy(hapticsEnabled=v)}
         }
+        Spacer(Modifier.height(24.dp))
+        Text("KINETIC ICON ATLAS",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
+        Spacer(Modifier.height(12.dp))
+        AtelierKineticGallery(c,s)
+        Spacer(Modifier.height(8.dp))
+        Text("Play/Pause, Menu/Close and Sound/Mute are interactive previews, not remote device controls.",
+            color=c.muted,fontSize=11.sp,lineHeight=17.sp)
         Spacer(Modifier.height(8.dp))
         Text("Silkfield, Strata and Eclipse are original procedural scenes. The wallpaper pauses when hidden, in Still mode, or when battery saver is active.",
             color=c.muted,fontSize=11.sp,lineHeight=17.sp)
