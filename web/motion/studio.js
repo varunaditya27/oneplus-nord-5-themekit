@@ -25,14 +25,23 @@ const escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replace
 const reduced=()=>osReduced.matches||state.preset==='still';
 const icon=name=>'<svg viewBox="0 0 24 24" role="img" aria-label="'+escape(name)+'" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="'+escape(symbols[name]||symbols['apps-grid']||'M4 4h16v16H4z')+'"/></svg>';
 const numeral=n=>'<svg class="clock-digit" viewBox="0 0 44 76" aria-label="'+n+'"><path pathLength="100" d="'+digits[n]+'"/></svg>';
+const timeNow=()=>{
+ const now=new Date(),time=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
+ return {time,digits:time.replace(':',''),date:now.toLocaleDateString('en-GB',{weekday:'long',day:'2-digit',month:'short'}).toUpperCase()};
+};
+const digitRows=value=>'<div class="clock-row">'+numeral(value[0])+numeral(value[1])+'</div>'+
+'<div class="clock-row">'+numeral(value[2])+numeral(value[3])+'</div>';
 const app=(label,name)=>'<button class="launcher-app tactile '+(state.pinned&&name==='terminal'?'selected':'')+'" data-action="launch" data-name="'+name+'" aria-label="Preview '+label+'"><span class="tile">'+icon(name)+'</span><small>'+label+'</small></button>';
-const home=()=>'<div><div class="clock-label">ATELIER / 001</div><div class="clock-stack" id="clockStack">'+
-'<div class="clock-row">'+numeral('0')+numeral('9')+'</div><div class="clock-row">'+numeral('4')+numeral('1')+'</div></div>'+
-'<div class="gold-rule"></div><div class="screen-date">SATURDAY, 14 NOV</div><div class="screen-note">'+(state.focus?'FOCUS / ACTIVE':'WORKSPACE / READY')+'</div></div>'+
+const home=()=>{
+const moment=timeNow();
+return '<div><div class="clock-label">ATELIER / 001</div><div class="clock-stack" id="clockStack">'+
+digitRows(moment.digits)+'</div>'+
+'<div class="gold-rule"></div><div class="screen-date">'+moment.date+'</div><div class="screen-note">'+(state.focus?'FOCUS / ACTIVE':'WORKSPACE / READY')+'</div></div>'+
 '<div class="screen-work"><div class="subheading">WORKSPACE / TODAY</div><h3>'+(state.focus?'Room for the work.':'Everything in its place.')+'</h3>'+
 '<div class="row-icons">'+app('Terminal','terminal')+app('Files','folder')+app('Camera','camera')+app('Notes','notes')+'</div></div>'+
 '<div><button class="cmd-entry tactile" data-action="command"><b>›</b>Search, launch or command</button>'+
 '<div class="phone-menu">'+['home','library','focus'].map(x=>'<button data-action="go" data-go="'+x+'" aria-pressed="'+String(state.page===x)+'">'+x.toUpperCase()+'</button>').join('')+'</div></div>';
+};
 const library=()=>'<div><h3 class="phone-head">Library</h3><div class="phone-caption">APPS / SEMANTIC GLYPHS</div>'+
 '<input class="phone-search" id="appSearch" aria-label="Search preview apps" placeholder="Search applications" autocomplete="off"><div class="phone-apps" id="phoneApps">'+
 ['terminal','folder','camera','notes','calendar','mail','settings','repository','music'].map(n=>app(n[0].toUpperCase()+n.slice(1),n)).join('')+'</div></div>'+
@@ -58,6 +67,7 @@ function setPreset(name){
  document.documentElement.style.setProperty('--state-ms',(reduced()?0:t.state)+'ms');
  document.documentElement.style.setProperty('--page-ms',(reduced()?0:t.page)+'ms');
  document.documentElement.style.setProperty('--release-ms',(reduced()?0:t.release)+'ms');
+ document.documentElement.style.setProperty('--clock-ms',(reduced()?0:t.clock)+'ms');
  $('metrics').innerHTML='<dt>CONTACT</dt><dd>'+t.press.toFixed(3)+'×</dd><dt>STATE</dt><dd>'+t.state+'ms</dd><dt>NAVIGATION</dt><dd>'+t.page+'ms</dd><dt>REVEAL</dt><dd>'+t.clock+'ms</dd>';
  document.querySelectorAll('[data-preset]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.preset===name)));
  render();
@@ -73,8 +83,13 @@ function drawClock(){
 function render(){
  $('stageCaption').textContent=state.page.toUpperCase()+' / '+(state.focus?'FOCUS':'NORMAL');
  $('phoneContent').innerHTML=({home,library,focus,command}[state.page]||home)();
+ $('phoneStatusTime').textContent=timeNow().time;
  if(!reduced())$('phoneContent').classList.add('page-enter');else $('phoneContent').classList.remove('page-enter');
- if(state.page==='home')drawClock();
+ if(state.page==='home'){
+  const stack=$('clockStack');
+  if(stack)stack.dataset.minute=timeNow().time;
+  drawClock();
+ }
  $('pinLabel').textContent=state.pinned?'UNPIN APPLICATION':'PIN APPLICATION';
  $('pinBar').classList.toggle('active',state.pinned);
  $('focusLabel').textContent=state.focus?'EXIT FOCUS':'ENTER FOCUS';
@@ -170,7 +185,25 @@ function paint(stamp){
  ctx.moveTo(w*.24,h*.97);ctx.bezierCurveTo(w*.38,h*.73,w*.64,h*.53,w*.73,h*.3);ctx.stroke();
  scheduleAmbient();
 }
-document.addEventListener('visibilitychange',()=>document.hidden?stopAmbient():scheduleAmbient());
+document.addEventListener('visibilitychange',()=>document.hidden?stopAmbient():(scheduleAmbient(),refreshClock()));
+let lastMinute='';
+function refreshClock(){
+ if(document.hidden)return;
+ const moment=timeNow();
+ $('phoneStatusTime').textContent=moment.time;
+ if(state.page==='home'){
+  const stack=$('clockStack');
+  if(stack&&stack.dataset.minute!==moment.time){
+   stack.innerHTML=digitRows(moment.digits);
+   stack.dataset.minute=moment.time;
+   drawClock();
+  }
+  const label=$('phoneContent').querySelector('.screen-date');
+  if(label)label.textContent=moment.date;
+ }
+ lastMinute=moment.time;
+}
+setInterval(refreshClock,15000);
 Promise.all([fetch('../icons/catalog.json').then(x=>x.json()),fetch('./tokens.json').then(x=>x.json())]).then(([data,tokens])=>{
  if(!data||!Array.isArray(data.icons))throw Error('No icon catalog');
  if(!tokens||tokens.schema!=='atelier.motion.v1')throw Error('No motion tokens');
