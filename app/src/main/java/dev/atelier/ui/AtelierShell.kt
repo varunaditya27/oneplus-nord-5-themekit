@@ -188,6 +188,7 @@ fun AtelierShell(
             }
         }
         }
+        AtelierOpeningSequence(settings)
         editingApp?.let { app ->
             AtelierAppEditor(
                 app=app,settings=settings,c=c,
@@ -485,6 +486,9 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         Spacer(Modifier.height(12.dp))
         AtelierScenePicker(c,s,update)
         Spacer(Modifier.height(13.dp))
+        SwitchRow(c,"Opening sequence",s.openingSequenceEnabled){v->
+            update{it.copy(openingSequenceEnabled=v)}
+        }
         SwitchRow(c,"Animate atmosphere",s.ambientEnabled){v->
             update{it.copy(ambientEnabled=v)}
         }

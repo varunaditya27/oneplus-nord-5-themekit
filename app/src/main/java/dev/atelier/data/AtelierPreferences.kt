@@ -22,6 +22,7 @@ data class AtelierSettings(
     val wallpaperScene: WallpaperScene = WallpaperScene.SILKFIELD,
     val parallaxEnabled: Boolean = true,
     val ambientEnabled: Boolean = true,
+    val openingSequenceEnabled: Boolean = true,
     val hapticsEnabled: Boolean = true,
     val focusMode: Boolean = false,
     val reduceMotion: Boolean = false,
@@ -49,6 +50,7 @@ class AtelierPreferences(context: Context) {
         }.getOrDefault(WallpaperScene.SILKFIELD),
         parallaxEnabled = store.getBoolean("parallax_enabled", true),
         ambientEnabled = store.getBoolean("ambient_enabled", true),
+        openingSequenceEnabled = store.getBoolean("opening_sequence", true),
         hapticsEnabled = store.getBoolean("haptics_enabled", true),
         focusMode = store.getBoolean("focus", false),
         reduceMotion = store.getBoolean("reduce_motion", false),
@@ -81,6 +83,7 @@ class AtelierPreferences(context: Context) {
             .putString("wallpaper_scene", next.wallpaperScene.name)
             .putBoolean("parallax_enabled", next.parallaxEnabled)
             .putBoolean("ambient_enabled", next.ambientEnabled)
+            .putBoolean("opening_sequence", next.openingSequenceEnabled)
             .putBoolean("haptics_enabled", next.hapticsEnabled)
             .putBoolean("focus", next.focusMode)
             .putBoolean("reduce_motion", next.reduceMotion)
