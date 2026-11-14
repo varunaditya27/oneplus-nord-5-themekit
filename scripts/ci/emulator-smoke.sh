@@ -16,6 +16,13 @@ collect_diagnostics() {
 trap collect_diagnostics EXIT
 
 adb install -r app/build/outputs/apk/debug/app-debug.apk
+
+# Pixel Launcher is a frequent ANR source on cold-booted software renderers.
+# Use ATELIER as the real Home role holder before testing and stop the stock
+# emulator launcher. This does not change anything on the user's device.
+adb shell cmd role add-role-holder android.app.role.HOME "$package"
+sleep 2
+adb shell am force-stop com.google.android.apps.nexuslauncher || true
 adb logcat -c
 adb shell am start -W -n "$package/$activity"
 sleep 8
@@ -28,8 +35,22 @@ capture() {
   local label="$1"
   adb exec-out screencap -p > "$report/$label.png"
   test -s "$report/$label.png"
-  adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
-  adb pull /sdcard/window.xml "$report/$label.xml" >/dev/null 2>&1 || true
+  adb shell uiautomator dump /sdcard/window.xml >/dev/null
+  adb pull /sdcard/window.xml "$report/$label.xml" >/dev/null
+  test -s "$report/$label.xml"
+  if grep -qiE "isn.t responding|not responding|system ui has stopped" "$report/$label.xml"; then
+    echo "Blocking Android system dialog appeared on $label" >&2
+    grep -ioE 'text="[^"]{0,160}"' "$report/$label.xml" | tail -25 >&2 || true
+    exit 1
+  fi
+  case "$label" in
+    home) grep -qi 'ATELIER' "$report/$label.xml" ;;
+    library) grep -qi 'Library' "$report/$label.xml" ;;
+    settings) grep -qi 'Settings' "$report/$label.xml" ;;
+  esac || {
+    echo "Expected $label screen not found in accessibility hierarchy" >&2
+    exit 1
+  }
 }
 
 capture home
