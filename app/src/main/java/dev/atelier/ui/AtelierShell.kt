@@ -59,7 +59,9 @@ fun AtelierShell(
     onFavorite: (String) -> Unit,
     onLaunch: (AppItem) -> Boolean,
     onRequestHome: () -> Unit,
-    onOpenWallpaper: () -> Unit
+    onOpenWallpaper: () -> Unit,
+    onExportTheme: () -> Unit,
+    onImportTheme: () -> Unit
 ) {
     val c = colors(settings.material)
     var page by remember { mutableStateOf(Page.HOME) }
@@ -159,7 +161,7 @@ fun AtelierShell(
                     Page.LIBRARY -> Library(c,apps,settings,onFavorite,onLaunch,{editingApp=it})
                     Page.COMMAND -> CommandPage(c,apps,::execute,onLaunch)
                     Page.CONTROL -> Control(c,settings,onUpdate,onOpenWallpaper)
-                    Page.SETTINGS -> SettingsPage(c,settings,onUpdate,onRequestHome,onOpenWallpaper)
+                    Page.SETTINGS -> SettingsPage(c,settings,onUpdate,onRequestHome,onOpenWallpaper,onExportTheme,onImportTheme)
                 }
             }
         }
@@ -413,7 +415,7 @@ private fun ControlTile(
 }
 @Composable
 private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)->AtelierSettings)->Unit,
-    request:()->Unit,wallpaper:()->Unit) {
+    request:()->Unit,wallpaper:()->Unit,export:()->Unit,import:()->Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
         Heading(c,"Settings","ATELIER / 0.9 PREVIEW")
         Text("APPEARANCE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
@@ -507,6 +509,21 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
             color=c.muted,fontSize=11.sp,lineHeight=17.sp)
         Spacer(Modifier.height(8.dp))
         Text("Silkfield, Strata and Eclipse are original procedural scenes. The wallpaper pauses when hidden, in Still mode, or when battery saver is active.",
+            color=c.muted,fontSize=11.sp,lineHeight=17.sp)
+        Spacer(Modifier.height(25.dp))
+        Text("PORTABLE PERSONALIZATION",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
+        Spacer(Modifier.height(9.dp))
+        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+            OutlinedButton(onClick=export,modifier=Modifier.weight(1f)) {
+                Text("EXPORT KIT",color=c.text,fontSize=10.sp,
+                    fontFamily=AtelierFonts.technical)
+            }
+            OutlinedButton(onClick=import,modifier=Modifier.weight(1f)) {
+                Text("IMPORT KIT",color=c.text,fontSize=10.sp,
+                    fontFamily=AtelierFonts.technical)
+            }
+        }
+        Text("Local JSON backup of your scenes, motion settings, app pins and icon assignments. No account required.",
             color=c.muted,fontSize=11.sp,lineHeight=17.sp)
         Spacer(Modifier.height(25.dp))
         Text("INTEGRATION",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)

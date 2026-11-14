@@ -97,8 +97,14 @@ Source and automated build verification are not substitutes for these checks.
 
 ## APK installation and signing
 
-The Actions workflow produces an installable **debug-signed APK**. This is a preview artifact, not a store-ready signed release. The CI signing key is ephemeral and may change between runs. If Android reports that the existing installation conflicts with a newer preview, return to the stock launcher, back up any desired settings manually (no export is implemented), uninstall ATELIER and reinstall the new preview. Uninstalling deletes local app preferences and icon overrides.
+The Actions workflow produces an installable **debug-signed APK**. This is a preview artifact, not a store-ready signed release. The CI signing key is ephemeral and may change between runs. If Android reports that the existing installation conflicts with a newer preview, return to the stock launcher, export your theme from **Settings → EXPORT KIT**, uninstall ATELIER and reinstall the new preview. Uninstalling deletes local app preferences and icon overrides.
 
 For production release/update continuity, configure a stable, privately held Android signing key in GitHub Secrets and use a separate production signing workflow. Never commit private signing credentials to this repository.
 
 No root or system modifications are required.
+
+## Back up or restore personalization
+
+ATELIER now supports **Settings → EXPORT KIT** and **IMPORT KIT** using the Android document picker. The exported JSON includes the material, wallpaper scene, icon style, motion choices, app favorites and custom glyph assignments. No account, network access or storage permission is needed.
+
+Before uninstalling a debug build, export the JSON to a location you control. Reinstall the new APK, then select **IMPORT KIT**. Apps that are no longer installed retain harmless pinned IDs in the backup but will not appear in the current app drawer. Invalid or excessive backup files are rejected.
