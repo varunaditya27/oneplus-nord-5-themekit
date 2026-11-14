@@ -5,130 +5,157 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
 import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
-import androidx.core.content.ContextCompat
 import android.os.SystemClock
 import android.service.wallpaper.WallpaperService
+import android.view.MotionEvent
 import android.view.SurfaceHolder
-import kotlin.math.sin
+import androidx.core.content.ContextCompat
+import dev.atelier.data.Material
+import dev.atelier.data.WallpaperScene
 
 /**
- * Silkfield, a mathematically generated atmosphere of graphite strands.
- * Stays idle when hidden. A CPU Canvas prototype, not yet a GPU shader engine.
+ * ATELIER / cinema-grade procedural wallpaper engine.
+ *
+ * Three locally rendered scenes, OS wallpaper parallax, restrained tap ripples.
+ * Neither foreground services nor sensor polling. It spends no frames when
+ * hidden, motion-disabled or in battery-saving mode.
  */
 class SilkfieldWallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine = SilkfieldEngine()
 
     inner class SilkfieldEngine : Engine() {
-        private val handler = Handler(Looper.getMainLooper())
-        private var visible = false
-        private var destroyed = false
-        private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
-        private val start = SystemClock.elapsedRealtime()
-        private val animation = Runnable { drawFrame() }
-        private val preferences = getSharedPreferences("atelier.v1", Context.MODE_PRIVATE)
-        private val power = getSystemService(Context.POWER_SERVICE) as PowerManager
-        private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key == "reduce_motion" || key == "motion_mode") {
-                handler.removeCallbacks(animation)
-                if (visible) drawFrame()
+        private val handler=Handler(Looper.getMainLooper())
+        private val renderer=AtelierSceneRenderer()
+        private val prefs=getSharedPreferences("atelier.v1",Context.MODE_PRIVATE)
+        private val power=getSystemService(Context.POWER_SERVICE) as PowerManager
+        private var visible=false
+        private var destroyed=false
+        private var xOffset=.5f
+        private var yOffset=.5f
+        private var zoom=0f
+        private var touchX=-1f
+        private var touchY=-1f
+        private var lastTouch=0L
+        private val origin=SystemClock.elapsedRealtime()
+        private val ticker=Runnable { drawFrame() }
+
+        private val listener=SharedPreferences.OnSharedPreferenceChangeListener { _,key ->
+            if(key in setOf("reduce_motion","motion_mode","wallpaper_scene","material",
+                    "parallax_enabled","ambient_enabled")) {
+                handler.removeCallbacks(ticker)
+                if(visible) drawFrame()
             }
         }
-        private val powerReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                if (intent?.action == PowerManager.ACTION_POWER_SAVE_MODE_CHANGED) {
-                    handler.removeCallbacks(animation)
-                    if (visible) drawFrame()
+        private val receiver=object:BroadcastReceiver(){
+            override fun onReceive(context:Context?,intent:Intent?){
+                if(intent?.action==PowerManager.ACTION_POWER_SAVE_MODE_CHANGED) {
+                    handler.removeCallbacks(ticker)
+                    if(visible) drawFrame()
                 }
             }
         }
 
         init {
-            preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
+            setOffsetNotificationsEnabled(true)
+            setTouchEventsEnabled(true)
+            prefs.registerOnSharedPreferenceChangeListener(listener)
             ContextCompat.registerReceiver(
-                this@SilkfieldWallpaperService,
-                powerReceiver,
+                this@SilkfieldWallpaperService,receiver,
                 IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED),
                 ContextCompat.RECEIVER_NOT_EXPORTED
             )
         }
 
-        private fun shouldHold(): Boolean =
-            preferences.getBoolean("reduce_motion", false) ||
-                preferences.getString("motion_mode", "SIGNATURE") == "STILL" ||
-                power.isPowerSaveMode
+        private fun scene():WallpaperScene=runCatching {
+            WallpaperScene.valueOf(prefs.getString("wallpaper_scene","SILKFIELD")!!)
+        }.getOrDefault(WallpaperScene.SILKFIELD)
 
-        override fun onVisibilityChanged(visible: Boolean) {
-            this.visible = visible
-            handler.removeCallbacks(animation)
-            if (visible) drawFrame()
+        private fun material():Material=runCatching {
+            Material.valueOf(prefs.getString("material","INK")!!)
+        }.getOrDefault(Material.INK)
+
+        private fun animated():Boolean=
+            prefs.getBoolean("ambient_enabled",true) &&
+            !prefs.getBoolean("reduce_motion",false) &&
+            prefs.getString("motion_mode","EXPRESSIVE")!="STILL" &&
+            !power.isPowerSaveMode
+
+        override fun onVisibilityChanged(isVisible:Boolean) {
+            visible=isVisible
+            handler.removeCallbacks(ticker)
+            if(isVisible)drawFrame()
         }
 
-        override fun onSurfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-            super.onSurfaceChanged(holder, format, width, height)
-            if (visible) drawFrame()
+        override fun onSurfaceChanged(holder:SurfaceHolder,format:Int,width:Int,height:Int) {
+            super.onSurfaceChanged(holder,format,width,height)
+            if(visible)drawFrame()
         }
 
-        private fun drawFrame() {
-            if (!visible || destroyed) return
-            var canvas: Canvas? = null
-            try {
-                canvas = surfaceHolder.lockCanvas()
-                if (canvas != null) render(canvas, (SystemClock.elapsedRealtime() - start) / 1000f)
-            } catch (_: IllegalArgumentException) {
-                // Surface was removed before a frame could be locked.
-            } finally {
-                if (canvas != null) runCatching { surfaceHolder.unlockCanvasAndPost(canvas) }
+        override fun onOffsetsChanged(
+            xOffset:Float,yOffset:Float,xOffsetStep:Float,yOffsetStep:Float,
+            xPixelOffset:Int,yPixelOffset:Int
+        ) {
+            this.xOffset=xOffset
+            this.yOffset=yOffset
+            if(visible)drawFrame()
+        }
+
+        override fun onZoomChanged(zoom:Float) {
+            this.zoom=zoom.coerceIn(0f,1f)
+            if(visible)drawFrame()
+        }
+
+        override fun onTouchEvent(event:MotionEvent) {
+            super.onTouchEvent(event)
+            if(event.actionMasked==MotionEvent.ACTION_DOWN && animated()) {
+                touchX=event.x
+                touchY=event.y
+                lastTouch=SystemClock.elapsedRealtime()
+                if(visible)drawFrame()
             }
-            handler.removeCallbacks(animation)
-            if (visible && !destroyed && !shouldHold()) {
-                val cadence = if (
-                    preferences.getString("motion_mode", "SIGNATURE") == "EXPRESSIVE"
-                ) 85L else 115L
-                handler.postDelayed(animation, cadence)
-            }
         }
 
-        private fun render(canvas: Canvas, seconds: Float) {
-            val w = canvas.width.toFloat()
-            val h = canvas.height.toFloat()
-            canvas.drawColor(android.graphics.Color.rgb(8, 8, 9))
-            for (i in 0..80) {
-                val p = i / 80f
-                val shift = sin((seconds * .08f + i * .031f).toDouble()).toFloat() * w * .004f
-                val path = Path().apply {
-                    moveTo(w * (.19f + p * .30f) + shift, h * 1.02f)
-                    cubicTo(
-                        w * (.20f + p * .23f) + shift, h * .70f,
-                        w * (.55f + p * .13f) + shift, h * .49f,
-                        w * (.54f + p * .15f) + shift, h * .28f
+        private fun drawFrame(){
+            if(destroyed||!visible)return
+            var canvas:android.graphics.Canvas?=null
+            try{
+                canvas=surfaceHolder.lockCanvas()
+                if(canvas!=null){
+                    val now=SystemClock.elapsedRealtime()
+                    val seconds=if(animated())(now-origin)/1000f else 0f
+                    val parallax=prefs.getBoolean("parallax_enabled",true)
+                    renderer.render(
+                        canvas,scene(),material(),seconds,
+                        if(parallax) xOffset+(zoom*.05f) else .5f,
+                        if(parallax) yOffset else .5f,
+                        touchX,touchY,
+                        if(lastTouch>0L)(now-lastTouch)/1000f else 5f
                     )
                 }
-                val grey = (20 + (i % 11) * 2.4f).toInt()
-                paint.color = android.graphics.Color.argb(if (i % 13 == 0) 52 else 20, grey, grey, grey + 2)
-                paint.strokeWidth = if (i % 11 == 0) 1.3f else .75f
-                canvas.drawPath(path, paint)
+            }catch(_:IllegalArgumentException){
+                // Surface may disappear between visibility and lock.
+            }catch(_:IllegalStateException){
+                // The surface is being replaced by the wallpaper picker.
+            }finally{
+                if(canvas!=null)runCatching{surfaceHolder.unlockCanvasAndPost(canvas)}
             }
-            val brassEdge = Path().apply {
-                moveTo(w * .27f, h * .91f)
-                cubicTo(w * .40f, h * .76f, w * .65f, h * .58f, w * .68f, h * .30f)
+            handler.removeCallbacks(ticker)
+            if(animated()&&visible&&!destroyed){
+                val cadence=if(prefs.getString("motion_mode","EXPRESSIVE")=="EXPRESSIVE")
+                    42L else 85L
+                handler.postDelayed(ticker,cadence)
             }
-            paint.color = android.graphics.Color.argb(55, 205, 166, 100)
-            paint.strokeWidth = 1.05f
-            canvas.drawPath(brassEdge, paint)
         }
 
         override fun onDestroy() {
-            destroyed = true
-            visible = false
-            handler.removeCallbacks(animation)
-            preferences.unregisterOnSharedPreferenceChangeListener(preferenceListener)
-            runCatching { unregisterReceiver(powerReceiver) }
+            destroyed=true
+            visible=false
+            handler.removeCallbacks(ticker)
+            prefs.unregisterOnSharedPreferenceChangeListener(listener)
+            runCatching{unregisterReceiver(receiver)}
             super.onDestroy()
         }
     }
