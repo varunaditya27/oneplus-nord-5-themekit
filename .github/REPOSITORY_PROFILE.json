@@ -1,0 +1,20 @@
+{
+  "repository": "varunaditya27/oneplus-nord-5-themekit",
+  "description": "A dark-only Android launcher for OnePlus Nord 5, with cinematic interactions, procedural live wallpapers, and 155 original icons.",
+  "homepage": "https://varunaditya27.github.io/oneplus-nord-5-themekit/",
+  "topics": [
+    "android",
+    "android-launcher",
+    "kotlin",
+    "jetpack-compose",
+    "oneplus",
+    "oneplus-nord-5",
+    "oxygenos",
+    "dark-theme",
+    "live-wallpaper",
+    "icon-pack",
+    "motion-design",
+    "customization",
+    "ui-design"
+  ]
+}

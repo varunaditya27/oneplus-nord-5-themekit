@@ -1,0 +1,64 @@
+name: Bug report
+description: Report a reproducible Android, wallpaper, icon or web-study problem.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Thank you for helping test ATELIER. Do not upload private notifications, secrets, contact details or security exploit data."
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Launcher / Home
+        - App library / icon editor
+        - Live wallpaper
+        - Motion / animation
+        - Settings / backup
+        - Web study / icon gallery
+        - Installation / update
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Phone and software
+      placeholder: "OnePlus Nord 5 / OxygenOS 16, or emulator API 35"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: ATELIER version
+      placeholder: "0.9.0-preview.2"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide clear, minimal steps; remove private information.
+      placeholder: "1. Open ATELIER...\n2. Select...\n3. Observe..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+      placeholder: "Expected: ...\nActual: ..."
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or non-sensitive diagnostics
+      description: Clearly distinguish real-device evidence from emulator or concept-art evidence.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety and checks
+      options:
+        - label: I removed personal information from logs and screenshots.
+          required: true
+        - label: I confirmed the problem is not already documented in the roadmap or open issues.

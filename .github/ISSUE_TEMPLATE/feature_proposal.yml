@@ -1,0 +1,44 @@
+name: Design or feature proposal
+description: Propose an intentional improvement to ATELIER, with constraints.
+title: "[Proposal] "
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Proposed area
+      options:
+        - Native launcher UX
+        - Animation / kinetic behavior
+        - Iconography / branding
+        - Procedural wallpaper
+        - Accessibility / performance
+        - Release engineering / documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What problem does this solve? Avoid pitching decoration for decoration's sake.
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: Proposed behavior
+      description: Explain how it works, what changes, and what remains unchanged.
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Trade-offs and Android constraints
+      description: Consider performance, permissions, reduced motion, battery, OEM limits and fallbacks.
+    validations:
+      required: true
+  - type: textarea
+    id: visual
+    attributes:
+      label: References or sketches (optional)
+      description: Share source material only when you have the rights to use it.
