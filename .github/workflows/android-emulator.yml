@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/android-emulator.yml"
+      - "scripts/ci/emulator-smoke.sh"
   workflow_dispatch:
 
 permissions:
@@ -41,22 +42,7 @@ jobs:
           target: google_apis
           profile: pixel_6
           emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
-          script: |
-            set -e
-            adb install -r app/build/outputs/apk/debug/app-debug.apk
-            adb shell am start -n dev.atelier.black/dev.atelier.LauncherActivity
-            sleep 10
-            mkdir -p dist/emulator
-            adb shell screencap -p /sdcard/atelier-home.png
-            adb pull /sdcard/atelier-home.png dist/emulator/home.png
-            adb shell dumpsys activity activities | grep -E 'dev.atelier.black|LauncherActivity' | head -10
-            adb logcat -d -v brief -s AndroidRuntime:E > dist/emulator/crashes.txt
-            if grep -q 'FATAL EXCEPTION' dist/emulator/crashes.txt; then
-              cat dist/emulator/crashes.txt
-              exit 1
-            fi
-            test -s dist/emulator/home.png
-            echo "ATELIER opened without an AndroidRuntime FATAL EXCEPTION."
+          script: bash scripts/ci/emulator-smoke.sh
       - name: Attach screenshot and logs
         if: always()
         uses: actions/upload-artifact@v4

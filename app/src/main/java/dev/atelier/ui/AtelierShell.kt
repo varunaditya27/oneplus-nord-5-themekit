@@ -94,11 +94,14 @@ fun AtelierShell(
             Command.Unknown -> Unit
         }
     }
-    Box(Modifier.fillMaxSize()) {
+    // The emulator exposed a bright stock wallpaper through the previous translucent
+    // window. Draw the complete black base before atmosphere, then place ink-free UI
+    // over it. This stays dark on every OEM wallpaper and avoids double rendering.
+    Box(Modifier.fillMaxSize().background(c.background)) {
         if (page == Page.HOME) AtelierCinematicBackdrop(settings)
         Column(
             Modifier.fillMaxSize()
-                .background(if(page==Page.HOME)c.background.copy(alpha=.56f) else c.background)
+                .background(androidx.compose.ui.graphics.Color.Transparent)
                 .statusBarsPadding().navigationBarsPadding()
                 .padding(horizontal=24.dp)
         ) {

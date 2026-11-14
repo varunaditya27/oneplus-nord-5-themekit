@@ -61,7 +61,7 @@ python3 scripts/generate_assets.py
 
 The generated files live under `assets/wallpapers/`. They are WebP images sized 1080 × 2400.
 
-The Home surface requests a translucent window so the selected wallpaper can appear behind the interface. Actual layering and power usage depend on OxygenOS and require phone testing.
+**Home is intentionally opaque near-black.** The launcher draws its own Silkfield, Strata or Eclipse scene, so a bright pre-existing system wallpaper cannot wash out the interface. The Android WallpaperService is separate: selecting ATELIER as the device wallpaper displays the same procedural art outside the launcher and wherever OxygenOS allows it. This avoids running two competing visible wallpaper layers. Android's wallpaper picker and physical-device power behavior still need testing.
 
 ## 6. Understand the commands
 
@@ -91,7 +91,7 @@ If system navigation or lock-screen controls look wrong, disable ATELIER's live 
 
 ## Unverified on the Nord 5
 
-The following remain open: work-profile app discovery, fast gesture navigation, wallpaper visibility behind the translucent window, battery use over long sessions, app launch error behavior, large fonts/TalkBack, and landscape cutout handling.
+The following remain open: work-profile app discovery, fast gesture navigation, procedural scene contrast on the real display, battery use over long sessions, app launch error behavior, large fonts/TalkBack, and landscape cutout handling.
 
 Source and automated build verification are not substitutes for these checks.
 
