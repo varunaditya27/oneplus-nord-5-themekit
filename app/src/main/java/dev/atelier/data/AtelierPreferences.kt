@@ -10,13 +10,18 @@ enum class ClockStyle { SIGNATURE, COMPACT }
 enum class IconStyle { THEMED, SEMANTIC, MONOGRAM, ORIGINAL }
 enum class IconWeight { CONTOUR, CORE }
 enum class MotionMode { STILL, SIGNATURE, EXPRESSIVE }
+enum class WallpaperScene { SILKFIELD, STRATA, ECLIPSE }
 
 data class AtelierSettings(
     val material: Material = Material.INK,
     val clockStyle: ClockStyle = ClockStyle.SIGNATURE,
     val iconStyle: IconStyle = IconStyle.THEMED,
     val iconWeight: IconWeight = IconWeight.CORE,
-    val motionMode: MotionMode = MotionMode.SIGNATURE,
+    val motionMode: MotionMode = MotionMode.EXPRESSIVE,
+    val wallpaperScene: WallpaperScene = WallpaperScene.SILKFIELD,
+    val parallaxEnabled: Boolean = true,
+    val ambientEnabled: Boolean = true,
+    val hapticsEnabled: Boolean = true,
     val focusMode: Boolean = false,
     val reduceMotion: Boolean = false,
     val showLabels: Boolean = true,
@@ -35,8 +40,14 @@ class AtelierPreferences(context: Context) {
         iconStyle = runCatching { IconStyle.valueOf(store.getString("icon_style", "THEMED")!!) }.getOrDefault(IconStyle.THEMED),
         iconWeight = runCatching { IconWeight.valueOf(store.getString("icon_weight", "CORE")!!) }.getOrDefault(IconWeight.CORE),
         motionMode = runCatching {
-            MotionMode.valueOf(store.getString("motion_mode", "SIGNATURE")!!)
-        }.getOrDefault(MotionMode.SIGNATURE),
+            MotionMode.valueOf(store.getString("motion_mode", "EXPRESSIVE")!!)
+        }.getOrDefault(MotionMode.EXPRESSIVE),
+        wallpaperScene = runCatching {
+            WallpaperScene.valueOf(store.getString("wallpaper_scene", "SILKFIELD")!!)
+        }.getOrDefault(WallpaperScene.SILKFIELD),
+        parallaxEnabled = store.getBoolean("parallax_enabled", true),
+        ambientEnabled = store.getBoolean("ambient_enabled", true),
+        hapticsEnabled = store.getBoolean("haptics_enabled", true),
         focusMode = store.getBoolean("focus", false),
         reduceMotion = store.getBoolean("reduce_motion", false),
         showLabels = store.getBoolean("show_labels", true),
@@ -59,6 +70,10 @@ class AtelierPreferences(context: Context) {
             .putString("icon_style", next.iconStyle.name)
             .putString("icon_weight", next.iconWeight.name)
             .putString("motion_mode", next.motionMode.name)
+            .putString("wallpaper_scene", next.wallpaperScene.name)
+            .putBoolean("parallax_enabled", next.parallaxEnabled)
+            .putBoolean("ambient_enabled", next.ambientEnabled)
+            .putBoolean("haptics_enabled", next.hapticsEnabled)
             .putBoolean("focus", next.focusMode)
             .putBoolean("reduce_motion", next.reduceMotion)
             .putBoolean("show_labels", next.showLabels)
