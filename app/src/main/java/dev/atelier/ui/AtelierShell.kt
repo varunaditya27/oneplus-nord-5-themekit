@@ -80,7 +80,14 @@ fun AtelierShell(
                 fontFamily=AtelierFonts.technical, modifier=Modifier.clickable { page=Page.HOME })
         }
         Box(Modifier.weight(1f)) {
-            Crossfade(page, animationSpec=tween(if(settings.reduceMotion) 0 else 220), label="page") { current ->
+            Crossfade(
+                page,
+                animationSpec=tween(
+                    if(settings.reduceMotion || settings.motionMode==MotionMode.STILL) 0
+                    else if(settings.motionMode==MotionMode.EXPRESSIVE) 275 else 220
+                ),
+                label="page"
+            ) { current ->
                 when(current) {
                     Page.HOME -> Home(c,now,settings,apps,onLaunch,{page=Page.COMMAND},{page=Page.LIBRARY},{page=Page.CONTROL})
                     Page.LIBRARY -> Library(c,apps,settings,onFavorite,onLaunch)
@@ -97,7 +104,7 @@ fun AtelierShell(
                 Column(
                     Modifier
                         .sizeIn(minWidth=48.dp,minHeight=48.dp)
-                        .atelierPressable(settings.reduceMotion,onClick={page=Page.entries[index]})
+                        .atelierPressable(settings.reduceMotion,onClick={page=Page.entries[index]},mode=settings.motionMode)
                         .padding(8.dp),
                     horizontalAlignment=Alignment.CenterHorizontally
                 ) {
@@ -154,12 +161,12 @@ private fun Home(c:AtelierColors,now:LocalDateTime,settings:AtelierSettings,apps
             Spacer(Modifier.height(23.dp))
             val favored=apps.filter { it.id in settings.favorites }.take(4).ifEmpty { apps.take(4) }
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {
-                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,settings.reduceMotion,{launch(it)},{}) }
+                favored.forEach { AppCell(it,c,settings.showLabels,false,settings.iconStyle,settings.iconWeight,settings.reduceMotion,settings.motionMode,{launch(it)},{}) }
             }
             Spacer(Modifier.height(22.dp))
             Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.surface)
                 .border(1.dp,c.border,RoundedCornerShape(14.dp))
-                .atelierPressable(settings.reduceMotion,onClick=command).padding(17.dp),
+                .atelierPressable(settings.reduceMotion,onClick=command,mode=settings.motionMode).padding(17.dp),
                 verticalAlignment=Alignment.CenterVertically) {
                 Text("›",color=c.accent,fontSize=24.sp)
                 Spacer(Modifier.width(13.dp))
@@ -185,7 +192,7 @@ private fun Library(c:AtelierColors,apps:List<AppItem>,s:AtelierSettings,
         LazyVerticalGrid(columns=GridCells.Fixed(4),horizontalArrangement=Arrangement.spacedBy(6.dp),
             verticalArrangement=Arrangement.spacedBy(21.dp),contentPadding=PaddingValues(bottom=16.dp)) {
             items(filtered,key={it.id}) { app ->
-                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,s.reduceMotion,{launch(app)},{favorite(app.id)})
+                AppCell(app,c,true,app.id in s.favorites,s.iconStyle,s.iconWeight,s.reduceMotion,s.motionMode,{launch(app)},{favorite(app.id)})
             }
         }
     }
@@ -227,19 +234,19 @@ private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)-
     Column {
         Heading(c,"Control","SHELL CONTROLS / NOT SYSTEMUI")
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-            ControlTile(c,"Focus",s.focusMode,AtelierGlyph.FOCUS,s.reduceMotion,Modifier.weight(1f)) {
+            ControlTile(c,"Focus",s.focusMode,AtelierGlyph.FOCUS,s.reduceMotion,s.motionMode,Modifier.weight(1f)) {
                 update{it.copy(focusMode=!it.focusMode)}
             }
-            ControlTile(c,"Wi-Fi",false,AtelierGlyph.WIFI,s.reduceMotion,Modifier.weight(1f)) {
+            ControlTile(c,"Wi-Fi",false,AtelierGlyph.WIFI,s.reduceMotion,s.motionMode,Modifier.weight(1f)) {
                 runCatching{context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))}
             }
         }
         Spacer(Modifier.height(12.dp))
         Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-            ControlTile(c,"Bluetooth",false,AtelierGlyph.BLUETOOTH,s.reduceMotion,Modifier.weight(1f)) {
+            ControlTile(c,"Bluetooth",false,AtelierGlyph.BLUETOOTH,s.reduceMotion,s.motionMode,Modifier.weight(1f)) {
                 runCatching{context.startActivity(Intent(Settings.ACTION_BLUETOOTH_SETTINGS))}
             }
-            ControlTile(c,"Wallpaper",false,AtelierGlyph.WALLPAPER,s.reduceMotion,Modifier.weight(1f),wallpaper)
+            ControlTile(c,"Wallpaper",false,AtelierGlyph.WALLPAPER,s.reduceMotion,s.motionMode,Modifier.weight(1f),wallpaper)
         }
         Spacer(Modifier.height(25.dp))
         Text("MATERIAL",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
@@ -252,23 +259,23 @@ private fun Control(c:AtelierColors,s:AtelierSettings,update:((AtelierSettings)-
 @Composable
 private fun ControlTile(
     c:AtelierColors,title:String,active:Boolean,glyph:AtelierGlyph,
-    reduceMotion:Boolean,modifier:Modifier,onClick:()->Unit
+    reduceMotion:Boolean,motionMode:MotionMode,modifier:Modifier,onClick:()->Unit
 ) {
     val fill by animateColorAsState(
         targetValue=if(active)c.text else c.surface,
-        animationSpec=tween(if(reduceMotion) 0 else 180),
+        animationSpec=tween(if(reduceMotion || motionMode == MotionMode.STILL) 0 else if(motionMode == MotionMode.EXPRESSIVE) 215 else 180),
         label="control-material"
     )
     val foreground by animateColorAsState(
         targetValue=if(active)c.background else c.text,
-        animationSpec=tween(if(reduceMotion) 0 else 180),
+        animationSpec=tween(if(reduceMotion || motionMode == MotionMode.STILL) 0 else if(motionMode == MotionMode.EXPRESSIVE) 215 else 180),
         label="control-ink"
     )
     Column(
         modifier.height(122.dp).clip(RoundedCornerShape(16.dp))
             .background(fill)
             .border(1.dp,if(active)c.text else c.border,RoundedCornerShape(16.dp))
-            .atelierPressable(reduceMotion,onClick=onClick)
+            .atelierPressable(reduceMotion,onClick=onClick,mode=motionMode)
             .padding(16.dp),
         verticalArrangement=Arrangement.SpaceBetween
     ) {
@@ -288,6 +295,24 @@ private fun SettingsPage(c:AtelierColors,s:AtelierSettings,update:((AtelierSetti
         Text("APPEARANCE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
         MaterialPicker(c,s,update)
         SwitchRow(c,"Reduced motion",s.reduceMotion){v->update{it.copy(reduceMotion=v)}}
+        Spacer(Modifier.height(16.dp))
+        Text("MOTION LANGUAGE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
+        Spacer(Modifier.height(9.dp))
+        Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(7.dp)) {
+            MotionMode.entries.forEach { mode ->
+                OutlinedButton(
+                    onClick={update{it.copy(motionMode=mode)}},
+                    modifier=Modifier.weight(1f),
+                    border=BorderStroke(1.dp,if(s.motionMode==mode)c.accent else c.border),
+                    contentPadding=PaddingValues(horizontal=4.dp,vertical=7.dp)
+                ) {
+                    Text(mode.name,color=c.text,fontSize=9.sp,fontFamily=AtelierFonts.technical)
+                }
+            }
+        }
+        Text("Still removes spatial motion. Signature is restrained; Expressive remains non-bouncy.",
+            color=c.muted,fontSize=11.sp,lineHeight=16.sp)
+        Spacer(Modifier.height(12.dp))
         SwitchRow(c,"Show labels",s.showLabels){v->update{it.copy(showLabels=v)}}
         Spacer(Modifier.height(21.dp))
         Text("APP ICON LANGUAGE",color=c.muted,fontSize=10.sp,letterSpacing=2.sp)
@@ -356,7 +381,7 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
             val m=colors(material)
             Column(Modifier.weight(1f).clip(RoundedCornerShape(12.dp)).background(c.surface)
                 .border(1.dp,if(s.material==material)c.accent else c.border,RoundedCornerShape(12.dp))
-                .atelierPressable(s.reduceMotion,onClick={update{it.copy(material=material)}}).padding(10.dp)) {
+                .atelierPressable(s.reduceMotion,onClick={update{it.copy(material=material)}},mode=s.motionMode).padding(10.dp)) {
                 Box(Modifier.fillMaxWidth().height(32.dp).background(m.background))
                 Spacer(Modifier.height(8.dp))
                 Text(material.name,color=c.text,fontSize=10.sp)
@@ -366,7 +391,12 @@ private fun MaterialPicker(c:AtelierColors,s:AtelierSettings,update:((AtelierSet
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,reduceMotion:Boolean,onClick:()->Unit,onLongClick:()->Unit) {
+private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boolean,iconStyle:IconStyle,iconWeight:IconWeight,reduceMotion:Boolean,motionMode:MotionMode,onClick:()->Unit,onLongClick:()->Unit) {
+    val pinAlpha by androidx.compose.animation.core.animateFloatAsState(
+        targetValue = if (favorite) 1f else 0f,
+        animationSpec = tween(if(reduceMotion || motionMode == MotionMode.STILL) 0 else 150),
+        label = "favorite-inlay"
+    )
     val semanticGlyph = remember(app.component.packageName, app.name, iconStyle) {
         if (iconStyle == IconStyle.SEMANTIC || iconStyle == IconStyle.THEMED)
             AtelierIconResolver.resolve(app.component.packageName, app.name)
@@ -379,7 +409,8 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
                 reduceMotion = reduceMotion,
                 onClick = onClick,
                 onLongClick = onLongClick,
-                onLongClickLabel = "Pin or unpin app"
+                onLongClickLabel = "Pin or unpin app",
+                mode = motionMode
             ),contentAlignment=Alignment.Center) {
             val bmp=remember(app.id,iconStyle,c.text){
                 when (iconStyle) {
@@ -406,12 +437,13 @@ private fun AppCell(app:AppItem,c:AtelierColors,showLabel:Boolean,favorite:Boole
                 Text(app.name.trim().firstOrNull()?.uppercaseChar()?.toString() ?: "?",
                     color=c.text,fontSize=23.sp,fontFamily=AtelierFonts.display,fontWeight=FontWeight.Light)
             }
-            if (favorite) {
-                Box(
-                    Modifier.align(Alignment.BottomEnd).padding(end=7.dp,bottom=7.dp)
-                        .width(9.dp).height(2.dp).background(c.accent)
-                )
-            }
+            Box(
+                Modifier.align(Alignment.BottomEnd)
+                    .padding(end=7.dp,bottom=7.dp)
+                    .width(9.dp).height(2.dp)
+                    .graphicsLayer { alpha = pinAlpha }
+                    .background(c.accent)
+            )
         }
         if(showLabel) {
             Spacer(Modifier.height(7.dp))

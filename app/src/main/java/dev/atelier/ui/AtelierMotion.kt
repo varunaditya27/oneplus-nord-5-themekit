@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import dev.atelier.data.MotionMode
 
 /**
  * ATELIER / Tactile surface.
@@ -33,13 +34,18 @@ fun Modifier.atelierPressable(
     reduceMotion: Boolean,
     onClick: () -> Unit,
     onLongClick: (() -> Unit)? = null,
-    onLongClickLabel: String? = null
+    onLongClickLabel: String? = null,
+    mode: MotionMode = MotionMode.SIGNATURE
 ): Modifier {
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
     val haptics = LocalHapticFeedback.current
     val scale by animateFloatAsState(
-        targetValue = if (reduceMotion || !pressed) 1f else 0.955f,
+        targetValue = when {
+            reduceMotion || mode == MotionMode.STILL || !pressed -> 1f
+            mode == MotionMode.EXPRESSIVE -> .94f
+            else -> .955f
+        },
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioNoBouncy,
             stiffness = Spring.StiffnessHigh

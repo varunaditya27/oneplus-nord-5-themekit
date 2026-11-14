@@ -9,12 +9,14 @@ enum class Material { INK, GRAPHITE, SABLE }
 enum class ClockStyle { SIGNATURE, COMPACT }
 enum class IconStyle { THEMED, SEMANTIC, MONOGRAM, ORIGINAL }
 enum class IconWeight { CONTOUR, CORE }
+enum class MotionMode { STILL, SIGNATURE, EXPRESSIVE }
 
 data class AtelierSettings(
     val material: Material = Material.INK,
     val clockStyle: ClockStyle = ClockStyle.SIGNATURE,
     val iconStyle: IconStyle = IconStyle.THEMED,
     val iconWeight: IconWeight = IconWeight.CORE,
+    val motionMode: MotionMode = MotionMode.SIGNATURE,
     val focusMode: Boolean = false,
     val reduceMotion: Boolean = false,
     val showLabels: Boolean = true,
@@ -32,6 +34,9 @@ class AtelierPreferences(context: Context) {
         clockStyle = runCatching { ClockStyle.valueOf(store.getString("clock", "SIGNATURE")!!) }.getOrDefault(ClockStyle.SIGNATURE),
         iconStyle = runCatching { IconStyle.valueOf(store.getString("icon_style", "THEMED")!!) }.getOrDefault(IconStyle.THEMED),
         iconWeight = runCatching { IconWeight.valueOf(store.getString("icon_weight", "CORE")!!) }.getOrDefault(IconWeight.CORE),
+        motionMode = runCatching {
+            MotionMode.valueOf(store.getString("motion_mode", "SIGNATURE")!!)
+        }.getOrDefault(MotionMode.SIGNATURE),
         focusMode = store.getBoolean("focus", false),
         reduceMotion = store.getBoolean("reduce_motion", false),
         showLabels = store.getBoolean("show_labels", true),
@@ -53,6 +58,7 @@ class AtelierPreferences(context: Context) {
             .putString("clock", next.clockStyle.name)
             .putString("icon_style", next.iconStyle.name)
             .putString("icon_weight", next.iconWeight.name)
+            .putString("motion_mode", next.motionMode.name)
             .putBoolean("focus", next.focusMode)
             .putBoolean("reduce_motion", next.reduceMotion)
             .putBoolean("show_labels", next.showLabels)
